@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MultiplicationTable.Views.ItemsPage"
+             Title="{Binding Title}"
+             x:Name="BrowseItemsPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="btnRow1" Grid.Row="1" Grid.Column="0" Text="1" />
+        <Button x:Name="btnRow2" Grid.Row="2" Grid.Column="0" Text="2" />
+        <Button x:Name="btnRow3" Grid.Row="3" Grid.Column="0" Text="3" />
+        <Button x:Name="btnRow4" Grid.Row="4" Grid.Column="0" Text="4" />
+        <Button x:Name="btnRow5" Grid.Row="5" Grid.Column="0" Text="5" />
+        <Button x:Name="btnRow6" Grid.Row="6" Grid.Column="0" Text="6" />
+        <Button x:Name="btnRow7" Grid.Row="7" Grid.Column="0" Text="7" />
+        <Button x:Name="btnRow8" Grid.Row="8" Grid.Column="0" Text="8" />
+        <Button x:Name="btnRow9" Grid.Row="9" Grid.Column="0" Text="9" />
+        <Button x:Name="btnRow10" Grid.Row="10" Grid.Column="0" Text="10" Margin="0,0,5,0" />
+
+        <Button x:Name="btnCol1" Grid.Column="1" Grid.Row="0" Text="1" />
+        <Button x:Name="btnCol2" Grid.Column="2" Grid.Row="0" Text="2" />
+        <Button x:Name="btnCol3" Grid.Column="3" Grid.Row="0" Text="3" />
+        <Button x:Name="btnCol4" Grid.Column="4" Grid.Row="0" Text="4" />
+        <Button x:Name="btnCol5" Grid.Column="5" Grid.Row="0" Text="5" />
+        <Button x:Name="btnCol6" Grid.Column="6" Grid.Row="0" Text="6" />
+        <Button x:Name="btnCol7" Grid.Column="7" Grid.Row="0" Text="7" />
+        <Button x:Name="btnCol8" Grid.Column="8" Grid.Row="0" Text="8" />
+        <Button x:Name="btnCol9" Grid.Column="9" Grid.Row="0" Text="9" />
+        <Button x:Name="btnCol10" Grid.Column="10" Grid.Row="0" Text="10" />
+
+        <Button x:Name="btnLosuj" Grid.Row="11" Grid.ColumnSpan="3" Text="LOSUJ" />
+
+        <BoxView x:Name="bvWynik_1_1" Grid.Row="1" Grid.Column="1" />
+        <BoxView x:Name="bvWynik_1_2" Grid.Row="1" Grid.Column="2" />
+        <BoxView x:Name="bvWynik_1_3" Grid.Row="1" Grid.Column="3" />
+        <BoxView x:Name="bvWynik_1_4" Grid.Row="1" Grid.Column="4" />
+        <BoxView x:Name="bvWynik_1_5" Grid.Row="1" Grid.Column="5" />
+        <BoxView x:Name="bvWynik_1_6" Grid.Row="1" Grid.Column="6" />
+        <BoxView x:Name="bvWynik_1_7" Grid.Row="1" Grid.Column="7" />
+        <BoxView x:Name="bvWynik_1_8" Grid.Row="1" Grid.Column="8" />
+        <BoxView x:Name="bvWynik_1_9" Grid.Row="1" Grid.Column="9" />
+        <BoxView x:Name="bvWynik_1_10" Grid.Row="1" Grid.Column="10" />
+
+        <BoxView x:Name="bvWynik_2_1" Grid.Row="2" Grid.Column="1" />
+        <BoxView x:Name="bvWynik_2_2" Grid.Row="2" Grid.Column="2" />
+        <BoxView x:Name="bvWynik_2_3" Grid.Row="2" Grid.Column="3" />
+        <BoxView x:Name="bvWynik_2_4" Grid.Row="2" Grid.Column="4" />
+        <BoxView x:Name="bvWynik_2_5" Grid.Row="2" Grid.Column="5" />
+        <BoxView x:Name="bvWynik_2_6" Grid.Row="2" Grid.Column="6" />
+        <BoxView x:Name="bvWynik_2_7" Grid.Row="2" Grid.Column="7" />
+        <BoxView x:Name="bvWynik_2_8" Grid.Row="2" Grid.Column="8" />
+        <BoxView x:Name="bvWynik_2_9" Grid.Row="2" Grid.Column="9" />
+        <BoxView x:Name="bvWynik_2_10" Grid.Row="2" Grid.Column="10" />
+
+        <BoxView x:Name="bvWynik_3_1" Grid.Row="3" Grid.Column="1" />
+        <BoxView x:Name="bvWynik_3_2" Grid.Row="3" Grid.Column="2" />
+        <BoxView x:Name="bvWynik_3_3" Grid.Row="3" Grid.Column="3" />
+        <BoxView x:Name="bvWynik_3_4" Grid.Row="3" Grid.Column="4" />
+        <BoxView x:Name="bvWynik_3_5" Grid.Row="3" Grid.Column="5" />
+        <BoxView x:Name="bvWynik_3_6" Grid.Row="3" Grid.Column="6" />
+        <BoxView x:Name="bvWynik_3_7" Grid.Row="3" Grid.Column="7" />
+        <BoxView x:Name="bvWynik_3_8" Grid.Row="3" Grid.Column="8" />
+        <BoxView x:Name="bvWynik_3_9" Grid.Row="3" Grid.Column="9" />
+        <BoxView x:Name="bvWynik_3_10" Grid.Row="3" Grid.Column="10" />
+
+        <BoxView x:Name="bvWynik_4_1" Grid.Row="4" Grid.Column="1" />
+        <BoxView x:Name="bvWynik_4_2" Grid.Row="4" Grid.Column="2" />
+        <BoxView x:Name="bvWynik_4_3" Grid.Row="4" Grid.Column="3" />
+        <BoxView x:Name="bvWynik_4_4" Grid.Row="4" Grid.Column="4" />
+        <BoxView x:Name="bvWynik_4_5" Grid.Row="4" Grid.Column="5" />
+        <BoxView x:Name="bvWynik_4_6" Grid.Row="4" Grid.Column="6" />
+        <BoxView x:Name="bvWynik_4_7" Grid.Row="4" Grid.Column="7" />
+        <BoxView x:Name="bvWynik_4_8" Grid.Row="4" Grid.Column="8" />
+        <BoxView x:Name="bvWynik_4_9" Grid.Row="4" Grid.Column="9" />
+        <BoxView x:Name="bvWynik_4_10" Grid.Row="4" Grid.Column="10" />
+
+        <BoxView x:Name="bvWynik_5_1" Grid.Row="5" Grid.Column="1" />
+        <BoxView x:Name="bvWynik_5_2" Grid.Row="5" Grid.Column="2" />
+        <BoxView x:Name="bvWynik_5_3" Grid.Row="5" Grid.Column="3" />
+        <BoxView x:Name="bvWynik_5_4" Grid.Row="5" Grid.Column="4" />
+        <BoxView x:Name="bvWynik_5_5" Grid.Row="5" Grid.Column="5" />
+        <BoxView x:Name="bvWynik_5_6" Grid.Row="5" Grid.Column="6" />
+        <BoxView x:Name="bvWynik_5_7" Grid.Row="5" Grid.Column="7" />
+        <BoxView x:Name="bvWynik_5_8" Grid.Row="5" Grid.Column="8" />
+        <BoxView x:Name="bvWynik_5_9" Grid.Row="5" Grid.Column="9" />
+        <BoxView x:Name="bvWynik_5_10" Grid.Row="5" Grid.Column="10" />
+
+        <BoxView x:Name="bvWynik_6_1" Grid.Row="6" Grid.Column="1" />
+        <BoxView x:Name="bvWynik_6_2" Grid.Row="6" Grid.Column="2" />
+        <BoxView x:Name="bvWynik_6_3" Grid.Row="6" Grid.Column="3" />
+        <BoxView x:Name="bvWynik_6_4" Grid.Row="6" Grid.Column="4" />
+        <BoxView x:Name="bvWynik_6_5" Grid.Row="6" Grid.Column="5" />
+        <BoxView x:Name="bvWynik_6_6" Grid.Row="6" Grid.Column="6" />
+        <BoxView x:Name="bvWynik_6_7" Grid.Row="6" Grid.Column="7" />
+        <BoxView x:Name="bvWynik_6_8" Grid.Row="6" Grid.Column="8" />
+        <BoxView x:Name="bvWynik_6_9" Grid.Row="6" Grid.Column="9" />
+        <BoxView x:Name="bvWynik_6_10" Grid.Row="6" Grid.Column="10" />
+
+        <BoxView x:Name="bvWynik_7_1" Grid.Row="7" Grid.Column="1" />
+        <BoxView x:Name="bvWynik_7_2" Grid.Row="7" Grid.Column="2" />
+        <BoxView x:Name="bvWynik_7_3" Grid.Row="7" Grid.Column="3" />
+        <BoxView x:Name="bvWynik_7_4" Grid.Row="7" Grid.Column="4" />
+        <BoxView x:Name="bvWynik_7_5" Grid.Row="7" Grid.Column="5" />
+        <BoxView x:Name="bvWynik_7_6" Grid.Row="7" Grid.Column="6" />
+        <BoxView x:Name="bvWynik_7_7" Grid.Row="7" Grid.Column="7" />
+        <BoxView x:Name="bvWynik_7_8" Grid.Row="7" Grid.Column="8" />
+        <BoxView x:Name="bvWynik_7_9" Grid.Row="7" Grid.Column="9" />
+        <BoxView x:Name="bvWynik_7_10" Grid.Row="7" Grid.Column="10" />
+
+        <BoxView x:Name="bvWynik_8_1" Grid.Row="8" Grid.Column="1" />
+        <BoxView x:Name="bvWynik_8_2" Grid.Row="8" Grid.Column="2" />
+        <BoxView x:Name="bvWynik_8_3" Grid.Row="8" Grid.Column="3" />
+        <BoxView x:Name="bvWynik_8_4" Grid.Row="8" Grid.Column="4" />
+        <BoxView x:Name="bvWynik_8_5" Grid.Row="8" Grid.Column="5" />
+        <BoxView x:Name="bvWynik_8_6" Grid.Row="8" Grid.Column="6" />
+        <BoxView x:Name="bvWynik_8_7" Grid.Row="8" Grid.Column="7" />
+        <BoxView x:Name="bvWynik_8_8" Grid.Row="8" Grid.Column="8" />
+        <BoxView x:Name="bvWynik_8_9" Grid.Row="8" Grid.Column="9" />
+        <BoxView x:Name="bvWynik_8_10" Grid.Row="8" Grid.Column="10" />
+
+        <BoxView x:Name="bvWynik_9_1" Grid.Row="9" Grid.Column="1" />
+        <BoxView x:Name="bvWynik_9_2" Grid.Row="9" Grid.Column="2" />
+        <BoxView x:Name="bvWynik_9_3" Grid.Row="9" Grid.Column="3" />
+        <BoxView x:Name="bvWynik_9_4" Grid.Row="9" Grid.Column="4" />
+        <BoxView x:Name="bvWynik_9_5" Grid.Row="9" Grid.Column="5" />
+        <BoxView x:Name="bvWynik_9_6" Grid.Row="9" Grid.Column="6" />
+        <BoxView x:Name="bvWynik_9_7" Grid.Row="9" Grid.Column="7" />
+        <BoxView x:Name="bvWynik_9_8" Grid.Row="9" Grid.Column="8" />
+        <BoxView x:Name="bvWynik_9_9" Grid.Row="9" Grid.Column="9" />
+        <BoxView x:Name="bvWynik_9_10" Grid.Row="9" Grid.Column="10" />
+
+        <BoxView x:Name="bvWynik_10_1" Grid.Row="10" Grid.Column="1" />
+        <BoxView x:Name="bvWynik_10_2" Grid.Row="10" Grid.Column="2" />
+        <BoxView x:Name="bvWynik_10_3" Grid.Row="10" Grid.Column="3" />
+        <BoxView x:Name="bvWynik_10_4" Grid.Row="10" Grid.Column="4" />
+        <BoxView x:Name="bvWynik_10_5" Grid.Row="10" Grid.Column="5" />
+        <BoxView x:Name="bvWynik_10_6" Grid.Row="10" Grid.Column="6" />
+        <BoxView x:Name="bvWynik_10_7" Grid.Row="10" Grid.Column="7" />
+        <BoxView x:Name="bvWynik_10_8" Grid.Row="10" Grid.Column="8" />
+        <BoxView x:Name="bvWynik_10_9" Grid.Row="10" Grid.Column="9" />
+        <BoxView x:Name="bvWynik_10_10" Grid.Row="10" Grid.Column="10" />
+
+
+    </Grid>
+   
+    
+</ContentPage>
