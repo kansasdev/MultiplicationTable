@@ -18,9 +18,20 @@ namespace MultiplicationTable.ViewModels
 
         private int row;
         private int col;
+        private static bool hasBeenGenerated;
+        
+
+        Func<bool> canHint = ()=> { return CheckHintConditions(); };
+
+        private static bool CheckHintConditions()
+        {
+            return hasBeenGenerated;
+        }
 
         public ICommand GenerateEquation { protected set; get; }
         public ICommand CheckEquation { protected set; get; }
+
+        public ICommand GenerateHint { protected set; get; }
 
         public ItemsViewModel()
         {
@@ -42,13 +53,37 @@ namespace MultiplicationTable.ViewModels
                 Equation = row.ToString() + "x" + col.ToString();
 
                 ClearSquares();
+                ClearHint();
+                Result = "";
                 SetSquares(row, col);
+
+                hasBeenGenerated = true;
+                GenerateHint.CanExecute(true);
             });
 
             CheckEquation = new Command(() =>
             {
+                /*
+                int wynik = 0;
+                int.TryParse(Result, out wynik);
+                if(wynik!=0)
+                {
+
+                }
+                else
+                {
+
+                }*/
+                Result = (row * col).ToString();
 
             });
+
+            GenerateHint = new Command(() =>
+            {
+                SetHint(row, col);
+            });
+            GenerateHint.CanExecute(false);
+
         }
 
         private string equation;
@@ -61,6 +96,19 @@ namespace MultiplicationTable.ViewModels
             get
             {
                 return equation;
+            }
+        }
+
+        private string result;
+        public string Result
+        {
+            set
+            {
+                SetProperty(ref result, value);
+            }
+            get
+            {
+                return result;
             }
         }
 
@@ -1317,6 +1365,270 @@ namespace MultiplicationTable.ViewModels
 
         #endregion
 
+        #region Boring hint settings
+
+        private string hintRow_1;
+        public string HintRow_1
+        {
+            set
+            {
+                SetProperty(ref hintRow_1, value);
+            }
+            get
+            {
+                return hintRow_1;
+            }
+        }
+
+        private string hintRow_2;
+        public string HintRow_2
+        {
+            set
+            {
+                SetProperty(ref hintRow_2, value);
+            }
+            get
+            {
+                return hintRow_2;
+            }
+        }
+
+        private string hintRow_3;
+        public string HintRow_3
+        {
+            set
+            {
+                SetProperty(ref hintRow_3, value);
+            }
+            get
+            {
+                return hintRow_3;
+            }
+        }
+
+        private string hintRow_4;
+        public string HintRow_4
+        {
+            set
+            {
+                SetProperty(ref hintRow_4, value);
+            }
+            get
+            {
+                return hintRow_4;
+            }
+        }
+
+        private string hintRow_5;
+        public string HintRow_5
+        {
+            set
+            {
+                SetProperty(ref hintRow_5, value);
+            }
+            get
+            {
+                return hintRow_5;
+            }
+        }
+
+        private string hintRow_6;
+        public string HintRow_6
+        {
+            set
+            {
+                SetProperty(ref hintRow_6, value);
+            }
+            get
+            {
+                return hintRow_6;
+            }
+        }
+
+        private string hintRow_7;
+        public string HintRow_7
+        {
+            set
+            {
+                SetProperty(ref hintRow_7, value);
+            }
+            get
+            {
+                return hintRow_7;
+            }
+        }
+
+        private string hintRow_8;
+        public string HintRow_8
+        {
+            set
+            {
+                SetProperty(ref hintRow_8, value);
+            }
+            get
+            {
+                return hintRow_8;
+            }
+        }
+
+        private string hintRow_9;
+        public string HintRow_9
+        {
+            set
+            {
+                SetProperty(ref hintRow_9, value);
+            }
+            get
+            {
+                return hintRow_9;
+            }
+        }
+
+        private string hintRow_10;
+        public string HintRow_10
+        {
+            set
+            {
+                SetProperty(ref hintRow_10, value);
+            }
+            get
+            {
+                return hintRow_10;
+            }
+        }
+
+        private string hintCol_1;
+        public string HintCol_1
+        {
+            set
+            {
+                SetProperty(ref hintCol_1, value);
+            }
+            get
+            {
+                return hintCol_1;
+            }
+        }
+
+        private string hintCol_2;
+        public string HintCol_2
+        {
+            set
+            {
+                SetProperty(ref hintCol_2, value);
+            }
+            get
+            {
+                return hintCol_2;
+            }
+        }
+
+        private string hintCol_3;
+        public string HintCol_3
+        {
+            set
+            {
+                SetProperty(ref hintCol_3, value);
+            }
+            get
+            {
+                return hintCol_3;
+            }
+        }
+
+        private string hintCol_4;
+        public string HintCol_4
+        {
+            set
+            {
+                SetProperty(ref hintCol_4, value);
+            }
+            get
+            {
+                return hintCol_4;
+            }
+        }
+
+        private string hintCol_5;
+        public string HintCol_5
+        {
+            set
+            {
+                SetProperty(ref hintCol_5, value);
+            }
+            get
+            {
+                return hintCol_5;
+            }
+        }
+
+        private string hintCol_6;
+        public string HintCol_6
+        {
+            set
+            {
+                SetProperty(ref hintCol_6, value);
+            }
+            get
+            {
+                return hintCol_6;
+            }
+        }
+
+        private string hintCol_7;
+        public string HintCol_7
+        {
+            set
+            {
+                SetProperty(ref hintCol_7, value);
+            }
+            get
+            {
+                return hintCol_7;
+            }
+        }
+
+        private string hintCol_8;
+        public string HintCol_8
+        {
+            set
+            {
+                SetProperty(ref hintCol_8, value);
+            }
+            get
+            {
+                return hintCol_8;
+            }
+        }
+
+        private string hintCol_9;
+        public string HintCol_9
+        {
+            set
+            {
+                SetProperty(ref hintCol_9, value);
+            }
+            get
+            {
+                return hintCol_9;
+            }
+        }
+
+        private string hintCol_10;
+        public string HintCol_10
+        {
+            set
+            {
+                SetProperty(ref hintCol_10, value);
+            }
+            get
+            {
+                return hintCol_10;
+            }
+        }
+
+        #endregion
+
         private void ClearSquares()
         {
             for(int r = 1;r<=10;r++)
@@ -1331,6 +1643,49 @@ namespace MultiplicationTable.ViewModels
 
                         pi.SetValue(this,Color.Green);
                     }
+                }
+            }
+        }
+
+        private void ClearHint()
+        {
+            for (int r = 1; r <= 10; r++)
+            {
+               
+                    string nameRow = "HintRow_" + r.ToString();
+                    string nameCol = "HintCol_" + r.ToString();
+                    PropertyInfo piRow = this.GetType().GetProperty(nameRow);
+                    PropertyInfo piCol = this.GetType().GetProperty(nameCol);
+                    if (piRow != null)
+                    {
+                        piRow.SetValue(this, "");
+                    }
+                    if(piCol!=null)
+                    {
+                        piCol.SetValue(this, "");
+                    }
+            }
+        }
+
+        private void SetHint(int rMax, int cMax)
+        {
+            for (int r = 1; r <= rMax; r++)
+            {
+                string nameRow = "HintRow_" + r.ToString();
+                PropertyInfo piRow = this.GetType().GetProperty(nameRow);
+                if(piRow!=null)
+                {
+                    piRow.SetValue(this, (((r-1) * cMax)+cMax).ToString());
+                }
+            }
+
+            for (int c = 1; c <= cMax; c++)
+            {
+                string nameCol = "HintCol_" + c.ToString();
+                PropertyInfo piCol = this.GetType().GetProperty(nameCol);
+                if (piCol != null)
+                {
+                    piCol.SetValue(this, (((c-1) * rMax)+rMax).ToString());
                 }
             }
         }

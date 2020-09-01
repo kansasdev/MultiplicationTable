@@ -37,34 +37,35 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="btnRow1" Grid.Row="1" Grid.Column="0" Text="1" Margin="5"/>
-        <Button x:Name="btnRow2" Grid.Row="2" Grid.Column="0" Text="2" Margin="5"/>
-        <Button x:Name="btnRow3" Grid.Row="3" Grid.Column="0" Text="3" Margin="5"/>
-        <Button x:Name="btnRow4" Grid.Row="4" Grid.Column="0" Text="4" Margin="5"/>
-        <Button x:Name="btnRow5" Grid.Row="5" Grid.Column="0" Text="5" Margin="5"/>
-        <Button x:Name="btnRow6" Grid.Row="6" Grid.Column="0" Text="6" Margin="5"/>
-        <Button x:Name="btnRow7" Grid.Row="7" Grid.Column="0" Text="7" Margin="5"/>
-        <Button x:Name="btnRow8" Grid.Row="8" Grid.Column="0" Text="8" Margin="5"/>
-        <Button x:Name="btnRow9" Grid.Row="9" Grid.Column="0" Text="9" Margin="5"/>
-        <Button x:Name="btnRow10" Grid.Row="10" Grid.Column="0" Text="10" Margin="5" />
+        <Button Text="{Binding HintRow_1}" Grid.Row="1" Grid.Column="0" Margin="5"/>
+        <Button Text="{Binding HintRow_2}" Grid.Row="2" Grid.Column="0" Margin="5"/>
+        <Button Text="{Binding HintRow_3}" Grid.Row="3" Grid.Column="0" Margin="5"/>
+        <Button Text="{Binding HintRow_4}" Grid.Row="4" Grid.Column="0" Margin="5"/>
+        <Button Text="{Binding HintRow_5}" Grid.Row="5" Grid.Column="0" Margin="5"/>
+        <Button Text="{Binding HintRow_6}" Grid.Row="6" Grid.Column="0" Margin="5"/>
+        <Button Text="{Binding HintRow_7}" Grid.Row="7" Grid.Column="0" Margin="5"/>
+        <Button Text="{Binding HintRow_8}" Grid.Row="8" Grid.Column="0" Margin="5"/>
+        <Button Text="{Binding HintRow_9}" Grid.Row="9" Grid.Column="0" Margin="5"/>
+        <Button Text="{Binding HintRow_10}" Grid.Row="10" Grid.Column="0" Margin="5" />
 
-        <Button x:Name="btnCol1" Grid.Column="1" Grid.Row="0" Text="1" Margin="5"/>
-        <Button x:Name="btnCol2" Grid.Column="2" Grid.Row="0" Text="2" Margin="5"/>
-        <Button x:Name="btnCol3" Grid.Column="3" Grid.Row="0" Text="3" Margin="5"/>
-        <Button x:Name="btnCol4" Grid.Column="4" Grid.Row="0" Text="4" Margin="5"/>
-        <Button x:Name="btnCol5" Grid.Column="5" Grid.Row="0" Text="5" Margin="5"/>
-        <Button x:Name="btnCol6" Grid.Column="6" Grid.Row="0" Text="6" Margin="5"/>
-        <Button x:Name="btnCol7" Grid.Column="7" Grid.Row="0" Text="7" Margin="5"/>
-        <Button x:Name="btnCol8" Grid.Column="8" Grid.Row="0" Text="8" Margin="5"/>
-        <Button x:Name="btnCol9" Grid.Column="9" Grid.Row="0" Text="9" Margin="5"/>
-        <Button x:Name="btnCol10" Grid.Column="10" Grid.Row="0" Text="10" Margin="5"/>
+        <Button Text="{Binding HintCol_1}" Grid.Column="1" Grid.Row="0" Margin="5"/>
+        <Button Text="{Binding HintCol_2}" Grid.Column="2" Grid.Row="0" Margin="5"/>
+        <Button Text="{Binding HintCol_3}" Grid.Column="3" Grid.Row="0" Margin="5"/>
+        <Button Text="{Binding HintCol_4}" Grid.Column="4" Grid.Row="0" Margin="5"/>
+        <Button Text="{Binding HintCol_5}" Grid.Column="5" Grid.Row="0" Margin="5"/>
+        <Button Text="{Binding HintCol_6}" Grid.Column="6" Grid.Row="0" Margin="5"/>
+        <Button Text="{Binding HintCol_7}" Grid.Column="7" Grid.Row="0" Margin="5"/>
+        <Button Text="{Binding HintCol_8}" Grid.Column="8" Grid.Row="0" Margin="5"/>
+        <Button Text="{Binding HintCol_9}" Grid.Column="9" Grid.Row="0" Margin="5"/>
+        <Button Text="{Binding HintCol_10}" Grid.Column="10" Grid.Row="0" Margin="5"/>
 
-        <Button x:Name="btnTest" Grid.Row="11" Grid.ColumnSpan="3" Text="TEST" Margin="5" Command="{Binding GenerateEquation}" />
-        <Label Text="{Binding Equation}" Grid.Row="11" Grid.Column="4" Grid.ColumnSpan="3" Margin="5" HorizontalOptions="CenterAndExpand" FontSize="Large" />
-        <Entry Placeholder="RESULT" Grid.Row="11" Grid.Column="8" Margin="5" />
+        <Button x:Name="btnTest" Grid.Row="11" Grid.ColumnSpan="2" Text="TEST" Margin="5" Command="{Binding GenerateEquation}" />
+        <Label Text="{Binding Equation}" Grid.Row="11" Grid.Column="3" Grid.ColumnSpan="3" Margin="5" HorizontalOptions="CenterAndExpand" FontSize="Large" />
+        <Button Grid.Row="11" Grid.Column="6" Grid.ColumnSpan="2" Text="HINT" Margin="5" Command="{Binding GenerateHint}"/>
+        <Entry Placeholder="RESULT" Grid.Row="11" Grid.Column="8" Margin="5" Text="{Binding Result}" />
         <Button Grid.Row="11" Grid.Column="9" Grid.ColumnSpan="2" Command="{Binding CheckEquation}" Text="CHECK" Margin="5"/>
 
-        <BoxView BackgroundColor="{Binding bvColor_1_1}" Grid.Row="1" Grid.Column="1" Margin="5"/>
+        <BoxView BackgroundColor="{Binding bvColor_1_1}" Grid.Row="1" Grid.Column="1" Margin="5" />
         <BoxView BackgroundColor="{Binding bvColor_1_2}" Grid.Row="1" Grid.Column="2" Margin="5"/>
         <BoxView BackgroundColor="{Binding bvColor_1_3}" Grid.Row="1" Grid.Column="3" Margin="5"/>
         <BoxView BackgroundColor="{Binding bvColor_1_4}" Grid.Row="1" Grid.Column="4" Margin="5"/>
