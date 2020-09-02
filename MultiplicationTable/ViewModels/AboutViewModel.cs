@@ -10,7 +10,7 @@ namespace MultiplicationTable.ViewModels
         public AboutViewModel()
         {
             Title = "About";
-            OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://xamarin.com"));
+            OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://github.com/kansasdev"));
         }
 
         public ICommand OpenWebCommand { get; }

@@ -20,7 +20,7 @@ namespace MultiplicationTable.Views
 
             menuItems = new List<HomeMenuItem>
             {
-                new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
+                new HomeMenuItem {Id = MenuItemType.Browse, Title="Multiplication" },
                 new HomeMenuItem {Id = MenuItemType.About, Title="About" }
             };
 

@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
-
+using Acr.UserDialogs;
 using MultiplicationTable.Models;
 using MultiplicationTable.Views;
 using System.Windows.Input;
@@ -19,7 +19,7 @@ namespace MultiplicationTable.ViewModels
         private int row;
         private int col;
         private static bool hasBeenGenerated;
-        
+        private int helpCounter;
 
         Func<bool> canHint = ()=> { return CheckHintConditions(); };
 
@@ -74,13 +74,23 @@ namespace MultiplicationTable.ViewModels
                 {
 
                 }*/
+                
                 Result = (row * col).ToString();
-
+                helpCounter = 0;
             });
 
             GenerateHint = new Command(() =>
             {
-                SetHint(row, col);
+                if (helpCounter % 2 == 0 || helpCounter<2)
+                {
+                    SetHint(row, col);
+                    helpCounter++;
+                }
+                else
+                {
+                    UserDialogs.Instance.Alert("Too many hints: " + helpCounter.ToString(), "Hint advice");
+
+                }
             });
             GenerateHint.CanExecute(false);
 
