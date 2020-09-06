@@ -59,11 +59,21 @@
         <Label Text="{Binding HintCol_9}" Grid.Column="9" Grid.Row="0" Margin="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
         <Label Text="{Binding HintCol_10}" Grid.Column="10" Grid.Row="0" Margin="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
 
+        <Label Text="{Binding QuizAnswerText}" TextColor="{Binding QuizAnswerColor}" FontSize="Header" Grid.ColumnSpan="11" Grid.RowSpan="11" Margin="1" />
+
         <Button x:Name="btnTest" Grid.Row="11" Grid.ColumnSpan="2" Text="TEST" Margin="1" Command="{Binding GenerateEquation}" />
+        
         <Label Text="{Binding Equation}" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="2" Margin="1" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="Large" />
-        <Button Grid.Row="11" Grid.Column="4" Grid.ColumnSpan="2" Text="HINT" Margin="1" Command="{Binding GenerateHint}"/>
-        <Entry Placeholder="" Grid.Row="11" Grid.Column="6" Margin="1" Text="{Binding Result}" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
-        <Button Grid.Row="11" Grid.Column="8" Grid.ColumnSpan="3" Command="{Binding CheckEquation}" Text="CHECK" Margin="1"/>
+        
+        <Button IsVisible="{Binding WorkModeNormal}" Grid.Row="11" Grid.Column="4" Grid.ColumnSpan="2" Text="HINT" Margin="1" Command="{Binding GenerateHint}"/>
+        <Button IsVisible="{Binding WorkModeQuiz}" Grid.Row="11" Grid.Column="4" Grid.ColumnSpan="2" Margin="1" Text="{Binding HintA}" Command="{Binding CheckQuizAnswerA}" />
+
+        <Entry IsVisible="{Binding WorkModeNormal}" Placeholder="" Grid.Row="11" Grid.Column="6" Margin="1" Text="{Binding Result}" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+        <Button IsVisible="{Binding WorkModeQuiz}" Grid.Row="11" Grid.Column="6" Grid.ColumnSpan="2" Margin="1" Text="{Binding HintB}" Command="{Binding CheckQuizAnswerB}" />
+
+        <Button IsVisible="{Binding WorkModeNormal}" Grid.Row="11" Grid.Column="8" Grid.ColumnSpan="3" Command="{Binding CheckEquation}" Text="CHECK" Margin="1"/>
+        <Button IsVisible="{Binding WorkModeQuiz}" Grid.Row="11" Grid.Column="8" Grid.ColumnSpan="2" Margin="1" Text="{Binding HintC}" Command="{Binding CheckQuizAnswerC}" />
+
 
         <BoxView BackgroundColor="{Binding bvColor_1_1}" Grid.Row="1" Grid.Column="1" Margin="1" />
         <BoxView BackgroundColor="{Binding bvColor_1_2}" Grid.Row="1" Grid.Column="2" Margin="1"/>

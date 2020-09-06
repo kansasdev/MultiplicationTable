@@ -21,7 +21,7 @@ namespace MultiplicationTable.Views
             menuItems = new List<HomeMenuItem>
             {
                 new HomeMenuItem {Id = MenuItemType.Browse, Title="Multiplication" },
-                new HomeMenuItem {Id = MenuItemType.About, Title="About" }
+                new HomeMenuItem {Id = MenuItemType.About, Title="Configuration" }
             };
 
             ListViewMenu.ItemsSource = menuItems;

@@ -9,6 +9,8 @@ using MultiplicationTable.Models;
 using MultiplicationTable.Views;
 using System.Windows.Input;
 using System.Reflection;
+using MultiplicationTable.Services;
+using Xamarin.Essentials;
 
 namespace MultiplicationTable.ViewModels
 {
@@ -20,6 +22,8 @@ namespace MultiplicationTable.ViewModels
         private int col;
         private static bool hasBeenGenerated;
         private int helpCounter;
+
+        private static bool isQuizMode;
 
         Func<bool> canHint = ()=> { return CheckHintConditions(); };
 
@@ -37,13 +41,29 @@ namespace MultiplicationTable.ViewModels
         {
             Title = "Multiplication table";
             Items = new ObservableCollection<Item>();
+            HintA = "0";
+            HintB = "0";
+            HintC = "0";
 
-            MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
+            if (Settings.WorkMode == "" || Settings.WorkMode == "Normal")
             {
-                var newItem = item as Item;
-                Items.Add(newItem);
-                await DataStore.AddItemAsync(newItem);
-            });
+                isQuizMode = false;
+            }
+            else
+            {
+                isQuizMode = true;
+            }
+
+            if(isQuizMode)
+            {
+                WorkModeNormal = false;
+                WorkModeQuiz = true;
+            }
+            else
+            {
+                WorkModeNormal = true;
+                WorkModeQuiz = false;
+            }
 
             GenerateEquation = new Command(() =>
             {
@@ -56,6 +76,7 @@ namespace MultiplicationTable.ViewModels
                 ClearHint();
                 Result = "";
                 SetSquares(row, col);
+                SetQuizAnswers();
 
                 hasBeenGenerated = true;
                 GenerateHint.CanExecute(true);
@@ -92,6 +113,55 @@ namespace MultiplicationTable.ViewModels
 
                 }
             });
+
+            CheckQuizAnswerA = new Command(()=>
+            {
+                if(HintA==(row*col).ToString())
+                {
+                    QuizAnswerText = "OK";
+                    QuizAnswerColor = Color.Green;
+                    TextToSpeech.SpeakAsync("OK");
+                }
+                else
+                {
+                    QuizAnswerText = "NO";
+                    QuizAnswerColor = Color.Red;
+                    TextToSpeech.SpeakAsync("NO");
+                }
+            });
+
+            CheckQuizAnswerB = new Command(() =>
+            {
+                if (HintB == (row * col).ToString())
+                {
+                    QuizAnswerText = "OK";
+                    QuizAnswerColor = Color.Green;
+                    TextToSpeech.SpeakAsync("OK");
+                }
+                else
+                {
+                    QuizAnswerText = "NO";
+                    QuizAnswerColor = Color.Red;
+                    TextToSpeech.SpeakAsync("NO");
+                }
+            });
+
+            CheckQuizAnswerC = new Command(() =>
+            {
+                if (HintC == (row * col).ToString())
+                {
+                    QuizAnswerText = "OK";
+                    QuizAnswerColor = Color.Green;
+                    TextToSpeech.SpeakAsync("OK");
+                }
+                else
+                {
+                    QuizAnswerText = "NO";
+                    QuizAnswerColor = Color.Red;
+                    TextToSpeech.SpeakAsync("NO");
+                }
+            });
+
             GenerateHint.CanExecute(false);
 
         }
@@ -1639,6 +1709,106 @@ namespace MultiplicationTable.ViewModels
 
         #endregion
 
+        #region quiz mode settings
+
+        public ICommand CheckQuizAnswerA { protected set; get; }
+        public ICommand CheckQuizAnswerB { protected set; get; }
+        public ICommand CheckQuizAnswerC { protected set; get; }
+
+        private string quizAnswerText;
+        public string QuizAnswerText
+        {
+            set
+            {
+                SetProperty(ref quizAnswerText, value);
+            }
+            get
+            {
+                return quizAnswerText;
+            }
+        }
+
+        private Color quizAnswerColor;
+        public Color QuizAnswerColor
+        {
+            get
+            {
+                return quizAnswerColor;
+            }
+            set
+            {
+                SetProperty(ref quizAnswerColor, value);
+            }
+        }
+
+        private bool workModeNormal;
+        public bool WorkModeNormal
+        {
+            set
+            {
+                SetProperty(ref workModeNormal, value);
+            }
+            get
+            {
+                return workModeNormal;
+            }
+        }
+
+        private bool workModeQuiz;
+        public bool WorkModeQuiz
+        {
+            set
+            {
+                SetProperty(ref workModeQuiz, value);
+            }
+            get
+            {
+                return workModeQuiz;
+            }
+        }
+
+        private string hintA;
+        public string HintA
+        {
+            set
+            {
+                SetProperty(ref hintA, value);
+            }
+            get
+            {
+                return hintA;
+            }
+        }
+
+        private string hintB;
+        public string HintB
+        {
+            set
+            {
+                SetProperty(ref hintB, value);
+            }
+            get
+            {
+                return hintB;
+            }
+        }
+
+        private string hintC;
+        public string HintC
+        {
+            set
+            {
+                SetProperty(ref hintC, value);
+            }
+            get
+            {
+                return hintC;
+            }
+        }
+             
+
+        #endregion
+
         private void ClearSquares()
         {
             for(int r = 1;r<=10;r++)
@@ -1696,6 +1866,64 @@ namespace MultiplicationTable.ViewModels
                 if (piCol != null)
                 {
                     piCol.SetValue(this, (((c-1) * rMax)+rMax).ToString());
+                }
+            }
+        }
+
+        private void SetQuizAnswers()
+        {
+            if(isQuizMode)
+            {
+                QuizAnswerText = "";
+                Random rHint = new Random();
+                int i = rHint.Next(1, 3);
+                if(i==1)
+                {
+                    HintA = (row * col).ToString();
+                    Random rSign = new Random();
+                    int sign = rSign.Next(1, 2);
+                    if (sign == 1)
+                    {
+                        HintB = (row * col + row).ToString();
+                        HintC = (row * col - col).ToString();
+                    }
+                    else
+                    {
+                        HintB = (row * col - row).ToString();
+                        HintC = (row * col + col).ToString();
+                    }
+                }
+                if(i==2)
+                {
+                    HintB = (row * col).ToString();
+                    Random rSign = new Random();
+                    int sign = rSign.Next(1, 2);
+                    if (sign == 1)
+                    {
+                        HintA = (row * col + row).ToString();
+                        HintC = (row * col - col).ToString();
+                    }
+                    else
+                    {
+                        HintA = (row * col - row).ToString();
+                        HintC = (row * col + col).ToString();
+                    }
+                }
+                if(i==3)
+                {
+                    HintC = (row * col).ToString();
+                    Random rSign = new Random();
+                    int sign = rSign.Next(1, 2);
+                    if (sign == 1)
+                    {
+                        HintA = (row * col + row).ToString();
+                        HintB = (row * col - col).ToString();
+                    }
+                    else
+                    {
+                        HintA = (row * col - row).ToString();
+                        HintB = (row * col + col).ToString();
+                    }
                 }
             }
         }
