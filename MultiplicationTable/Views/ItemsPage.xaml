@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="MultiplicationTable.Views.ItemsPage"
+              xmlns:local="clr-namespace:MultiplicationTable"
              Title="{Binding Title}"
              x:Name="BrowseItemsPage">
 
@@ -37,6 +38,11 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <Label Text="{Binding QuizAnswerText}" Grid.Row="0" Grid.Column="0" TextColor="{Binding QuizAnswerColor}" FontSize="Header" Grid.ColumnSpan="11" Grid.RowSpan="11" Margin="1" />
+        <!--<Image Aspect="Fill" Grid.Row="5" Grid.Column="5" Source="{local:ImageResource MultiplicationTable.thumbs_up_1.png}" Grid.ColumnSpan="5" Grid.RowSpan="5" HorizontalOptions="Center"  VerticalOptions="Center" Margin="1" />-->
+        <Image Aspect="Fill" Grid.Row="5" Grid.Column="5" Source="{Binding ImageEmbeddedSource}" Grid.ColumnSpan="5" Grid.RowSpan="5" HorizontalOptions="Center"  VerticalOptions="Center" Margin="1" IsVisible="{Binding ImageVisible}" />
+
+
         <Label Text="{Binding HintRow_1}" Grid.Row="1" Grid.Column="0" Margin="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
         <Label Text="{Binding HintRow_2}" Grid.Row="2" Grid.Column="0" Margin="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
         <Label Text="{Binding HintRow_3}" Grid.Row="3" Grid.Column="0" Margin="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
@@ -59,8 +65,7 @@
         <Label Text="{Binding HintCol_9}" Grid.Column="9" Grid.Row="0" Margin="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
         <Label Text="{Binding HintCol_10}" Grid.Column="10" Grid.Row="0" Margin="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
 
-        <Label Text="{Binding QuizAnswerText}" TextColor="{Binding QuizAnswerColor}" FontSize="Header" Grid.ColumnSpan="11" Grid.RowSpan="11" Margin="1" />
-
+       
         <Button x:Name="btnTest" Grid.Row="11" Grid.ColumnSpan="2" Text="TEST" Margin="1" Command="{Binding GenerateEquation}" />
         
         <Label Text="{Binding Equation}" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="2" Margin="1" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="Large" />
@@ -75,116 +80,115 @@
         <Button IsVisible="{Binding WorkModeQuiz}" Grid.Row="11" Grid.Column="8" Grid.ColumnSpan="2" Margin="1" Text="{Binding HintC}" Command="{Binding CheckQuizAnswerC}" />
 
 
-        <BoxView BackgroundColor="{Binding bvColor_1_1}" Grid.Row="1" Grid.Column="1" Margin="1" />
-        <BoxView BackgroundColor="{Binding bvColor_1_2}" Grid.Row="1" Grid.Column="2" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_1_3}" Grid.Row="1" Grid.Column="3" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_1_4}" Grid.Row="1" Grid.Column="4" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_1_5}" Grid.Row="1" Grid.Column="5" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_1_6}" Grid.Row="1" Grid.Column="6" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_1_7}" Grid.Row="1" Grid.Column="7" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_1_8}" Grid.Row="1" Grid.Column="8" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_1_9}" Grid.Row="1" Grid.Column="9" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_1_10}" Grid.Row="1" Grid.Column="10" Margin="1"/>
+        <BoxView BackgroundColor="{Binding bvColor_1_1}" Grid.Row="1" Grid.Column="1" Margin="1" IsVisible="{Binding BoxVisible}" />
+        <BoxView BackgroundColor="{Binding bvColor_1_2}" Grid.Row="1" Grid.Column="2" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_1_3}" Grid.Row="1" Grid.Column="3" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_1_4}" Grid.Row="1" Grid.Column="4" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_1_5}" Grid.Row="1" Grid.Column="5" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_1_6}" Grid.Row="1" Grid.Column="6" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_1_7}" Grid.Row="1" Grid.Column="7" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_1_8}" Grid.Row="1" Grid.Column="8" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_1_9}" Grid.Row="1" Grid.Column="9" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_1_10}" Grid.Row="1" Grid.Column="10" Margin="1" IsVisible="{Binding BoxVisible}"/>
 
-        <BoxView BackgroundColor="{Binding bvColor_2_1}" Grid.Row="2" Grid.Column="1" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_2_2}" Grid.Row="2" Grid.Column="2" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_2_3}" Grid.Row="2" Grid.Column="3" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_2_4}" Grid.Row="2" Grid.Column="4" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_2_5}" Grid.Row="2" Grid.Column="5" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_2_6}" Grid.Row="2" Grid.Column="6" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_2_7}" Grid.Row="2" Grid.Column="7" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_2_8}" Grid.Row="2" Grid.Column="8" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_2_9}" Grid.Row="2" Grid.Column="9" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_2_10}" Grid.Row="2" Grid.Column="10" Margin="1"/>
+        <BoxView BackgroundColor="{Binding bvColor_2_1}" Grid.Row="2" Grid.Column="1" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_2_2}" Grid.Row="2" Grid.Column="2" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_2_3}" Grid.Row="2" Grid.Column="3" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_2_4}" Grid.Row="2" Grid.Column="4" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_2_5}" Grid.Row="2" Grid.Column="5" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_2_6}" Grid.Row="2" Grid.Column="6" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_2_7}" Grid.Row="2" Grid.Column="7" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_2_8}" Grid.Row="2" Grid.Column="8" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_2_9}" Grid.Row="2" Grid.Column="9" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_2_10}" Grid.Row="2" Grid.Column="10" Margin="1" IsVisible="{Binding BoxVisible}"/>
 
-        <BoxView BackgroundColor="{Binding bvColor_3_1}" Grid.Row="3" Grid.Column="1" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_3_2}" Grid.Row="3" Grid.Column="2" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_3_3}" Grid.Row="3" Grid.Column="3" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_3_4}" Grid.Row="3" Grid.Column="4" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_3_5}" Grid.Row="3" Grid.Column="5" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_3_6}" Grid.Row="3" Grid.Column="6" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_3_7}" Grid.Row="3" Grid.Column="7" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_3_8}" Grid.Row="3" Grid.Column="8" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_3_9}" Grid.Row="3" Grid.Column="9" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_3_10}" Grid.Row="3" Grid.Column="10" Margin="1"/>
+        <BoxView BackgroundColor="{Binding bvColor_3_1}" Grid.Row="3" Grid.Column="1" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_3_2}" Grid.Row="3" Grid.Column="2" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_3_3}" Grid.Row="3" Grid.Column="3" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_3_4}" Grid.Row="3" Grid.Column="4" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_3_5}" Grid.Row="3" Grid.Column="5" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_3_6}" Grid.Row="3" Grid.Column="6" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_3_7}" Grid.Row="3" Grid.Column="7" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_3_8}" Grid.Row="3" Grid.Column="8" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_3_9}" Grid.Row="3" Grid.Column="9" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_3_10}" Grid.Row="3" Grid.Column="10" Margin="1" IsVisible="{Binding BoxVisible}"/>
 
-        <BoxView BackgroundColor="{Binding bvColor_4_1}" Grid.Row="4" Grid.Column="1" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_4_2}" Grid.Row="4" Grid.Column="2" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_4_3}" Grid.Row="4" Grid.Column="3" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_4_4}" Grid.Row="4" Grid.Column="4" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_4_5}" Grid.Row="4" Grid.Column="5" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_4_6}" Grid.Row="4" Grid.Column="6" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_4_7}" Grid.Row="4" Grid.Column="7" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_4_8}" Grid.Row="4" Grid.Column="8" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_4_9}" Grid.Row="4" Grid.Column="9" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_4_10}" Grid.Row="4" Grid.Column="10" Margin="1"/>
+        <BoxView BackgroundColor="{Binding bvColor_4_1}" Grid.Row="4" Grid.Column="1" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_4_2}" Grid.Row="4" Grid.Column="2" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_4_3}" Grid.Row="4" Grid.Column="3" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_4_4}" Grid.Row="4" Grid.Column="4" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_4_5}" Grid.Row="4" Grid.Column="5" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_4_6}" Grid.Row="4" Grid.Column="6" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_4_7}" Grid.Row="4" Grid.Column="7" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_4_8}" Grid.Row="4" Grid.Column="8" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_4_9}" Grid.Row="4" Grid.Column="9" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_4_10}" Grid.Row="4" Grid.Column="10" Margin="1" IsVisible="{Binding BoxVisible}"/>
 
-        <BoxView BackgroundColor="{Binding bvColor_5_1}" Grid.Row="5" Grid.Column="1" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_5_2}" Grid.Row="5" Grid.Column="2" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_5_3}" Grid.Row="5" Grid.Column="3" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_5_4}" Grid.Row="5" Grid.Column="4" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_5_5}" Grid.Row="5" Grid.Column="5" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_5_6}" Grid.Row="5" Grid.Column="6" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_5_7}" Grid.Row="5" Grid.Column="7" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_5_8}" Grid.Row="5" Grid.Column="8" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_5_9}" Grid.Row="5" Grid.Column="9" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_5_10}" Grid.Row="5" Grid.Column="10" Margin="1"/>
+        <BoxView BackgroundColor="{Binding bvColor_5_1}" Grid.Row="5" Grid.Column="1" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_5_2}" Grid.Row="5" Grid.Column="2" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_5_3}" Grid.Row="5" Grid.Column="3" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_5_4}" Grid.Row="5" Grid.Column="4" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_5_5}" Grid.Row="5" Grid.Column="5" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_5_6}" Grid.Row="5" Grid.Column="6" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_5_7}" Grid.Row="5" Grid.Column="7" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_5_8}" Grid.Row="5" Grid.Column="8" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_5_9}" Grid.Row="5" Grid.Column="9" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_5_10}" Grid.Row="5" Grid.Column="10" Margin="1" IsVisible="{Binding BoxVisible}"/>
 
-        <BoxView BackgroundColor="{Binding bvColor_6_1}" Grid.Row="6" Grid.Column="1" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_6_2}" Grid.Row="6" Grid.Column="2" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_6_3}" Grid.Row="6" Grid.Column="3" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_6_4}" Grid.Row="6" Grid.Column="4" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_6_5}" Grid.Row="6" Grid.Column="5" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_6_6}" Grid.Row="6" Grid.Column="6" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_6_7}" Grid.Row="6" Grid.Column="7" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_6_8}" Grid.Row="6" Grid.Column="8" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_6_9}" Grid.Row="6" Grid.Column="9" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_6_10}" Grid.Row="6" Grid.Column="10" Margin="1"/>
+        <BoxView BackgroundColor="{Binding bvColor_6_1}" Grid.Row="6" Grid.Column="1" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_6_2}" Grid.Row="6" Grid.Column="2" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_6_3}" Grid.Row="6" Grid.Column="3" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_6_4}" Grid.Row="6" Grid.Column="4" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_6_5}" Grid.Row="6" Grid.Column="5" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_6_6}" Grid.Row="6" Grid.Column="6" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_6_7}" Grid.Row="6" Grid.Column="7" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_6_8}" Grid.Row="6" Grid.Column="8" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_6_9}" Grid.Row="6" Grid.Column="9" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_6_10}" Grid.Row="6" Grid.Column="10" Margin="1" IsVisible="{Binding BoxVisible}"/>
 
-        <BoxView BackgroundColor="{Binding bvColor_7_1}" Grid.Row="7" Grid.Column="1" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_7_2}" Grid.Row="7" Grid.Column="2" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_7_3}" Grid.Row="7" Grid.Column="3" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_7_4}" Grid.Row="7" Grid.Column="4" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_7_5}" Grid.Row="7" Grid.Column="5" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_7_6}" Grid.Row="7" Grid.Column="6" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_7_7}" Grid.Row="7" Grid.Column="7" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_7_8}" Grid.Row="7" Grid.Column="8" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_7_9}" Grid.Row="7" Grid.Column="9" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_7_10}" Grid.Row="7" Grid.Column="10" Margin="1"/>
+        <BoxView BackgroundColor="{Binding bvColor_7_1}" Grid.Row="7" Grid.Column="1" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_7_2}" Grid.Row="7" Grid.Column="2" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_7_3}" Grid.Row="7" Grid.Column="3" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_7_4}" Grid.Row="7" Grid.Column="4" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_7_5}" Grid.Row="7" Grid.Column="5" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_7_6}" Grid.Row="7" Grid.Column="6" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_7_7}" Grid.Row="7" Grid.Column="7" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_7_8}" Grid.Row="7" Grid.Column="8" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_7_9}" Grid.Row="7" Grid.Column="9" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_7_10}" Grid.Row="7" Grid.Column="10" Margin="1" IsVisible="{Binding BoxVisible}"/>
 
-        <BoxView BackgroundColor="{Binding bvColor_8_1}" Grid.Row="8" Grid.Column="1" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_8_2}" Grid.Row="8" Grid.Column="2" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_8_3}" Grid.Row="8" Grid.Column="3" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_8_4}" Grid.Row="8" Grid.Column="4" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_8_5}" Grid.Row="8" Grid.Column="5" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_8_6}" Grid.Row="8" Grid.Column="6" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_8_7}" Grid.Row="8" Grid.Column="7" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_8_8}" Grid.Row="8" Grid.Column="8" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_8_9}" Grid.Row="8" Grid.Column="9" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_8_10}" Grid.Row="8" Grid.Column="10" Margin="1"/>
+        <BoxView BackgroundColor="{Binding bvColor_8_1}" Grid.Row="8" Grid.Column="1" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_8_2}" Grid.Row="8" Grid.Column="2" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_8_3}" Grid.Row="8" Grid.Column="3" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_8_4}" Grid.Row="8" Grid.Column="4" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_8_5}" Grid.Row="8" Grid.Column="5" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_8_6}" Grid.Row="8" Grid.Column="6" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_8_7}" Grid.Row="8" Grid.Column="7" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_8_8}" Grid.Row="8" Grid.Column="8" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_8_9}" Grid.Row="8" Grid.Column="9" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_8_10}" Grid.Row="8" Grid.Column="10" Margin="1" IsVisible="{Binding BoxVisible}"/>
 
-        <BoxView BackgroundColor="{Binding bvColor_9_1}" Grid.Row="9" Grid.Column="1" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_9_2}" Grid.Row="9" Grid.Column="2" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_9_3}" Grid.Row="9" Grid.Column="3" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_9_4}" Grid.Row="9" Grid.Column="4" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_9_5}" Grid.Row="9" Grid.Column="5" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_9_6}" Grid.Row="9" Grid.Column="6" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_9_7}" Grid.Row="9" Grid.Column="7" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_9_8}" Grid.Row="9" Grid.Column="8" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_9_9}" Grid.Row="9" Grid.Column="9" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_9_10}" Grid.Row="9" Grid.Column="10" Margin="1"/>
+        <BoxView BackgroundColor="{Binding bvColor_9_1}" Grid.Row="9" Grid.Column="1" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_9_2}" Grid.Row="9" Grid.Column="2" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_9_3}" Grid.Row="9" Grid.Column="3" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_9_4}" Grid.Row="9" Grid.Column="4" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_9_5}" Grid.Row="9" Grid.Column="5" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_9_6}" Grid.Row="9" Grid.Column="6" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_9_7}" Grid.Row="9" Grid.Column="7" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_9_8}" Grid.Row="9" Grid.Column="8" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_9_9}" Grid.Row="9" Grid.Column="9" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_9_10}" Grid.Row="9" Grid.Column="10" Margin="1" IsVisible="{Binding BoxVisible}"/>
 
-        <BoxView BackgroundColor="{Binding bvColor_10_1}" Grid.Row="10" Grid.Column="1" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_10_2}" Grid.Row="10" Grid.Column="2" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_10_3}" Grid.Row="10" Grid.Column="3" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_10_4}" Grid.Row="10" Grid.Column="4" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_10_5}" Grid.Row="10" Grid.Column="5" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_10_6}" Grid.Row="10" Grid.Column="6" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_10_7}" Grid.Row="10" Grid.Column="7" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_10_8}" Grid.Row="10" Grid.Column="8" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_10_9}" Grid.Row="10" Grid.Column="9" Margin="1"/>
-        <BoxView BackgroundColor="{Binding bvColor_10_10}" Grid.Row="10" Grid.Column="10" Margin="1"/>
-
+        <BoxView BackgroundColor="{Binding bvColor_10_1}" Grid.Row="10" Grid.Column="1" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_10_2}" Grid.Row="10" Grid.Column="2" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_10_3}" Grid.Row="10" Grid.Column="3" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_10_4}" Grid.Row="10" Grid.Column="4" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_10_5}" Grid.Row="10" Grid.Column="5" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_10_6}" Grid.Row="10" Grid.Column="6" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_10_7}" Grid.Row="10" Grid.Column="7" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_10_8}" Grid.Row="10" Grid.Column="8" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_10_9}" Grid.Row="10" Grid.Column="9" Margin="1" IsVisible="{Binding BoxVisible}"/>
+        <BoxView BackgroundColor="{Binding bvColor_10_10}" Grid.Row="10" Grid.Column="10" Margin="1" IsVisible="{Binding BoxVisible}"/>
 
     </Grid>
    

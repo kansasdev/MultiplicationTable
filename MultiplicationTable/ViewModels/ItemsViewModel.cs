@@ -120,12 +120,21 @@ namespace MultiplicationTable.ViewModels
                 {
                     QuizAnswerText = "OK";
                     QuizAnswerColor = Color.Green;
+
+                    BoxVisible = false;
+                    ImageVisible = true;
+                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+
                     TextToSpeech.SpeakAsync("OK");
                 }
                 else
                 {
                     QuizAnswerText = "NO";
                     QuizAnswerColor = Color.Red;
+                    BoxVisible = false;
+                    ImageVisible = true;
+                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+
                     TextToSpeech.SpeakAsync("NO");
                 }
             });
@@ -136,12 +145,24 @@ namespace MultiplicationTable.ViewModels
                 {
                     QuizAnswerText = "OK";
                     QuizAnswerColor = Color.Green;
+
+                    BoxVisible = false;
+                    ImageVisible = true;
+                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+
                     TextToSpeech.SpeakAsync("OK");
+
                 }
                 else
                 {
                     QuizAnswerText = "NO";
                     QuizAnswerColor = Color.Red;
+
+                    BoxVisible = false;
+                    ImageVisible = true;
+                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+
+
                     TextToSpeech.SpeakAsync("NO");
                 }
             });
@@ -152,12 +173,22 @@ namespace MultiplicationTable.ViewModels
                 {
                     QuizAnswerText = "OK";
                     QuizAnswerColor = Color.Green;
+
+                    BoxVisible = false;
+                    ImageVisible = true;
+                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+
+
                     TextToSpeech.SpeakAsync("OK");
                 }
                 else
                 {
                     QuizAnswerText = "NO";
                     QuizAnswerColor = Color.Red;
+                    BoxVisible = false;
+                    ImageVisible = true;
+                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+
                     TextToSpeech.SpeakAsync("NO");
                 }
             });
@@ -1711,6 +1742,49 @@ namespace MultiplicationTable.ViewModels
 
         #region quiz mode settings
 
+        private ImageSource imageEmbeddedSource;
+        public ImageSource ImageEmbeddedSource
+        {
+            get
+            {
+                return imageEmbeddedSource;
+            }
+            set
+            {
+                SetProperty(ref imageEmbeddedSource, value);
+            }
+        }
+
+        private bool boxVisible;
+        public bool BoxVisible
+        {
+            get
+            {
+                return boxVisible;
+                        
+            }
+            set
+            {
+                SetProperty(ref boxVisible, value);
+            }
+        }
+
+        private bool imageVisible;
+        public bool ImageVisible
+        {
+            get
+            {
+                return imageVisible;
+
+            }
+            set
+            {
+                SetProperty(ref imageVisible, value);
+            }
+        }
+
+
+
         public ICommand CheckQuizAnswerA { protected set; get; }
         public ICommand CheckQuizAnswerB { protected set; get; }
         public ICommand CheckQuizAnswerC { protected set; get; }
@@ -1872,6 +1946,8 @@ namespace MultiplicationTable.ViewModels
 
         private void SetQuizAnswers()
         {
+            BoxVisible = true;
+            ImageVisible = false;
             if(isQuizMode)
             {
                 QuizAnswerText = "";
