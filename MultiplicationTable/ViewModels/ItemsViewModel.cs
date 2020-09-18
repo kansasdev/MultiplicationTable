@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Reflection;
 using MultiplicationTable.Services;
 using Xamarin.Essentials;
+using System.Timers;
 
 namespace MultiplicationTable.ViewModels
 {
@@ -22,6 +23,9 @@ namespace MultiplicationTable.ViewModels
         private int col;
         private static bool hasBeenGenerated;
         private int helpCounter;
+
+        private Timer timer;
+        private int seconds;
 
         private static bool isQuizMode;
 
@@ -44,6 +48,12 @@ namespace MultiplicationTable.ViewModels
             HintA = "0";
             HintB = "0";
             HintC = "0";
+
+            if(timer == null)
+            {
+                timer = new Timer(1000);
+                timer.Elapsed += Timer_Elapsed;
+            }
 
             if (Settings.WorkMode == "" || Settings.WorkMode == "Normal")
             {
@@ -80,6 +90,10 @@ namespace MultiplicationTable.ViewModels
 
                 hasBeenGenerated = true;
                 GenerateHint.CanExecute(true);
+
+                timer.Start();
+                QuizAnswerColor = Color.Black;
+
             });
 
             CheckEquation = new Command(() =>
@@ -116,7 +130,10 @@ namespace MultiplicationTable.ViewModels
 
             CheckQuizAnswerA = new Command(()=>
             {
-                if(HintA==(row*col).ToString())
+                timer.Stop();
+                seconds = 0;
+
+                if (HintA==(row*col).ToString())
                 {
                     QuizAnswerText = "OK";
                     QuizAnswerColor = Color.Green;
@@ -141,6 +158,9 @@ namespace MultiplicationTable.ViewModels
 
             CheckQuizAnswerB = new Command(() =>
             {
+                timer.Stop();
+                seconds = 0;
+
                 if (HintB == (row * col).ToString())
                 {
                     QuizAnswerText = "OK";
@@ -169,6 +189,9 @@ namespace MultiplicationTable.ViewModels
 
             CheckQuizAnswerC = new Command(() =>
             {
+                timer.Stop();
+                seconds = 0;
+
                 if (HintC == (row * col).ToString())
                 {
                     QuizAnswerText = "OK";
@@ -195,6 +218,24 @@ namespace MultiplicationTable.ViewModels
 
             GenerateHint.CanExecute(false);
 
+        }
+
+        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            seconds = seconds + 1;
+            QuizAnswerText = seconds.ToString();
+            if(seconds>20)
+            {
+                QuizAnswerText = "NO";
+                QuizAnswerColor = Color.Red;
+                BoxVisible = false;
+                ImageVisible = true;
+                ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+
+                TextToSpeech.SpeakAsync("NO");
+                timer.Stop();
+                seconds = 0;
+            }
         }
 
         private string equation;
