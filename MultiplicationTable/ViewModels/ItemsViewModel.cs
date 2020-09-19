@@ -27,6 +27,8 @@ namespace MultiplicationTable.ViewModels
         private Timer timer;
         private int seconds;
 
+        private MathOperation mo;
+
         private static bool isQuizMode;
 
         Func<bool> canHint = ()=> { return CheckHintConditions(); };
@@ -43,11 +45,13 @@ namespace MultiplicationTable.ViewModels
 
         public ItemsViewModel()
         {
-            Title = "Multiplication table";
+            Title = "";
             Items = new ObservableCollection<Item>();
             HintA = "0";
             HintB = "0";
             HintC = "0";
+
+            EquationResults.Resest();
 
             if(timer == null)
             {
@@ -78,15 +82,40 @@ namespace MultiplicationTable.ViewModels
             GenerateEquation = new Command(() =>
             {
                 Random r = new Random();
-                row = r.Next(1, 10);
-                col = r.Next(1, 10);
-                Equation = row.ToString() + "x" + col.ToString();
+                mo = GetRandomMathOperation();
+                if (mo == MathOperation.MNOZENIE)
+                {
+                    row = r.Next(1, 10);
+                    col = r.Next(1, 10);
+                    Equation = row.ToString() + "x" + col.ToString();
+                }
+                if(mo == MathOperation.DODAWANIE)
+                {
+                    row = r.Next(1, 50);
+                    col = r.Next(1, 50);
+                    Equation = row.ToString() + "+" + col.ToString();
+                }
+                if (mo == MathOperation.ODEJMOWANIE)
+                {
+                    row = r.Next(1, 30);
+                    col = r.Next(1, 30);
+                    if(col>row)
+                    {
+                        int temp = col;
+                        col = row;
+                        row = temp;
+                    }
+                    Equation = row.ToString() + "-" + col.ToString();
+                }
 
                 ClearSquares();
                 ClearHint();
                 Result = "";
-                SetSquares(row, col);
-                SetQuizAnswers();
+                SetSquares(row, col,mo);
+
+               
+
+                SetQuizAnswers(mo);
 
                 hasBeenGenerated = true;
                 GenerateHint.CanExecute(true);
@@ -98,19 +127,9 @@ namespace MultiplicationTable.ViewModels
 
             CheckEquation = new Command(() =>
             {
-                /*
-                int wynik = 0;
-                int.TryParse(Result, out wynik);
-                if(wynik!=0)
-                {
-
-                }
-                else
-                {
-
-                }*/
+               
                 
-                Result = (row * col).ToString();
+                Result = (GetCorrectAnswer(row,col,mo)).ToString();
                 helpCounter = 0;
             });
 
@@ -118,7 +137,7 @@ namespace MultiplicationTable.ViewModels
             {
                 if (helpCounter % 2 == 0 || helpCounter<2)
                 {
-                    SetHint(row, col);
+                    SetHint(row, col,mo);
                     helpCounter++;
                 }
                 else
@@ -133,7 +152,7 @@ namespace MultiplicationTable.ViewModels
                 timer.Stop();
                 seconds = 0;
 
-                if (HintA==(row*col).ToString())
+                if (HintA==GetCorrectAnswer(row,col,mo).ToString())
                 {
                     QuizAnswerText = "OK";
                     QuizAnswerColor = Color.Green;
@@ -141,6 +160,8 @@ namespace MultiplicationTable.ViewModels
                     BoxVisible = false;
                     ImageVisible = true;
                     ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+
+                    EquationResults.AddOkAnswer();
 
                     TextToSpeech.SpeakAsync("OK");
                 }
@@ -151,6 +172,8 @@ namespace MultiplicationTable.ViewModels
                     BoxVisible = false;
                     ImageVisible = true;
                     ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+
+                    EquationResults.AddBadAnswer();
 
                     TextToSpeech.SpeakAsync("NO");
                 }
@@ -161,11 +184,11 @@ namespace MultiplicationTable.ViewModels
                 timer.Stop();
                 seconds = 0;
 
-                if (HintB == (row * col).ToString())
+                if (HintB == GetCorrectAnswer(row, col, mo).ToString())
                 {
                     QuizAnswerText = "OK";
                     QuizAnswerColor = Color.Green;
-
+                    EquationResults.AddOkAnswer();
                     BoxVisible = false;
                     ImageVisible = true;
                     ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
@@ -181,7 +204,7 @@ namespace MultiplicationTable.ViewModels
                     BoxVisible = false;
                     ImageVisible = true;
                     ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
-
+                    EquationResults.AddBadAnswer();
 
                     TextToSpeech.SpeakAsync("NO");
                 }
@@ -192,7 +215,7 @@ namespace MultiplicationTable.ViewModels
                 timer.Stop();
                 seconds = 0;
 
-                if (HintC == (row * col).ToString())
+                if (HintC == GetCorrectAnswer(row, col, mo).ToString())
                 {
                     QuizAnswerText = "OK";
                     QuizAnswerColor = Color.Green;
@@ -200,7 +223,7 @@ namespace MultiplicationTable.ViewModels
                     BoxVisible = false;
                     ImageVisible = true;
                     ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
-
+                    EquationResults.AddOkAnswer();
 
                     TextToSpeech.SpeakAsync("OK");
                 }
@@ -211,7 +234,7 @@ namespace MultiplicationTable.ViewModels
                     BoxVisible = false;
                     ImageVisible = true;
                     ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
-
+                    EquationResults.AddBadAnswer();
                     TextToSpeech.SpeakAsync("NO");
                 }
             });
@@ -220,21 +243,43 @@ namespace MultiplicationTable.ViewModels
 
         }
 
+        private int GetCorrectAnswer(int row,int col,MathOperation operation)
+        {
+            if(operation == MathOperation.MNOZENIE)
+            {
+                return row * col;
+            }
+            if(operation==MathOperation.DODAWANIE)
+            {
+                return row + col;
+            }
+            if(operation == MathOperation.ODEJMOWANIE)
+            {
+                return row - col;
+            }
+            return 0;
+        }
+
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            seconds = seconds + 1;
-            QuizAnswerText = seconds.ToString();
-            if(seconds>20)
+            if (isQuizMode)
             {
-                QuizAnswerText = "NO";
-                QuizAnswerColor = Color.Red;
-                BoxVisible = false;
-                ImageVisible = true;
-                ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+                Title = "Result, " + "OK: " + EquationResults.GetOkAnswers() + " NO: " + EquationResults.GetBadAnswers() + " " + EquationResults.GetTotalAnswers();
 
-                TextToSpeech.SpeakAsync("NO");
-                timer.Stop();
-                seconds = 0;
+                seconds = seconds + 1;
+                QuizAnswerText = seconds.ToString();
+                if (seconds > 20)
+                {
+                    QuizAnswerText = "NO";
+                    QuizAnswerColor = Color.Red;
+                    BoxVisible = false;
+                    ImageVisible = true;
+                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+                    EquationResults.AddBadAnswer();
+                    TextToSpeech.SpeakAsync("NO");
+                    timer.Stop();
+                    seconds = 0;
+                }
             }
         }
 
@@ -1962,30 +2007,42 @@ namespace MultiplicationTable.ViewModels
             }
         }
 
-        private void SetHint(int rMax, int cMax)
+        private void SetHint(int rMax, int cMax,MathOperation operation)
         {
-            for (int r = 1; r <= rMax; r++)
+            if (operation == MathOperation.MNOZENIE)
             {
-                string nameRow = "HintRow_" + r.ToString();
-                PropertyInfo piRow = this.GetType().GetProperty(nameRow);
-                if(piRow!=null)
+                for (int r = 1; r <= rMax; r++)
                 {
-                    piRow.SetValue(this, (((r-1) * cMax)+cMax).ToString());
+                    string nameRow = "HintRow_" + r.ToString();
+                    PropertyInfo piRow = this.GetType().GetProperty(nameRow);
+                    if (piRow != null)
+                    {
+                        piRow.SetValue(this, (((r - 1) * cMax) + cMax).ToString());
+                    }
+                }
+
+                for (int c = 1; c <= cMax; c++)
+                {
+                    string nameCol = "HintCol_" + c.ToString();
+                    PropertyInfo piCol = this.GetType().GetProperty(nameCol);
+                    if (piCol != null)
+                    {
+                        piCol.SetValue(this, (((c - 1) * rMax) + rMax).ToString());
+                    }
                 }
             }
-
-            for (int c = 1; c <= cMax; c++)
+            if(operation==MathOperation.DODAWANIE)
             {
-                string nameCol = "HintCol_" + c.ToString();
-                PropertyInfo piCol = this.GetType().GetProperty(nameCol);
-                if (piCol != null)
-                {
-                    piCol.SetValue(this, (((c-1) * rMax)+rMax).ToString());
-                }
+
+            }
+
+            if(operation == MathOperation.ODEJMOWANIE)
+            {
+
             }
         }
 
-        private void SetQuizAnswers()
+        private void SetQuizAnswers(MathOperation operation)
         {
             BoxVisible = true;
             ImageVisible = false;
@@ -1996,72 +2053,204 @@ namespace MultiplicationTable.ViewModels
                 int i = rHint.Next(1, 3);
                 if(i==1)
                 {
-                    HintA = (row * col).ToString();
-                    Random rSign = new Random();
-                    int sign = rSign.Next(1, 2);
-                    if (sign == 1)
+                    if (operation == MathOperation.MNOZENIE)
                     {
-                        HintB = (row * col + row).ToString();
-                        HintC = (row * col - col).ToString();
+                        HintA = (row * col).ToString();
+                        Random rSign = new Random();
+                        int sign = rSign.Next(1, 2);
+                        if (sign == 1)
+                        {
+                            HintB = (row * col + row).ToString();
+                            HintC = (row * col - col).ToString();
+                        }
+                        else
+                        {
+                            HintB = (row * col - row).ToString();
+                            HintC = (row * col + col).ToString();
+                        }
                     }
-                    else
+                    if(operation == MathOperation.DODAWANIE)
                     {
-                        HintB = (row * col - row).ToString();
-                        HintC = (row * col + col).ToString();
+                        HintA = (row + col).ToString();
+                        Random rSign = new Random();
+                        int sign = rSign.Next(1, 2);
+                        if (sign == 1)
+                        {
+                            HintB = (row + col + 1).ToString();
+                            HintC = (row * col - 1).ToString();
+                        }
+                        else
+                        {
+                            HintB = (row * col - 1).ToString();
+                            HintC = (row * col + 1).ToString();
+                        }
+                    }
+                    if(operation == MathOperation.ODEJMOWANIE)
+                    {
+                        HintA = (row - col).ToString();
+                        Random rSign = new Random();
+                        int sign = rSign.Next(1, 2);
+                        if (sign == 1)
+                        {
+                            HintB = (row + col + 1).ToString();
+                            HintC = (row * col - 1).ToString();
+                        }
+                        else
+                        {
+                            HintB = (row * col - 1).ToString();
+                            HintC = (row * col + 1).ToString();
+                        }
                     }
                 }
                 if(i==2)
                 {
-                    HintB = (row * col).ToString();
-                    Random rSign = new Random();
-                    int sign = rSign.Next(1, 2);
-                    if (sign == 1)
+                    if (operation == MathOperation.MNOZENIE)
                     {
-                        HintA = (row * col + row).ToString();
-                        HintC = (row * col - col).ToString();
+                        HintB = (row * col).ToString();
+                        Random rSign = new Random();
+                        int sign = rSign.Next(1, 2);
+                        if (sign == 1)
+                        {
+                            HintA = (row * col + row).ToString();
+                            HintC = (row * col - col).ToString();
+                        }
+                        else
+                        {
+                            HintA = (row * col - row).ToString();
+                            HintC = (row * col + col).ToString();
+                        }
                     }
-                    else
+                    if (operation == MathOperation.DODAWANIE)
                     {
-                        HintA = (row * col - row).ToString();
-                        HintC = (row * col + col).ToString();
+                        HintB = (row + col).ToString();
+                        Random rSign = new Random();
+                        int sign = rSign.Next(1, 2);
+                        if (sign == 1)
+                        {
+                            HintA = (row + col + 1).ToString();
+                            HintC = (row + col - 1).ToString();
+                        }
+                        else
+                        {
+                            HintA = (row + col - 1).ToString();
+                            HintC = (row + col + 1).ToString();
+                        }
+                    }
+                    if (operation == MathOperation.ODEJMOWANIE)
+                    {
+                        HintB = (row - col).ToString();
+                        Random rSign = new Random();
+                        int sign = rSign.Next(1, 2);
+                        if (sign == 1)
+                        {
+                            HintA = (row - col + 1).ToString();
+                            HintC = (row - col - 1).ToString();
+                        }
+                        else
+                        {
+                            HintA = (row - col - 1).ToString();
+                            HintC = (row - col + 1).ToString();
+                        }
                     }
                 }
                 if(i==3)
                 {
-                    HintC = (row * col).ToString();
-                    Random rSign = new Random();
-                    int sign = rSign.Next(1, 2);
-                    if (sign == 1)
+                    if (operation == MathOperation.MNOZENIE)
                     {
-                        HintA = (row * col + row).ToString();
-                        HintB = (row * col - col).ToString();
+                        HintC = (row * col).ToString();
+                        Random rSign = new Random();
+                        int sign = rSign.Next(1, 2);
+                        if (sign == 1)
+                        {
+                            HintA = (row * col + row).ToString();
+                            HintB = (row * col - col).ToString();
+                        }
+                        else
+                        {
+                            HintA = (row * col - row).ToString();
+                            HintB = (row * col + col).ToString();
+                        }
                     }
-                    else
+                    if (operation == MathOperation.DODAWANIE)
                     {
-                        HintA = (row * col - row).ToString();
-                        HintB = (row * col + col).ToString();
+                        HintC = (row + col).ToString();
+                        Random rSign = new Random();
+                        int sign = rSign.Next(1, 2);
+                        if (sign == 1)
+                        {
+                            HintA = (row + col + 1).ToString();
+                            HintB = (row + col - 1).ToString();
+                        }
+                        else
+                        {
+                            HintA = (row + col - 1).ToString();
+                            HintB = (row + col + 1).ToString();
+                        }
+                    }
+                    if (operation == MathOperation.ODEJMOWANIE)
+                    {
+                        HintC = (row - col).ToString();
+                        Random rSign = new Random();
+                        int sign = rSign.Next(1, 2);
+                        if (sign == 1)
+                        {
+                            HintA = (row - col + 1).ToString();
+                            HintB = (row - col - 1).ToString();
+                        }
+                        else
+                        {
+                            HintA = (row - col - 1).ToString();
+                            HintB = (row - col + 1).ToString();
+                        }
                     }
                 }
             }
         }
 
-        private void SetSquares(int rMax, int cMax)
+        private void SetSquares(int rMax, int cMax,MathOperation operacja)
         {
-            for (int r = 1; r <= rMax; r++)
+            if (operacja == MathOperation.MNOZENIE)
             {
-                for (int c = 1; c <= cMax; c++)
+                for (int r = 1; r <= rMax; r++)
                 {
-                    string name = "bvColor_" + r.ToString() + "_" + c.ToString();
-                    PropertyInfo pi = this.GetType().GetProperty(name);
-                    if (pi != null)
+                    for (int c = 1; c <= cMax; c++)
                     {
-                        //Color clr = new Color();
+                        string name = "bvColor_" + r.ToString() + "_" + c.ToString();
+                        PropertyInfo pi = this.GetType().GetProperty(name);
+                        if (pi != null)
+                        {
+                            //Color clr = new Color();
 
-                        pi.SetValue(this, Color.Red);
+                            pi.SetValue(this, Color.Red);
+                        }
                     }
                 }
             }
+            if(operacja == MathOperation.DODAWANIE || operacja == MathOperation.ODEJMOWANIE)
+            {
+
+                if (operacja == MathOperation.DODAWANIE)
+                {
+                    int total = rMax + cMax;
+                    
+                   
+                }
+            }
+        }
+
+        private MathOperation GetRandomMathOperation()
+        {
+            Random rOperation = new Random();
+            return (MathOperation)rOperation.Next(1, 3);
         }
 
     }
+
+    public enum MathOperation
+    {
+        DODAWANIE=1,
+        ODEJMOWANIE=2,
+        MNOZENIE=3
+    }
+
 }
