@@ -112,9 +112,6 @@ namespace MultiplicationTable.ViewModels
                 ClearHint();
                 Result = "";
                 SetSquares(row, col,mo);
-
-               
-
                 SetQuizAnswers(mo);
 
                 hasBeenGenerated = true;
@@ -2077,12 +2074,12 @@ namespace MultiplicationTable.ViewModels
                         if (sign == 1)
                         {
                             HintB = (row + col + 1).ToString();
-                            HintC = (row * col - 1).ToString();
+                            HintC = (row + col - 1).ToString();
                         }
                         else
                         {
-                            HintB = (row * col - 1).ToString();
-                            HintC = (row * col + 1).ToString();
+                            HintB = (row + col - 1).ToString();
+                            HintC = (row + col + 1).ToString();
                         }
                     }
                     if(operation == MathOperation.ODEJMOWANIE)
@@ -2092,13 +2089,13 @@ namespace MultiplicationTable.ViewModels
                         int sign = rSign.Next(1, 2);
                         if (sign == 1)
                         {
-                            HintB = (row + col + 1).ToString();
-                            HintC = (row * col - 1).ToString();
+                            HintB = (row - col + 1).ToString();
+                            HintC = (row - col - 1).ToString();
                         }
                         else
                         {
-                            HintB = (row * col - 1).ToString();
-                            HintC = (row * col + 1).ToString();
+                            HintB = (row - col - 1).ToString();
+                            HintC = (row - col + 1).ToString();
                         }
                     }
                 }
@@ -2231,9 +2228,13 @@ namespace MultiplicationTable.ViewModels
 
                 if (operacja == MathOperation.DODAWANIE)
                 {
-                    int total = rMax + cMax;
                     
-                   
+                }
+
+                if (operacja == MathOperation.ODEJMOWANIE)
+                {
+                                  
+
                 }
             }
         }
