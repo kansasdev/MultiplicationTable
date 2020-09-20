@@ -97,20 +97,20 @@ namespace MultiplicationTable.ViewModels
                 mo = GetRandomMathOperation();
                 if (mo == MathOperation.MNOZENIE)
                 {
-                    row = r.Next(1, multipMax);
-                    col = r.Next(1, multipMax);
+                    row = r.Next(1, multipMax+1);
+                    col = r.Next(1, multipMax+1);
                     Equation = row.ToString() + "x" + col.ToString();
                 }
                 if(mo == MathOperation.DODAWANIE)
                 {
-                    row = r.Next(1, sumMax);
-                    col = r.Next(1, sumMax);
+                    row = r.Next(1, sumMax+1);
+                    col = r.Next(1, sumMax+1);
                     Equation = row.ToString() + "+" + col.ToString();
                 }
                 if (mo == MathOperation.ODEJMOWANIE)
                 {
-                    row = r.Next(1, diffMax);
-                    col = r.Next(1, diffMax);
+                    row = r.Next(1, diffMax+1);
+                    col = r.Next(1, diffMax+1);
                     if(col>row)
                     {
                         int temp = col;
@@ -2074,14 +2074,14 @@ namespace MultiplicationTable.ViewModels
             {
                 QuizAnswerText = "";
                 Random rHint = new Random();
-                int i = rHint.Next(1, 3);
+                int i = rHint.Next(1, 4);
                 if(i==1)
                 {
                     if (operation == MathOperation.MNOZENIE)
                     {
                         HintA = (row * col).ToString();
                         Random rSign = new Random();
-                        int sign = rSign.Next(1, 2);
+                        int sign = rSign.Next(1, 3);
                         if (sign == 1)
                         {
                             HintB = (row * col + row).ToString();
@@ -2097,7 +2097,7 @@ namespace MultiplicationTable.ViewModels
                     {
                         HintA = (row + col).ToString();
                         Random rSign = new Random();
-                        int sign = rSign.Next(1, 2);
+                        int sign = rSign.Next(1, 3);
                         if (sign == 1)
                         {
                             HintB = (row + col + 1).ToString();
@@ -2113,7 +2113,7 @@ namespace MultiplicationTable.ViewModels
                     {
                         HintA = (row - col).ToString();
                         Random rSign = new Random();
-                        int sign = rSign.Next(1, 2);
+                        int sign = rSign.Next(1, 3);
                         if (sign == 1)
                         {
                             HintB = (row - col + 1).ToString();
@@ -2132,7 +2132,7 @@ namespace MultiplicationTable.ViewModels
                     {
                         HintB = (row * col).ToString();
                         Random rSign = new Random();
-                        int sign = rSign.Next(1, 2);
+                        int sign = rSign.Next(1, 3);
                         if (sign == 1)
                         {
                             HintA = (row * col + row).ToString();
@@ -2148,7 +2148,7 @@ namespace MultiplicationTable.ViewModels
                     {
                         HintB = (row + col).ToString();
                         Random rSign = new Random();
-                        int sign = rSign.Next(1, 2);
+                        int sign = rSign.Next(1, 3);
                         if (sign == 1)
                         {
                             HintA = (row + col + 1).ToString();
@@ -2164,7 +2164,7 @@ namespace MultiplicationTable.ViewModels
                     {
                         HintB = (row - col).ToString();
                         Random rSign = new Random();
-                        int sign = rSign.Next(1, 2);
+                        int sign = rSign.Next(1, 3);
                         if (sign == 1)
                         {
                             HintA = (row - col + 1).ToString();
@@ -2183,7 +2183,7 @@ namespace MultiplicationTable.ViewModels
                     {
                         HintC = (row * col).ToString();
                         Random rSign = new Random();
-                        int sign = rSign.Next(1, 2);
+                        int sign = rSign.Next(1, 3);
                         if (sign == 1)
                         {
                             HintA = (row * col + row).ToString();
@@ -2199,7 +2199,7 @@ namespace MultiplicationTable.ViewModels
                     {
                         HintC = (row + col).ToString();
                         Random rSign = new Random();
-                        int sign = rSign.Next(1, 2);
+                        int sign = rSign.Next(1, 3);
                         if (sign == 1)
                         {
                             HintA = (row + col + 1).ToString();
@@ -2215,7 +2215,7 @@ namespace MultiplicationTable.ViewModels
                     {
                         HintC = (row - col).ToString();
                         Random rSign = new Random();
-                        int sign = rSign.Next(1, 2);
+                        int sign = rSign.Next(1, 3);
                         if (sign == 1)
                         {
                             HintA = (row - col + 1).ToString();
@@ -2301,7 +2301,7 @@ namespace MultiplicationTable.ViewModels
         private MathOperation GetRandomMathOperation()
         {
             Random rOperation = new Random();
-            return (MathOperation)rOperation.Next(1, 3);
+            return (MathOperation)rOperation.Next(1, 4);
         }
 
     }
