@@ -266,7 +266,7 @@ namespace MultiplicationTable.ViewModels
 
                 seconds = seconds + 1;
                 QuizAnswerText = seconds.ToString();
-                if (seconds > 2000)
+                if (seconds > 30)
                 {
                     QuizAnswerText = "NO";
                     QuizAnswerColor = Color.Red;
