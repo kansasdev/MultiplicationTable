@@ -183,7 +183,7 @@ namespace MultiplicationTable.ViewModels
                     ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
 
                     EquationResults.AddBadAnswer();
-
+                    
                     TextToSpeech.SpeakAsync("NO");
                 }
             });
