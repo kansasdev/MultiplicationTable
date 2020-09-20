@@ -58,7 +58,7 @@ namespace MultiplicationTable.ViewModels
                 timer = new Timer(1000);
                 timer.Elapsed += Timer_Elapsed;
             }
-
+            
             if (Settings.WorkMode == "" || Settings.WorkMode == "Normal")
             {
                 isQuizMode = false;
@@ -67,6 +67,7 @@ namespace MultiplicationTable.ViewModels
             {
                 isQuizMode = true;
             }
+            //isQuizMode = true;
 
             if(isQuizMode)
             {
@@ -265,7 +266,7 @@ namespace MultiplicationTable.ViewModels
 
                 seconds = seconds + 1;
                 QuizAnswerText = seconds.ToString();
-                if (seconds > 20)
+                if (seconds > 2000)
                 {
                     QuizAnswerText = "NO";
                     QuizAnswerColor = Color.Red;
@@ -2028,15 +2029,30 @@ namespace MultiplicationTable.ViewModels
                     }
                 }
             }
-            if(operation==MathOperation.DODAWANIE)
+            if(operation==MathOperation.DODAWANIE || operation == MathOperation.ODEJMOWANIE)
             {
+                for (int r = 1; r <= rMax; r++)
+                {
+                    string nameRow = "HintRow_" + r.ToString();
+                    PropertyInfo piRow = this.GetType().GetProperty(nameRow);
+                    if (piRow != null)
+                    {
+                        piRow.SetValue(this, (r).ToString());
+                    }
+                }
 
+                for (int c = 1; c <= cMax; c++)
+                {
+                    string nameCol = "HintCol_" + c.ToString();
+                    PropertyInfo piCol = this.GetType().GetProperty(nameCol);
+                    if (piCol != null)
+                    {
+                        piCol.SetValue(this, (c).ToString());
+                    }
+                }
             }
 
-            if(operation == MathOperation.ODEJMOWANIE)
-            {
-
-            }
+            
         }
 
         private void SetQuizAnswers(MathOperation operation)
@@ -2204,7 +2220,7 @@ namespace MultiplicationTable.ViewModels
             }
         }
 
-        private void SetSquares(int rMax, int cMax,MathOperation operacja)
+        public void SetSquares(int rMax, int cMax, MathOperation operacja)
         {
             if (operacja == MathOperation.MNOZENIE)
             {
@@ -2223,21 +2239,85 @@ namespace MultiplicationTable.ViewModels
                     }
                 }
             }
-            if(operacja == MathOperation.DODAWANIE || operacja == MathOperation.ODEJMOWANIE)
+            if (operacja == MathOperation.DODAWANIE || operacja == MathOperation.ODEJMOWANIE)
             {
 
                 if (operacja == MathOperation.DODAWANIE)
                 {
-                    
-                }
+                    int temp = 0;
+                    for (int r = 1; r < 10; r++)
+                    {
+                        for (int c = 1; c <= 10; c++)
+                        {
+                            temp = 10 * r + c;
+                            if (temp <= (rMax + cMax + 10))
+                            {
+                                string name = "bvColor_" + r.ToString() + "_" + c.ToString();
+                                PropertyInfo pi = this.GetType().GetProperty(name);
+                                if (pi != null)
+                                {
 
-                if (operacja == MathOperation.ODEJMOWANIE)
+                                    pi.SetValue(this, Color.Red);
+                                }
+                            }
+
+                        }
+
+
+                    }
+                }
+                if(operacja == MathOperation.ODEJMOWANIE)
                 {
-                                  
+                    int temp = 0;
+                    for (int r = 1; r < 10; r++)
+                    {
+                        for (int c = 1; c <= 10; c++)
+                        {
+                            temp = 10 * r + c;
+                            if (temp <= (rMax + cMax + 10))
+                            {
+                                string name = "bvColor_" + r.ToString() + "_" + c.ToString();
+                                PropertyInfo pi = this.GetType().GetProperty(name);
+                                if (pi != null)
+                                {
 
+                                    pi.SetValue(this, Color.Red);
+                                }
+                            }
+
+                        }
+                    }
+                    temp = 0;
+                    for (int r = 10; r > 0; r--)
+                    {
+                        for (int c = 10; c > 0; c--)
+                        {
+                            temp = 10 * r + c;
+                            if (temp <= (rMax - cMax+10))
+                            {
+                                string name = "bvColor_" + r.ToString() + "_" + c.ToString();
+                                PropertyInfo pi = this.GetType().GetProperty(name);
+                                if (pi != null)
+                                {
+
+                                    pi.SetValue(this, Color.Blue);
+                                }
+                            }
+
+                        }
+
+
+                    }
                 }
-            }
-        }
+            
+
+        } 
+              
+                
+    }
+        
+                   
+        
 
         private MathOperation GetRandomMathOperation()
         {
