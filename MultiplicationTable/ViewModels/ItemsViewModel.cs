@@ -27,6 +27,11 @@ namespace MultiplicationTable.ViewModels
         private Timer timer;
         private int seconds;
 
+        private int secondsMax;
+        private int multipMax;
+        private int sumMax;
+        private int diffMax;
+
         private MathOperation mo;
 
         private static bool isQuizMode;
@@ -50,7 +55,7 @@ namespace MultiplicationTable.ViewModels
             HintA = "0";
             HintB = "0";
             HintC = "0";
-
+                        
             EquationResults.Resest();
 
             if(timer == null)
@@ -58,7 +63,7 @@ namespace MultiplicationTable.ViewModels
                 timer = new Timer(1000);
                 timer.Elapsed += Timer_Elapsed;
             }
-            
+
             if (Settings.WorkMode == "" || Settings.WorkMode == "Normal")
             {
                 isQuizMode = false;
@@ -69,7 +74,7 @@ namespace MultiplicationTable.ViewModels
             }
             //isQuizMode = true;
 
-            if(isQuizMode)
+            if (isQuizMode)
             {
                 WorkModeNormal = false;
                 WorkModeQuiz = true;
@@ -82,24 +87,30 @@ namespace MultiplicationTable.ViewModels
 
             GenerateEquation = new Command(() =>
             {
+                secondsMax = Settings.Timeout;
+                sumMax = Settings.SumMax;
+                diffMax = Settings.DiffMax;
+                multipMax = Settings.MultMax;
+
+
                 Random r = new Random();
                 mo = GetRandomMathOperation();
                 if (mo == MathOperation.MNOZENIE)
                 {
-                    row = r.Next(1, 10);
-                    col = r.Next(1, 10);
+                    row = r.Next(1, multipMax);
+                    col = r.Next(1, multipMax);
                     Equation = row.ToString() + "x" + col.ToString();
                 }
                 if(mo == MathOperation.DODAWANIE)
                 {
-                    row = r.Next(1, 50);
-                    col = r.Next(1, 50);
+                    row = r.Next(1, sumMax);
+                    col = r.Next(1, sumMax);
                     Equation = row.ToString() + "+" + col.ToString();
                 }
                 if (mo == MathOperation.ODEJMOWANIE)
                 {
-                    row = r.Next(1, 30);
-                    col = r.Next(1, 30);
+                    row = r.Next(1, diffMax);
+                    col = r.Next(1, diffMax);
                     if(col>row)
                     {
                         int temp = col;
@@ -266,7 +277,7 @@ namespace MultiplicationTable.ViewModels
 
                 seconds = seconds + 1;
                 QuizAnswerText = seconds.ToString();
-                if (seconds > 30)
+                if (seconds > secondsMax)
                 {
                     QuizAnswerText = "NO";
                     QuizAnswerColor = Color.Red;
@@ -2241,16 +2252,13 @@ namespace MultiplicationTable.ViewModels
             }
             if (operacja == MathOperation.DODAWANIE || operacja == MathOperation.ODEJMOWANIE)
             {
-
-                if (operacja == MathOperation.DODAWANIE)
-                {
                     int temp = 0;
                     for (int r = 1; r < 10; r++)
                     {
                         for (int c = 1; c <= 10; c++)
                         {
                             temp = 10 * r + c;
-                            if (temp <= (rMax + cMax + 10))
+                            if(temp<=rMax+10)
                             {
                                 string name = "bvColor_" + r.ToString() + "_" + c.ToString();
                                 PropertyInfo pi = this.GetType().GetProperty(name);
@@ -2260,47 +2268,17 @@ namespace MultiplicationTable.ViewModels
                                     pi.SetValue(this, Color.Red);
                                 }
                             }
-
-                        }
-
-
-                    }
-                }
-                if(operacja == MathOperation.ODEJMOWANIE)
-                {
-                    int temp = 0;
-                    for (int r = 1; r < 10; r++)
-                    {
-                        for (int c = 1; c <= 10; c++)
-                        {
-                            temp = 10 * r + c;
-                            if (temp <= (rMax + cMax + 10))
+                            else
                             {
-                                string name = "bvColor_" + r.ToString() + "_" + c.ToString();
-                                PropertyInfo pi = this.GetType().GetProperty(name);
-                                if (pi != null)
+                                if (temp <= rMax+cMax + 10)
                                 {
+                                    string name = "bvColor_" + r.ToString() + "_" + c.ToString();
+                                    PropertyInfo pi = this.GetType().GetProperty(name);
+                                    if (pi != null)
+                                    {
 
-                                    pi.SetValue(this, Color.Red);
-                                }
-                            }
-
-                        }
-                    }
-                    temp = 0;
-                    for (int r = 10; r > 0; r--)
-                    {
-                        for (int c = 10; c > 0; c--)
-                        {
-                            temp = 10 * r + c;
-                            if (temp <= (rMax - cMax+10))
-                            {
-                                string name = "bvColor_" + r.ToString() + "_" + c.ToString();
-                                PropertyInfo pi = this.GetType().GetProperty(name);
-                                if (pi != null)
-                                {
-
-                                    pi.SetValue(this, Color.Blue);
+                                        pi.SetValue(this, Color.Blue);
+                                    }
                                 }
                             }
 
@@ -2308,7 +2286,8 @@ namespace MultiplicationTable.ViewModels
 
 
                     }
-                }
+                
+               
             
 
         } 
