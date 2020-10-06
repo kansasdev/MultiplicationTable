@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MultiplicationTable.Views.DictPage"
+             xmlns:vm="clr-namespace:MultiplicationTable.ViewModels"
+             Title="{Binding Title}"
+             >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ActivityIndicator x:Name="waitIndicator" Grid.Row="0" Grid.ColumnSpan="3" IsRunning="{Binding WaitIndicator}"
+                    Color="Blue"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="Fill" />
+        
+        <Label Grid.Row="0" Grid.ColumnSpan="3" FormattedText="{Binding FText}" LineBreakMode="WordWrap" HorizontalTextAlignment="Center" FontSize="Large" Margin="5" VerticalTextAlignment="Center">
+
+        </Label>
+
+        <Button Command="{Binding ShuffleCommand}" Grid.Row="1" Grid.Column="0" Text="Shuffle" Margin="2" IsEnabled="{Binding ButtonEnabled}" />
+        <Button Command="{Binding CheckCommand}" Grid.Row="1" Grid.Column="1" Margin="2" Text="CHECK" IsEnabled="{Binding ButtonEnabled}"/>
+        <Button Command="{Binding SayCommand}" Grid.Row="1" Grid.Column="2" Margin="2" Text="Say it!" IsEnabled="{Binding ButtonSayEnabled}"/>
+
+    </Grid>
+</ContentPage>

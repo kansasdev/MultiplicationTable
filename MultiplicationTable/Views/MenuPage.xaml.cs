@@ -20,13 +20,15 @@ namespace MultiplicationTable.Views
 
             menuItems = new List<HomeMenuItem>
             {
-                new HomeMenuItem {Id = MenuItemType.Browse, Title="Multiplication" },
-                new HomeMenuItem {Id = MenuItemType.About, Title="Configuration" }
+                new HomeMenuItem {Id = MenuItemType.Dictation,Title="Dictation"},
+                new HomeMenuItem {Id = MenuItemType.Multiplication, Title="Multiplication" },
+                
+                new HomeMenuItem {Id = MenuItemType.Configuration, Title="Configuration" }
             };
 
             ListViewMenu.ItemsSource = menuItems;
-
             ListViewMenu.SelectedItem = menuItems[0];
+
             ListViewMenu.ItemSelected += async (sender, e) =>
             {
                 if (e.SelectedItem == null)
@@ -35,6 +37,8 @@ namespace MultiplicationTable.Views
                 var id = (int)((HomeMenuItem)e.SelectedItem).Id;
                 await RootPage.NavigateFromMenu(id);
             };
+
+            
         }
     }
 }

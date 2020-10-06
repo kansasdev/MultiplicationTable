@@ -13,11 +13,13 @@
   <ItemGroup>
     <None Remove="thumbs_up_1.png" />
     <None Remove="waaa_1.png" />
+    <None Remove="XMLText.xml" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="thumbs_up_1.png" />
     <EmbeddedResource Include="waaa_1.png" />
+    <EmbeddedResource Include="XMLText.xml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,5 +27,17 @@
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\DictPage.xaml.cs">
+      <DependentUpon>DictPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\DictPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

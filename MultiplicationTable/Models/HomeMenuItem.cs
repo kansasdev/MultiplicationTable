@@ -6,8 +6,9 @@ namespace MultiplicationTable.Models
 {
     public enum MenuItemType
     {
-        Browse,
-        About
+        Multiplication,
+        Dictation,
+        Configuration
     }
     public class HomeMenuItem
     {
