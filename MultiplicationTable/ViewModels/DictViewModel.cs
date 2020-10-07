@@ -14,6 +14,8 @@ using System.Threading;
 using System.Linq.Expressions;
 using Acr.UserDialogs;
 using Xamarin.Essentials;
+using System.Net.Http.Headers;
+using MultiplicationTable.Models;
 
 namespace MultiplicationTable.ViewModels
 {
@@ -26,6 +28,8 @@ namespace MultiplicationTable.ViewModels
         private string txtXml;
         private XDocument xDoc;
         private string selectedText;
+
+        private List<SpecialWords> lstSpecialWords;
 
         private FormattedString fText;
         public FormattedString FText
@@ -74,16 +78,18 @@ namespace MultiplicationTable.ViewModels
 
         private void SetWaiting(bool state)
         {
-            WaitIndicator = state;
-            ButtonEnabled = !state;
-            ButtonEnabled = !state;
+           
+                WaitIndicator = state;
+                ButtonEnabled = !state;
+                ButtonEnabled = !state;
+           
         }
 
         public DictViewModel()
         {
             Title = "Dictation";
             ButtonEnabled = true;
-
+            lstSpecialWords = new List<SpecialWords>();
 
             ShuffleCommand = new Command(new Action(ShuffleCommandAction));
             SayCommand = new Command(new Action<object>(SayItCommandAction), CanSayItCommandAction);
@@ -123,20 +129,36 @@ namespace MultiplicationTable.ViewModels
                         int gettedDict = r.Next(1, lst.Count);
 
                         selectedText = lst[gettedDict].Value;
-                        SayCommand.ChangeCanExecute();
                         List<string> wordsAndPunctation = selectedText.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
                         FText = new FormattedString();
+                        int indexSpecialWords = 0;
+                        List<SpecialWords> lstWords = new List<SpecialWords>();
                         foreach (string word in wordsAndPunctation)
                         {
                             if (word.Contains("Ó") || word.Contains("ó") || word.Contains("U") || word.Contains("u") || word.Contains("rz") || word.Contains("Rz") ||
                                 word.Contains("Ż") || word.Contains("ż") || word.Contains("h") || word.Contains("H") || word.Contains("Ch") || word.Contains("ch")
                                 )
                             {
+                                
                                 MainThread.BeginInvokeOnMainThread(() =>
                                 {
-                                    FText.Spans.Add(new Span() { Text = word + " ", TextColor = Color.Red });
+                                    SayCommand.ChangeCanExecute();
+
+                                    SpecialWords sw = new SpecialWords(word);
+
+                                    Span s = new Span() { Text = sw.GetDashedWord() + " ", TextColor = Color.Red };
+                                    s.GestureRecognizers.Add(new TapGestureRecognizer()
+                                    {
+                                        NumberOfTapsRequired = 1,
+                                        Command = new Command(WordTapped),
+                                        CommandParameter = indexSpecialWords
+                                    });
+                                    FText.Spans.Add(s);
+                                    lstSpecialWords.Add(sw);
                                 });
+                                lstWords.Add(new SpecialWords(word));
+                                indexSpecialWords++;
                             }
                             else
                             {
@@ -145,7 +167,7 @@ namespace MultiplicationTable.ViewModels
                                     FText.Spans.Add(new Span() { Text = word + " " });
                                 });
                             }
-
+                            
                         }
                     }
                     catch (Exception ex)
@@ -158,6 +180,24 @@ namespace MultiplicationTable.ViewModels
                     }
                 });
                 
+            }
+        }
+
+        private void WordTapped(object o)
+        {
+            if (lstSpecialWords != null)
+            {
+                SpecialWords sw = lstSpecialWords[(int)o];
+                ActionSheetConfig asc = new ActionSheetConfig();
+                
+                List<string> lst = sw.GetWrongWords();
+                lst.Insert(new Random().Next(0, lst.Count), sw.ProperWord);
+                foreach(string w in lst)
+                {
+                    asc.Add(w);
+                }
+
+                UserDialogs.Instance.ActionSheet(asc);
             }
         }
 

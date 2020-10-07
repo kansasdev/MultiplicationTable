@@ -8,8 +8,11 @@ namespace MultiplicationTable.Models
     public class SpecialWords
     {
         public string ProperWord;
+        public string DashedWord;
         private List<string> Exceptions;
         private List<int> ExceptionPos;
+
+        private string[] exceptions = new string[] { "ó", "ż", "h", "H", "ch", "Ch", "rz", "Rz", "u", "U" };
         
         public SpecialWords(string word)
         {
@@ -34,40 +37,129 @@ namespace MultiplicationTable.Models
             List<int> lstuLarge = AllIndexesOf(ProperWord, "U");
 
             List<string> lstWrong = new List<string>();
-            string wrongWord = GenerateWrongWord("ó");
-            if(!string.IsNullOrEmpty(wrongWord))
+            string bledne = string.Empty;
+            foreach(string e in exceptions)
             {
-                lstWrong.Add(wrongWord);
+                bledne = GenerateWrongWord(e,bledne);
+               
             }
+            lstWrong.Add(bledne);
 
             return lstWrong;
         }
 
-        private string GenerateWrongWord(string letter)
+        public string GetDashedWord()
         {
-            if(ProperWord.Contains("ó"))
+            string word = ProperWord;
+
+            foreach(string e in exceptions)
             {
-                return ProperWord.Replace("ó", "u");
+                word = GenerateDashedWord(e,word);
             }
-            if(ProperWord.Contains("u"))
+
+            return word;
+        }
+
+        private string GenerateWrongWord(string letter,string currentWord)
+        {
+            if(currentWord.Contains("ó"))
             {
-                return ProperWord.Replace("u", "ó");
+                return currentWord.Replace("ó", "u");
             }
-            if(ProperWord.Contains("U"))
+            if(currentWord.Contains("u"))
             {
-                return ProperWord.Replace("U", "Ó");
+                return currentWord.Replace("u", "ó");
             }
-            if (ProperWord.Contains("Ż"))
+            if(currentWord.Contains("U"))
             {
-                return ProperWord.Replace("Ż", "Rz");
+                return currentWord.Replace("U", "Ó");
             }
-            if(ProperWord.Contains("ż"))
+            if (currentWord.Contains("Ż"))
             {
-                return ProperWord.Replace("ż", "rz");
+                return currentWord.Replace("Ż", "Rz");
+            }
+            if(currentWord.Contains("ż"))
+            {
+                return currentWord.Replace("ż", "rz");
+            }
+            if(currentWord.Contains("H"))
+            {
+                return currentWord.Replace("H", "Ch");
+            }
+            if(currentWord.Contains("h") && (!currentWord.Contains("ch")||!currentWord.Contains("Ch")))
+            {
+                return currentWord.Replace("h", "ch");
+            }
+            if(currentWord.Contains("rz"))
+            {
+                return currentWord.Replace("rz", "ź");
+            }
+            if(currentWord.Contains("Rz"))
+            {
+                return currentWord.Replace("Rz", "Ż");
+            }
+            if(currentWord.Contains("Ch"))
+            {
+                return currentWord.Replace("Ch", "H");
+            }
+            if(currentWord.Contains("ch"))
+            {
+                return currentWord.Replace("ch", "h");
             }
             
 
-            return string.Empty;
+            return currentWord;
+        }
+
+        private string GenerateDashedWord(string letter,string currentWord)
+        {
+            if (currentWord.Contains("ó"))
+            {
+                return currentWord.Replace("ó", "_");
+            }
+            if (currentWord.Contains("u"))
+            {
+                return currentWord.Replace("u", "_");
+            }
+            if (currentWord.Contains("U"))
+            {
+                return currentWord.Replace("U", "_");
+            }
+            if (currentWord.Contains("Ż"))
+            {
+                return currentWord.Replace("Ż", "_");
+            }
+            if (currentWord.Contains("ż"))
+            {
+                return currentWord.Replace("ż", "_");
+            }
+            if (currentWord.Contains("H"))
+            {
+                return currentWord.Replace("H", "_");
+            }
+            if (currentWord.Contains("h") && (!currentWord.Contains("ch")||!currentWord.Contains("Ch")))
+            {
+                return currentWord.Replace("h", "_");
+            }
+            if (currentWord.Contains("rz"))
+            {
+                return currentWord.Replace("rz", "_");
+            }
+            if (currentWord.Contains("Rz"))
+            {
+                return currentWord.Replace("Rz", "_");
+            }
+            if (currentWord.Contains("Ch"))
+            {
+                return currentWord.Replace("Ch", "_");
+            }
+            if (currentWord.Contains("ch"))
+            {
+                return currentWord.Replace("ch", "_");
+            }
+
+
+            return currentWord;
         }
 
         public List<int> AllIndexesOf(string str, string value)
