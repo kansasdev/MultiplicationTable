@@ -9,8 +9,23 @@ namespace MultiplicationTable.Models
     {
         public string ProperWord;
         public string DashedWord;
+
+        public List<int> lstÓ; 
+        public List<int> lstż;
+        public List<int> lstź;
+        public List<int> lsth;
+        public List<int> lsthLarge;
+        public List<int> lstch;
+        public List<int> lstchLarge;
+        public List<int> lstrz;
+        public List<int> lstrzLarge;
+        public List<int> lstu;
+        public List<int> lstuLarge;
+
         private List<string> Exceptions;
         private List<int> ExceptionPos;
+
+
 
         private string[] exceptions = new string[] { "ó", "ż", "h", "H", "ch", "Ch", "rz", "Rz", "u", "U" };
         
@@ -22,31 +37,66 @@ namespace MultiplicationTable.Models
             
         }
 
-        public List<string> GetWrongWords()
+        public void SetLetterPlaces()
         {
-            List<int> lstÓ = AllIndexesOf(ProperWord, "ó");
-            List<int> lstż = AllIndexesOf(ProperWord, "ż");
-            List<int> lstź = AllIndexesOf(ProperWord, "ź");
-            List<int> lsth = AllIndexesOf(ProperWord, "h");
-            List<int> lsthLarge = AllIndexesOf(ProperWord, "H");
-            List<int> lstch = AllIndexesOf(ProperWord, "ch");
-            List<int> lstchLarge = AllIndexesOf(ProperWord, "Ch");
-            List<int> lstrz = AllIndexesOf(ProperWord, "rz");
-            List<int> lstrzLarge = AllIndexesOf(ProperWord, "Rz");
-            List<int> lstu = AllIndexesOf(ProperWord, "u");
-            List<int> lstuLarge = AllIndexesOf(ProperWord, "U");
+            lstÓ = AllIndexesOf(ProperWord, "ó");
+            lstż = AllIndexesOf(ProperWord, "ż");
+            lstź = AllIndexesOf(ProperWord, "ź");
+            lsth = AllIndexesOf(ProperWord, "h");
+            lsthLarge = AllIndexesOf(ProperWord, "H");
+            lstch = AllIndexesOf(ProperWord, "ch");
+            lstchLarge = AllIndexesOf(ProperWord, "Ch");
+            lstrz = AllIndexesOf(ProperWord, "rz");
+            lstrzLarge = AllIndexesOf(ProperWord, "Rz");
+            lstu = AllIndexesOf(ProperWord, "u");
+            lstuLarge = AllIndexesOf(ProperWord, "U");
 
-            List<string> lstWrong = new List<string>();
+            #region UNUSED
+            /*
+            List<string> lstWrong = new List<string>(currentLst);
             string bledne = string.Empty;
-            foreach(string e in exceptions)
+            if (currentLst.Count == 0)
             {
-                bledne = GenerateWrongWord(e,bledne);
-               
-            }
-            lstWrong.Add(bledne);
+                bledne = ProperWord;
 
-            return lstWrong;
+                foreach (string e in exceptions)
+                {
+                    bledne = GenerateWrongWord(e, bledne);
+                    if (bledne != ProperWord && !lstWrong.Contains(bledne))
+                    {
+                        lstWrong.Add(bledne);
+                    }
+                }
+            }
+            else
+            {
+                foreach(string word in currentLst)
+                {
+                    bledne = word;
+                    foreach (string e in exceptions)
+                    {
+                        bledne = GenerateWrongWord(e, bledne);
+                        if (bledne != ProperWord && !lstWrong.Contains(bledne))
+                        {
+                            lstWrong.Add(bledne);
+                        }
+                    }
+                }
+            }
+            //List<string> bonusLst = BonusWrongWords(lstWrong.Count, lstWrong);
+            przebieg++;
+            if (przebieg == 10)
+            {
+                return lstWrong;
+            }
+            else
+            {
+                return GetWrongWords(przebieg, lstWrong);
+            }*/
+            #endregion
         }
+
+       
 
         public string GetDashedWord()
         {
@@ -62,53 +112,65 @@ namespace MultiplicationTable.Models
 
         private string GenerateWrongWord(string letter,string currentWord)
         {
-            if(currentWord.Contains("ó"))
+            if (currentWord.Contains("ó") && letter=="ó")
             {
                 return currentWord.Replace("ó", "u");
+                //return GenerateWrongWord(letter, word);
             }
-            if(currentWord.Contains("u"))
+            else if (currentWord.Contains("u") && letter == "u")
             {
                 return currentWord.Replace("u", "ó");
+                //return GenerateWrongWord(letter, word);
             }
-            if(currentWord.Contains("U"))
+            else if (currentWord.Contains("U") && letter == "U")
             {
                 return currentWord.Replace("U", "Ó");
+                //return GenerateWrongWord(letter, word);
             }
-            if (currentWord.Contains("Ż"))
+            else if (currentWord.Contains("Ż") && letter == "Ż")
             {
                 return currentWord.Replace("Ż", "Rz");
+                //return GenerateWrongWord(letter, word);
             }
-            if(currentWord.Contains("ż"))
+            else if (currentWord.Contains("ż") && letter == "ż")
             {
                 return currentWord.Replace("ż", "rz");
+                //return GenerateWrongWord(letter, word);
             }
-            if(currentWord.Contains("H"))
+            else if (currentWord.Contains("H") && letter == "H")
             {
                 return currentWord.Replace("H", "Ch");
+                //return GenerateWrongWord(letter, word);
             }
-            if(currentWord.Contains("h") && (!currentWord.Contains("ch")||!currentWord.Contains("Ch")))
+            else if (currentWord.Contains("h") && currentWord.Contains("ch")==false && currentWord.Contains("Ch")==false && letter == "h")
             {
                 return currentWord.Replace("h", "ch");
+                //return GenerateWrongWord(letter, word);
             }
-            if(currentWord.Contains("rz"))
+            else if (currentWord.Contains("rz") && letter == "rz")
             {
                 return currentWord.Replace("rz", "ź");
+                //return GenerateWrongWord(letter, word);
             }
-            if(currentWord.Contains("Rz"))
+            else if (currentWord.Contains("Rz") && letter == "Rz")
             {
                 return currentWord.Replace("Rz", "Ż");
+                //return GenerateWrongWord(letter, word);
             }
-            if(currentWord.Contains("Ch"))
+            else if (currentWord.Contains("Ch") && letter == "Ch")
             {
                 return currentWord.Replace("Ch", "H");
+                //return GenerateWrongWord(letter, word);
             }
-            if(currentWord.Contains("ch"))
+            else if (currentWord.Contains("ch") && letter == "ch")
             {
                 return currentWord.Replace("ch", "h");
+                //return GenerateWrongWord(letter, word);
             }
-            
-
-            return currentWord;
+            else
+            {
+                return currentWord;
+            }
         }
 
         private string GenerateDashedWord(string letter,string currentWord)
@@ -137,7 +199,7 @@ namespace MultiplicationTable.Models
             {
                 return currentWord.Replace("H", "_");
             }
-            if (currentWord.Contains("h") && (!currentWord.Contains("ch")||!currentWord.Contains("Ch")))
+            if (currentWord.Contains("h") && (!currentWord.Contains("ch")&&!currentWord.Contains("Ch")))
             {
                 return currentWord.Replace("h", "_");
             }

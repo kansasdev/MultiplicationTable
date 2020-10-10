@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MultiplicationTable.Views.WordDetails">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.33*"/>
+                <ColumnDefinition Width="0.33*"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" x:Name="sLayout" />
+            
+            <Button x:Name="btnSay" Text="Say it" Grid.Row="1" Grid.Column="0" Clicked="Say_Clicked" Padding="5"  Margin="5"/>
+            <Button x:Name="btnCancel" Text="Cancel" Grid.Row="1" Grid.Column="1" Clicked="Cancel_Clicked" Padding="5" Margin="5" />
+            <Button x:Name="btnOk" Text="OK" Grid.Row="1" Grid.Column="2" Clicked="OK_Clicked" Padding="5" Margin="5" />
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

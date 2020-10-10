@@ -16,6 +16,7 @@ using Acr.UserDialogs;
 using Xamarin.Essentials;
 using System.Net.Http.Headers;
 using MultiplicationTable.Models;
+using MultiplicationTable.Views;
 
 namespace MultiplicationTable.ViewModels
 {
@@ -156,9 +157,10 @@ namespace MultiplicationTable.ViewModels
                                     });
                                     FText.Spans.Add(s);
                                     lstSpecialWords.Add(sw);
+                                    indexSpecialWords++;
                                 });
                                 lstWords.Add(new SpecialWords(word));
-                                indexSpecialWords++;
+                                
                             }
                             else
                             {
@@ -188,16 +190,11 @@ namespace MultiplicationTable.ViewModels
             if (lstSpecialWords != null)
             {
                 SpecialWords sw = lstSpecialWords[(int)o];
-                ActionSheetConfig asc = new ActionSheetConfig();
-                
-                List<string> lst = sw.GetWrongWords();
-                lst.Insert(new Random().Next(0, lst.Count), sw.ProperWord);
-                foreach(string w in lst)
-                {
-                    asc.Add(w);
-                }
+                sw.SetLetterPlaces();
 
-                UserDialogs.Instance.ActionSheet(asc);
+                WordDetails wp = new WordDetails(sw);
+                
+                Application.Current.MainPage.Navigation.PushModalAsync(wp);
             }
         }
 
