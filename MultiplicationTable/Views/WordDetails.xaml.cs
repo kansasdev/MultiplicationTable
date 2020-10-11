@@ -47,10 +47,7 @@ namespace MultiplicationTable.Views
                     {
                         sLayout.Children.Add(GeneratePicker(new string[] { "h", "ch" }));
                     }
-                    else
-                    {
-                        
-                    }
+                    
                 }
                 else if (sw.lsthLarge.Count > 0 && sw.lsthLarge.Contains(index))
                 {
@@ -74,7 +71,7 @@ namespace MultiplicationTable.Views
                 }
                 else if (sw.lstÓ.Count > 0 && sw.lstÓ.Contains(index))
                 {
-                    sLayout.Children.Add(GeneratePicker(new string[] { "Ó", "U" }));
+                    sLayout.Children.Add(GeneratePicker(new string[] { "ó", "u" }));
                 }
                 else if (sw.lstż.Count > 0 && sw.lstż.Contains(index))
                 {
@@ -82,13 +79,40 @@ namespace MultiplicationTable.Views
                 }
                 else
                 {
-                    Label l = new Label();
-                    l.Text = c.ToString();
-                    l.FontSize = 20;
-                    sLayout.Children.Add(l);
+                    if (c != 'z')
+                    {
+                        Label l = new Label();
+                        l.Text = c.ToString();
+                        l.FontSize = 20;
+                        sLayout.Children.Add(l);
+                    }
+                    else
+                    {
+                        if(index>0)
+                        {
+                            if(word[index-1]!='r' && word[index-1]!='R')
+                            {
+                                Label l = new Label();
+                                l.Text = c.ToString();
+                                l.FontSize = 20;
+                                sLayout.Children.Add(l);
+                            }
+                        }
+                        else
+                        {
+                            if (c=='z' || c=='Z')
+                            {
+                                Label l = new Label();
+                                l.Text = c.ToString();
+                                l.FontSize = 20;
+                                sLayout.Children.Add(l);
+                            }
+                        }
+                    }
                 }
                 index++;
             }
+            
         }
 
         private Picker GeneratePicker(string[] options)
@@ -105,6 +129,7 @@ namespace MultiplicationTable.Views
         private void OK_Clicked(object sender, EventArgs e)
         {
             bool error = false;
+            _sw.UserTappedWord = string.Empty;
             foreach(View v in sLayout.Children)
             {
                 if(v is Picker)
@@ -141,9 +166,13 @@ namespace MultiplicationTable.Views
                     }
                                        
                 }
+                
+                    _sw.UserTappedWord = _sw.UserTappedWord + " ";
+                
+
                 if (TypingWordFinished != null)
                 {
-                    _sw.UserTappedWord.Trim();
+                    
                     TypingWordFinished(_sw);
                     Application.Current.MainPage.Navigation.PopModalAsync();
                 }

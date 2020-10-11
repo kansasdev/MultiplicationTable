@@ -34,6 +34,8 @@ namespace MultiplicationTable.ViewModels
 
         private List<SpecialWords> lstAnsweredWords;
 
+        private int dictsDone = 0;
+
         private FormattedString fText;
         public FormattedString FText
         {
@@ -119,6 +121,11 @@ namespace MultiplicationTable.ViewModels
                     SetWaiting(true);
                     try
                     {
+                        if (lstAnsweredWords != null)
+                        {
+                            lstAnsweredWords.Clear();
+                        }
+
                         List<XElement> lst = new List<XElement>();
                         IEnumerable<XElement> de =
                         from el in xDoc.Descendants()
@@ -209,22 +216,22 @@ namespace MultiplicationTable.ViewModels
         private void Wp_TypingWordFinished(SpecialWords obj)
         {
             string SpanText = FText.Spans[obj.NumberAllWordsElement].Text;
-            if(SpanText==obj.DashedWord)
-            {
+            
                 if(lstAnsweredWords==null)
                 {
                     lstAnsweredWords = new List<SpecialWords>();
                 }
-                if (lstAnsweredWords.Where(q=>q.DashedWord==obj.DashedWord).FirstOrDefault()==null)
+               
+                if(lstAnsweredWords.Count<=obj.NumberWrongWordElement)
                 {
                     lstAnsweredWords.Add(obj);
                 }
                 else
                 {
-                    lstAnsweredWords.Where(q => q.DashedWord == obj.DashedWord).FirstOrDefault().UserTappedWord = obj.UserTappedWord;
+                    lstAnsweredWords.ElementAt(obj.NumberWrongWordElement).UserTappedWord = obj.UserTappedWord;
                 }
                 FText.Spans[obj.NumberAllWordsElement].Text = obj.UserTappedWord;
-            }
+           
         }
 
         private void SayItCommandAction(object o)
@@ -255,13 +262,42 @@ namespace MultiplicationTable.ViewModels
 
         private void CheckCommandAction(object o)
         {
+            int poprawne = 0;
             if (lstAnsweredWords != null)
             {
                 if (lstAnsweredWords.Count == lstSpecialWords.Count)
                 {
+                    foreach(SpecialWords sw in lstAnsweredWords)
+                    {
+                        if(sw.UserTappedWord.Trim().Equals(sw.ProperWord))
+                        {
+                            FText.Spans[sw.NumberAllWordsElement].BackgroundColor = Color.Green;
+                            FText.Spans[sw.NumberAllWordsElement].FontAttributes = FontAttributes.None;
+                            poprawne++;
+                        }
+                        else
+                        {
+                            FText.Spans[sw.NumberAllWordsElement].BackgroundColor = Color.Red;
+                            FText.Spans[sw.NumberAllWordsElement].FontAttributes = FontAttributes.Bold;
+                            FText.Spans[sw.NumberAllWordsElement].FontSize = 20;
+                        }
+                    }
+
+                    if(poprawne==lstSpecialWords.Count())
+                    {
+                        UserDialogs.Instance.Alert("Hurraaa !!!", "BRAVO");
+                        dictsDone++;
+                        Title = "OK " + dictsDone.ToString();
+                        ShuffleCommandAction();
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.Alert(string.Format("OK - {0}, BAD-{1}, SUM-{2}", poprawne.ToString(), (lstSpecialWords.Count() - poprawne).ToString(), lstSpecialWords.Count().ToString()), "RESULT");
+
+                    }
 
                 }
-                else;
+                else
                 {
                     UserDialogs.Instance.Alert("Not all answers selected", "Answer all questions");
                 }
