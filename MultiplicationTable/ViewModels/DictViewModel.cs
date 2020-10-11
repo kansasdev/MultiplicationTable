@@ -32,6 +32,8 @@ namespace MultiplicationTable.ViewModels
 
         private List<SpecialWords> lstSpecialWords;
 
+        private List<SpecialWords> lstAnsweredWords;
+
         private FormattedString fText;
         public FormattedString FText
         {
@@ -134,19 +136,20 @@ namespace MultiplicationTable.ViewModels
 
                         FText = new FormattedString();
                         int indexSpecialWords = 0;
+                        int indexAllWords = 0;
                         List<SpecialWords> lstWords = new List<SpecialWords>();
+                        lstSpecialWords.Clear();
                         foreach (string word in wordsAndPunctation)
                         {
                             if (word.Contains("Ó") || word.Contains("ó") || word.Contains("U") || word.Contains("u") || word.Contains("rz") || word.Contains("Rz") ||
                                 word.Contains("Ż") || word.Contains("ż") || word.Contains("h") || word.Contains("H") || word.Contains("Ch") || word.Contains("ch")
                                 )
                             {
-                                
+                                SpecialWords sw = new SpecialWords(word);
                                 MainThread.BeginInvokeOnMainThread(() =>
                                 {
                                     SayCommand.ChangeCanExecute();
-
-                                    SpecialWords sw = new SpecialWords(word);
+                                                                      
 
                                     Span s = new Span() { Text = sw.GetDashedWord() + " ", TextColor = Color.Red };
                                     s.GestureRecognizers.Add(new TapGestureRecognizer()
@@ -156,10 +159,14 @@ namespace MultiplicationTable.ViewModels
                                         CommandParameter = indexSpecialWords
                                     });
                                     FText.Spans.Add(s);
+                                    sw.NumberWrongWordElement = indexSpecialWords;
+                                    sw.DashedWord = s.Text;
                                     lstSpecialWords.Add(sw);
                                     indexSpecialWords++;
                                 });
-                                lstWords.Add(new SpecialWords(word));
+                                sw.NumberAllWordsElement = indexAllWords;
+                                lstWords.Add(sw);
+                                indexAllWords++;
                                 
                             }
                             else
@@ -167,6 +174,7 @@ namespace MultiplicationTable.ViewModels
                                 MainThread.BeginInvokeOnMainThread(() =>
                                 {
                                     FText.Spans.Add(new Span() { Text = word + " " });
+                                    indexAllWords++;
                                 });
                             }
                             
@@ -193,8 +201,29 @@ namespace MultiplicationTable.ViewModels
                 sw.SetLetterPlaces();
 
                 WordDetails wp = new WordDetails(sw);
-                
+                wp.TypingWordFinished += Wp_TypingWordFinished;                
                 Application.Current.MainPage.Navigation.PushModalAsync(wp);
+            }
+        }
+
+        private void Wp_TypingWordFinished(SpecialWords obj)
+        {
+            string SpanText = FText.Spans[obj.NumberAllWordsElement].Text;
+            if(SpanText==obj.DashedWord)
+            {
+                if(lstAnsweredWords==null)
+                {
+                    lstAnsweredWords = new List<SpecialWords>();
+                }
+                if (lstAnsweredWords.Where(q=>q.DashedWord==obj.DashedWord).FirstOrDefault()==null)
+                {
+                    lstAnsweredWords.Add(obj);
+                }
+                else
+                {
+                    lstAnsweredWords.Where(q => q.DashedWord == obj.DashedWord).FirstOrDefault().UserTappedWord = obj.UserTappedWord;
+                }
+                FText.Spans[obj.NumberAllWordsElement].Text = obj.UserTappedWord;
             }
         }
 
@@ -226,7 +255,17 @@ namespace MultiplicationTable.ViewModels
 
         private void CheckCommandAction(object o)
         {
+            if (lstAnsweredWords != null)
+            {
+                if (lstAnsweredWords.Count == lstSpecialWords.Count)
+                {
 
+                }
+                else;
+                {
+                    UserDialogs.Instance.Alert("Not all answers selected", "Answer all questions");
+                }
+            }
         }
 
         private bool CanCheckCommandAction(object o)

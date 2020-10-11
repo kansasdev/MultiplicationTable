@@ -9,6 +9,9 @@ namespace MultiplicationTable.Models
     {
         public string ProperWord;
         public string DashedWord;
+        public string UserTappedWord;
+        public int NumberWrongWordElement;
+        public int NumberAllWordsElement;
 
         public List<int> lstÓ; 
         public List<int> lstż;

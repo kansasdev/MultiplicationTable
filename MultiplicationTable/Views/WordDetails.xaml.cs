@@ -15,6 +15,8 @@ namespace MultiplicationTable.Views
     public partial class WordDetails : ContentPage
     {
         private SpecialWords _sw;
+
+        public event Action<SpecialWords> TypingWordFinished;
         
         public WordDetails(SpecialWords sw)
         {
@@ -41,7 +43,14 @@ namespace MultiplicationTable.Views
                 }
                 else if (sw.lsth.Count > 0 && sw.lsth.Contains(index))
                 {
-                    sLayout.Children.Add(GeneratePicker(new string[] { "h", "ch" }));
+                    if (index == 0 || (word[index-1]!='c' && word[index-1]!='C'))
+                    {
+                        sLayout.Children.Add(GeneratePicker(new string[] { "h", "ch" }));
+                    }
+                    else
+                    {
+                        
+                    }
                 }
                 else if (sw.lsthLarge.Count > 0 && sw.lsthLarge.Contains(index))
                 {
@@ -115,7 +124,29 @@ namespace MultiplicationTable.Views
             }
             else
             {
-                //TO DO -> rezultaty
+                foreach(View v in sLayout.Children)
+                {
+                    if(v is Label)
+                    {
+                        Label l = (Label)v;
+                        _sw.UserTappedWord = _sw.UserTappedWord + l.Text;
+                    }
+                    if(v is Picker)
+                    {
+                        Picker p = (Picker)v;
+                        if (p.SelectedItem != null)
+                        {
+                            _sw.UserTappedWord = _sw.UserTappedWord + p.SelectedItem.ToString();
+                        }
+                    }
+                                       
+                }
+                if (TypingWordFinished != null)
+                {
+                    _sw.UserTappedWord.Trim();
+                    TypingWordFinished(_sw);
+                    Application.Current.MainPage.Navigation.PopModalAsync();
+                }
             }
 
         }
