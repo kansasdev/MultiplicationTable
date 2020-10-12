@@ -17,6 +17,8 @@ using Xamarin.Essentials;
 using System.Net.Http.Headers;
 using MultiplicationTable.Models;
 using MultiplicationTable.Views;
+using PCLStorage;
+using MultiplicationTable.Services;
 
 namespace MultiplicationTable.ViewModels
 {
@@ -110,6 +112,22 @@ namespace MultiplicationTable.ViewModels
                 txtXml = reader.ReadToEnd();
             }
             xDoc = XDocument.Parse(txtXml);
+
+            //CHECK IF USER ADDED USER DEFINED DICTATIONS
+            Task t = new Task(async () =>
+            {
+                IFolder folder = PCLStorage.FileSystem.Current.LocalStorage;
+                if (await PCLHelper.IsFolderExistAsync("Dictations", folder))
+                {
+                    if (await PCLHelper.IsFileExistAsync("UserDictation.xml", folder))
+                    {
+                        //TO DO ->load nodes to xDoc
+                    }
+                }
+            });
+
+            t.RunSynchronously();
+
         }
 
         private void ShuffleCommandAction()
@@ -271,15 +289,14 @@ namespace MultiplicationTable.ViewModels
                     {
                         if(sw.UserTappedWord.Trim().Equals(sw.ProperWord))
                         {
-                            FText.Spans[sw.NumberAllWordsElement].BackgroundColor = Color.Green;
+                            FText.Spans[sw.NumberAllWordsElement].TextColor = Color.Green;
                             FText.Spans[sw.NumberAllWordsElement].FontAttributes = FontAttributes.None;
                             poprawne++;
                         }
                         else
                         {
-                            FText.Spans[sw.NumberAllWordsElement].BackgroundColor = Color.Red;
+                            FText.Spans[sw.NumberAllWordsElement].TextColor = Color.Red;
                             FText.Spans[sw.NumberAllWordsElement].FontAttributes = FontAttributes.Bold;
-                            FText.Spans[sw.NumberAllWordsElement].FontSize = 20;
                         }
                     }
 
