@@ -9,7 +9,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-    <NeutralLanguage>en-US</NeutralLanguage>
+    <NeutralLanguage></NeutralLanguage>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>portable</DebugType>
@@ -37,10 +37,10 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="AppResource.Designer.cs">
+    <Compile Update="Resx\Language.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>AppResource.resx</DependentUpon>
+      <DependentUpon>Language.resx</DependentUpon>
     </Compile>
     <Compile Update="Views\DictPage.xaml.cs">
       <DependentUpon>DictPage.xaml</DependentUpon>
@@ -50,9 +50,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="AppResource.resx">
+    <EmbeddedResource Update="Resx\Language.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>AppResource.Designer.cs</LastGenOutput>
+      <LastGenOutput>Language.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\DictPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

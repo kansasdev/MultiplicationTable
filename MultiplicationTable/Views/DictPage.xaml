@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:MultiplicationTable.Resx"
              x:Class="MultiplicationTable.Views.DictPage"
-             xmlns:vm="clr-namespace:MultiplicationTable.ViewModels"
+            
              Title="{Binding Title}"
              >
     <Grid>
@@ -25,9 +26,9 @@
 
         </Label>
 
-        <Button Command="{Binding ShuffleCommand}" Grid.Row="1" Grid.Column="0" Text="Shuffle" Margin="2" IsEnabled="{Binding ButtonEnabled}" />
+        <Button Command="{Binding ShuffleCommand}" Grid.Row="1" Grid.Column="0" Text="{x:Static res:Language.btnOk}" Margin="2" IsEnabled="{Binding ButtonEnabled}" />
         <Button Command="{Binding CheckCommand}" Grid.Row="1" Grid.Column="1" Margin="2" Text="CHECK" IsEnabled="{Binding ButtonEnabled}"/>
-        <Button Command="{Binding SayCommand}" Grid.Row="1" Grid.Column="2" Margin="2" Text="Say it!" IsEnabled="{Binding ButtonSayEnabled}"/>
+        <Button Command="{Binding SayCommand}" Grid.Row="1" Grid.Column="2" Margin="2" Text="{x:Static res:Language.btnSay}" IsEnabled="{Binding ButtonSayEnabled}"/>
 
     </Grid>
 </ContentPage>
