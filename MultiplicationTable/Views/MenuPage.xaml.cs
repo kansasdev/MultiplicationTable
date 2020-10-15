@@ -1,4 +1,5 @@
 ﻿using MultiplicationTable.Models;
+using MultiplicationTable.Resx;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,10 +21,10 @@ namespace MultiplicationTable.Views
 
             menuItems = new List<HomeMenuItem>
             {
-                new HomeMenuItem {Id = MenuItemType.Dictation,Title="Dictation"},
-                new HomeMenuItem {Id = MenuItemType.Multiplication, Title="Multiplication" },
-                
-                new HomeMenuItem {Id = MenuItemType.Configuration, Title="Configuration" }
+                new HomeMenuItem {Id = MenuItemType.Dictation,Title=Language.txtTitleDictation},
+                new HomeMenuItem {Id = MenuItemType.Multiplication, Title=Language.txtTitleMathOps },
+                new HomeMenuItem {Id=MenuItemType.EnglishWords,Title=Language.txtTitleWording},
+                new HomeMenuItem {Id = MenuItemType.Configuration, Title=Language.txtTitleConfiguation }
             };
 
             ListViewMenu.ItemsSource = menuItems;

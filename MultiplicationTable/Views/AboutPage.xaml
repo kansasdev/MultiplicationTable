@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:res="clr-namespace:MultiplicationTable.Resx"
              mc:Ignorable="d"
              x:Class="MultiplicationTable.Views.AboutPage"
              xmlns:vm="clr-namespace:MultiplicationTable.ViewModels"
@@ -46,27 +47,27 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label Text="Quiz mode?" Grid.Column="0" Margin="2" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Label Text="{x:Static res:Language.txtAboutQuizMode}" Grid.Column="0" Margin="2" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
             <Switch IsToggled="{Binding Marked}" Grid.Column="1" Margin="2" Grid.Row="0" />
 
-            <Label Text="Timeout" Grid.Column="0" Margin="2" Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-            <Picker Title="Select" ItemsSource="{Binding TimeoutSource}" SelectedItem="{Binding SelectedTimeout}" Grid.Row="1" Grid.Column="1" WidthRequest="5">
+            <Label Text="{x:Static res:Language.txtAboutTimeout}" Grid.Column="0" Margin="2" Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Picker Title="{x:Static res:Language.pckAboutText}" ItemsSource="{Binding TimeoutSource}" SelectedItem="{Binding SelectedTimeout}" Grid.Row="1" Grid.Column="1" WidthRequest="5">
             </Picker>
 
-            <Label Text="Sum max" Grid.Column="0" Margin="2" Grid.Row="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-            <Picker Title="Select" ItemsSource="{Binding SumSource}" SelectedItem="{Binding SelectedSum}" Grid.Row="2" Grid.Column="1" WidthRequest="5">
+            <Label Text="{x:Static res:Language.txtAboutAddMax}" Grid.Column="0" Margin="2" Grid.Row="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Picker Title="{x:Static res:Language.pckAboutText}" ItemsSource="{Binding SumSource}" SelectedItem="{Binding SelectedSum}" Grid.Row="2" Grid.Column="1" WidthRequest="5">
             </Picker>
 
-            <Label Text="Diff max" Grid.Column="0" Margin="2" Grid.Row="3" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-            <Picker Title="Select" ItemsSource="{Binding DiffSource}" SelectedItem="{Binding SelectedDiff}" Grid.Row="3" Grid.Column="1" WidthRequest="5">
+            <Label Text="{x:Static res:Language.txtAboutSubMax}" Grid.Column="0" Margin="2" Grid.Row="3" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Picker Title="{x:Static res:Language.pckAboutText}" ItemsSource="{Binding DiffSource}" SelectedItem="{Binding SelectedDiff}" Grid.Row="3" Grid.Column="1" WidthRequest="5">
             </Picker>
 
-            <Label Text="Mult max" Grid.Column="0" Margin="2" Grid.Row="4" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-            <Picker Title="Select" ItemsSource="{Binding MultSource}" SelectedItem="{Binding SelectedMult}" Grid.Row="4" Grid.Column="1" WidthRequest="5">
+            <Label Text="{x:Static res:Language.txtAboutMultMax}" Grid.Column="0" Margin="2" Grid.Row="4" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Picker Title="{x:Static res:Language.pckAboutText}" ItemsSource="{Binding MultSource}" SelectedItem="{Binding SelectedMult}" Grid.Row="4" Grid.Column="1" WidthRequest="5">
             </Picker>
 
             <Button Command="{Binding SaveSettings}" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,10,0,0"  BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" Text="Update settings"/>
+                        TextColor="White" Text="{x:Static res:Language.btnAboutUpdate}"/>
 
             
         </Grid>
@@ -87,12 +88,12 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="This simpe app is for learning multiplication. App is written using Xamarin platform" />
+                                <Span Text="" />
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Button Margin="0,10,0,0" Text="Author website (github)"
+                <Button Margin="0,10,0,0" Text="{x:Static res:Language.txtAboutGithub}"
                         Command="{Binding OpenWebCommand}"
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />

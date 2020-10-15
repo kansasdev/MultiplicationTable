@@ -95,7 +95,7 @@ namespace MultiplicationTable.ViewModels
 
         public DictViewModel()
         {
-            Title = "Dictation";
+            Title = Language.txtTitleDictation;
             ButtonEnabled = true;
             lstSpecialWords = new List<SpecialWords>();
 
@@ -319,6 +319,10 @@ namespace MultiplicationTable.ViewModels
                 {
                     UserDialogs.Instance.Alert(Language.txtDictErrorNotAllAnsweres, Language.txtDictErrorNotAllAnswersTitle);
                 }
+            }
+            else
+            {
+                UserDialogs.Instance.Alert(Language.txtDictErrorNotAllAnsweres, Language.txtDictErrorNotAllAnswersTitle);
             }
         }
 

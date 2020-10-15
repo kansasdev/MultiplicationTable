@@ -8,6 +8,7 @@ namespace MultiplicationTable.Models
     {
         Multiplication,
         Dictation,
+        EnglishWords,
         Configuration
     }
     public class HomeMenuItem

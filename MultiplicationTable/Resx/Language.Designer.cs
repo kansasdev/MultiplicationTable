@@ -61,6 +61,15 @@ namespace MultiplicationTable.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update settings.
+        /// </summary>
+        internal static string btnAboutUpdate {
+            get {
+                return ResourceManager.GetString("btnAboutUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Anuluj.
         /// </summary>
         internal static string btnCancel {
@@ -111,6 +120,78 @@ namespace MultiplicationTable.Resx {
         internal static string btnTest {
             get {
                 return ResourceManager.GetString("btnTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select.
+        /// </summary>
+        internal static string pckAboutText {
+            get {
+                return ResourceManager.GetString("pckAboutText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Addition part max value.
+        /// </summary>
+        internal static string txtAboutAddMax {
+            get {
+                return ResourceManager.GetString("txtAboutAddMax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About author (github).
+        /// </summary>
+        internal static string txtAboutGithub {
+            get {
+                return ResourceManager.GetString("txtAboutGithub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiplication part max value.
+        /// </summary>
+        internal static string txtAboutMultMax {
+            get {
+                return ResourceManager.GetString("txtAboutMultMax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quiz mode?.
+        /// </summary>
+        internal static string txtAboutQuizMode {
+            get {
+                return ResourceManager.GetString("txtAboutQuizMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This simple app is for learning simple math operations, polish word exceptions and english words. App is written using Xamarin platform.
+        /// </summary>
+        internal static string txtAboutSpan {
+            get {
+                return ResourceManager.GetString("txtAboutSpan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subtraction part max value.
+        /// </summary>
+        internal static string txtAboutSubMax {
+            get {
+                return ResourceManager.GetString("txtAboutSubMax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timeout.
+        /// </summary>
+        internal static string txtAboutTimeout {
+            get {
+                return ResourceManager.GetString("txtAboutTimeout", resourceCulture);
             }
         }
         
@@ -255,6 +336,42 @@ namespace MultiplicationTable.Resx {
         internal static string txtMultTotal {
             get {
                 return ResourceManager.GetString("txtMultTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configuration.
+        /// </summary>
+        internal static string txtTitleConfiguation {
+            get {
+                return ResourceManager.GetString("txtTitleConfiguation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dictation.
+        /// </summary>
+        internal static string txtTitleDictation {
+            get {
+                return ResourceManager.GetString("txtTitleDictation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Math operations.
+        /// </summary>
+        internal static string txtTitleMathOps {
+            get {
+                return ResourceManager.GetString("txtTitleMathOps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English words.
+        /// </summary>
+        internal static string txtTitleWording {
+            get {
+                return ResourceManager.GetString("txtTitleWording", resourceCulture);
             }
         }
     }

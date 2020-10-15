@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnAboutUpdate" xml:space="preserve">
+    <value>Update settings</value>
+  </data>
   <data name="btnCancel" xml:space="preserve">
     <value>Anuluj</value>
   </data>
@@ -134,6 +137,30 @@
   </data>
   <data name="btnTest" xml:space="preserve">
     <value>TEST</value>
+  </data>
+  <data name="pckAboutText" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="txtAboutAddMax" xml:space="preserve">
+    <value>Addition part max value</value>
+  </data>
+  <data name="txtAboutGithub" xml:space="preserve">
+    <value>About author (github)</value>
+  </data>
+  <data name="txtAboutMultMax" xml:space="preserve">
+    <value>Multiplication part max value</value>
+  </data>
+  <data name="txtAboutQuizMode" xml:space="preserve">
+    <value>Quiz mode?</value>
+  </data>
+  <data name="txtAboutSpan" xml:space="preserve">
+    <value>This simple app is for learning simple math operations, polish word exceptions and english words. App is written using Xamarin platform</value>
+  </data>
+  <data name="txtAboutSubMax" xml:space="preserve">
+    <value>Subtraction part max value</value>
+  </data>
+  <data name="txtAboutTimeout" xml:space="preserve">
+    <value>Timeout</value>
   </data>
   <data name="txtDictBad" xml:space="preserve">
     <value>BAD</value>
@@ -182,5 +209,17 @@
   </data>
   <data name="txtMultTotal" xml:space="preserve">
     <value>Total</value>
+  </data>
+  <data name="txtTitleConfiguation" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="txtTitleDictation" xml:space="preserve">
+    <value>Dictation</value>
+  </data>
+  <data name="txtTitleMathOps" xml:space="preserve">
+    <value>Math operations</value>
+  </data>
+  <data name="txtTitleWording" xml:space="preserve">
+    <value>English words</value>
   </data>
 </root>
