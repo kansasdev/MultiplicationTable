@@ -19,6 +19,7 @@ using MultiplicationTable.Models;
 using MultiplicationTable.Views;
 using PCLStorage;
 using MultiplicationTable.Services;
+using MultiplicationTable.Resx;
 
 namespace MultiplicationTable.ViewModels
 {
@@ -207,7 +208,7 @@ namespace MultiplicationTable.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        UserDialogs.Instance.Alert("Error: " + ex.Message, "ERROR", "OK");
+                        UserDialogs.Instance.Alert(Language.txtErrorMessage + ex.Message, Language.txtErrorTitle, Language.txtErrorBtn);
                     }
                     finally
                     {
@@ -302,21 +303,21 @@ namespace MultiplicationTable.ViewModels
 
                     if(poprawne==lstSpecialWords.Count())
                     {
-                        UserDialogs.Instance.Alert("Hurraaa !!!", "BRAVO");
+                        UserDialogs.Instance.Alert(Language.txtDictSuccessMesssage, Language.txtDictSuccessTitle);
                         dictsDone++;
                         Title = "OK " + dictsDone.ToString();
                         ShuffleCommandAction();
                     }
                     else
                     {
-                        UserDialogs.Instance.Alert(string.Format("OK - {0}, BAD-{1}, SUM-{2}", poprawne.ToString(), (lstSpecialWords.Count() - poprawne).ToString(), lstSpecialWords.Count().ToString()), "RESULT");
+                        UserDialogs.Instance.Alert(string.Format("{0} - {1}, {2}-{3}, {4}-{5}",Language.txtDictOk, poprawne.ToString(), Language.txtDictBad, (lstSpecialWords.Count() - poprawne).ToString(),Language.txtDictSum, lstSpecialWords.Count().ToString()), "RESULT");
 
                     }
 
                 }
                 else
                 {
-                    UserDialogs.Instance.Alert("Not all answers selected", "Answer all questions");
+                    UserDialogs.Instance.Alert(Language.txtDictErrorNotAllAnsweres, Language.txtDictErrorNotAllAnswersTitle);
                 }
             }
         }

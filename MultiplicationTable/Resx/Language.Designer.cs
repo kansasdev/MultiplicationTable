@@ -70,6 +70,15 @@ namespace MultiplicationTable.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check.
+        /// </summary>
+        internal static string btnCheck {
+            get {
+                return ResourceManager.GetString("btnCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         internal static string btnOk {
@@ -93,6 +102,159 @@ namespace MultiplicationTable.Resx {
         internal static string btnShuffle {
             get {
                 return ResourceManager.GetString("btnShuffle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TEST.
+        /// </summary>
+        internal static string btnTest {
+            get {
+                return ResourceManager.GetString("btnTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BAD.
+        /// </summary>
+        internal static string txtDictBad {
+            get {
+                return ResourceManager.GetString("txtDictBad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not all answers selected.
+        /// </summary>
+        internal static string txtDictErrorNotAllAnsweres {
+            get {
+                return ResourceManager.GetString("txtDictErrorNotAllAnsweres", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Answer all questions.
+        /// </summary>
+        internal static string txtDictErrorNotAllAnswersTitle {
+            get {
+                return ResourceManager.GetString("txtDictErrorNotAllAnswersTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string txtDictOk {
+            get {
+                return ResourceManager.GetString("txtDictOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hurra!!!.
+        /// </summary>
+        internal static string txtDictSuccessMesssage {
+            get {
+                return ResourceManager.GetString("txtDictSuccessMesssage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BRAVO.
+        /// </summary>
+        internal static string txtDictSuccessTitle {
+            get {
+                return ResourceManager.GetString("txtDictSuccessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SUM.
+        /// </summary>
+        internal static string txtDictSum {
+            get {
+                return ResourceManager.GetString("txtDictSum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string txtErrorBtn {
+            get {
+                return ResourceManager.GetString("txtErrorBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error: .
+        /// </summary>
+        internal static string txtErrorMessage {
+            get {
+                return ResourceManager.GetString("txtErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ERROR.
+        /// </summary>
+        internal static string txtErrorTitle {
+            get {
+                return ResourceManager.GetString("txtErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NO.
+        /// </summary>
+        internal static string txtMultNo {
+            get {
+                return ResourceManager.GetString("txtMultNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string txtMultOk {
+            get {
+                return ResourceManager.GetString("txtMultOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Result.
+        /// </summary>
+        internal static string txtMultResult {
+            get {
+                return ResourceManager.GetString("txtMultResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Too many hints: .
+        /// </summary>
+        internal static string txtMultTooManyHints {
+            get {
+                return ResourceManager.GetString("txtMultTooManyHints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hints advice.
+        /// </summary>
+        internal static string txtMultTooManyHintsTitle {
+            get {
+                return ResourceManager.GetString("txtMultTooManyHintsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        internal static string txtMultTotal {
+            get {
+                return ResourceManager.GetString("txtMultTotal", resourceCulture);
             }
         }
     }

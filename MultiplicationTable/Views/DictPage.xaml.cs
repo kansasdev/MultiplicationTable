@@ -20,8 +20,8 @@ namespace MultiplicationTable.Views
         public DictPage()
         {
             InitializeComponent();
-            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
-            //Language.Culture = new CultureInfo("en");
+               
+
             BindingContext = viewModel = new DictViewModel();
         }
     }

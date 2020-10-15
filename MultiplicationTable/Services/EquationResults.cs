@@ -27,7 +27,7 @@ namespace MultiplicationTable.Services
 
         public static string GetTotalAnswers()
         {
-            return "TOTAL: "+(badAnswers + okAnswers).ToString();
+            return (badAnswers + okAnswers).ToString();
         }
 
         public static string GetOkAnswers()

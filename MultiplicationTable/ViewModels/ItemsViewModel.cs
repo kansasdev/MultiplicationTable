@@ -12,6 +12,7 @@ using System.Reflection;
 using MultiplicationTable.Services;
 using Xamarin.Essentials;
 using System.Timers;
+using MultiplicationTable.Resx;
 
 namespace MultiplicationTable.ViewModels
 {
@@ -151,7 +152,7 @@ namespace MultiplicationTable.ViewModels
                 }
                 else
                 {
-                    UserDialogs.Instance.Alert("Too many hints: " + helpCounter.ToString(), "Hint advice");
+                    UserDialogs.Instance.Alert(Language.txtMultTooManyHints + helpCounter.ToString(), Language.txtMultTooManyHintsTitle);
 
                 }
             });
@@ -163,7 +164,7 @@ namespace MultiplicationTable.ViewModels
 
                 if (HintA==GetCorrectAnswer(row,col,mo).ToString())
                 {
-                    QuizAnswerText = "OK";
+                    QuizAnswerText = Language.txtMultOk;
                     QuizAnswerColor = Color.Green;
 
                     BoxVisible = false;
@@ -172,11 +173,11 @@ namespace MultiplicationTable.ViewModels
 
                     EquationResults.AddOkAnswer();
 
-                    TextToSpeech.SpeakAsync("OK");
+                    TextToSpeech.SpeakAsync(Language.txtMultOk);
                 }
                 else
                 {
-                    QuizAnswerText = "NO";
+                    QuizAnswerText = Language.txtMultNo;
                     QuizAnswerColor = Color.Red;
                     BoxVisible = false;
                     ImageVisible = true;
@@ -184,7 +185,7 @@ namespace MultiplicationTable.ViewModels
 
                     EquationResults.AddBadAnswer();
                     
-                    TextToSpeech.SpeakAsync("NO");
+                    TextToSpeech.SpeakAsync(Language.txtMultNo);
                 }
             });
 
@@ -195,19 +196,19 @@ namespace MultiplicationTable.ViewModels
 
                 if (HintB == GetCorrectAnswer(row, col, mo).ToString())
                 {
-                    QuizAnswerText = "OK";
+                    QuizAnswerText = Language.txtMultOk;
                     QuizAnswerColor = Color.Green;
                     EquationResults.AddOkAnswer();
                     BoxVisible = false;
                     ImageVisible = true;
                     ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
 
-                    TextToSpeech.SpeakAsync("OK");
+                    TextToSpeech.SpeakAsync(Language.txtMultOk);
 
                 }
                 else
                 {
-                    QuizAnswerText = "NO";
+                    QuizAnswerText = Language.txtMultNo;
                     QuizAnswerColor = Color.Red;
 
                     BoxVisible = false;
@@ -215,7 +216,7 @@ namespace MultiplicationTable.ViewModels
                     ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
                     EquationResults.AddBadAnswer();
 
-                    TextToSpeech.SpeakAsync("NO");
+                    TextToSpeech.SpeakAsync(Language.txtMultNo);
                 }
             });
 
@@ -226,7 +227,7 @@ namespace MultiplicationTable.ViewModels
 
                 if (HintC == GetCorrectAnswer(row, col, mo).ToString())
                 {
-                    QuizAnswerText = "OK";
+                    QuizAnswerText = Language.txtMultOk;
                     QuizAnswerColor = Color.Green;
 
                     BoxVisible = false;
@@ -234,17 +235,17 @@ namespace MultiplicationTable.ViewModels
                     ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
                     EquationResults.AddOkAnswer();
 
-                    TextToSpeech.SpeakAsync("OK");
+                    TextToSpeech.SpeakAsync(Language.txtMultOk);
                 }
                 else
                 {
-                    QuizAnswerText = "NO";
+                    QuizAnswerText = Language.txtMultNo;
                     QuizAnswerColor = Color.Red;
                     BoxVisible = false;
                     ImageVisible = true;
                     ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
                     EquationResults.AddBadAnswer();
-                    TextToSpeech.SpeakAsync("NO");
+                    TextToSpeech.SpeakAsync(Language.txtMultNo);
                 }
             });
 
@@ -273,19 +274,19 @@ namespace MultiplicationTable.ViewModels
         {
             if (isQuizMode)
             {
-                Title = "Result, " + "OK: " + EquationResults.GetOkAnswers() + " NO: " + EquationResults.GetBadAnswers() + " " + EquationResults.GetTotalAnswers();
+                Title = Language.txtMultResult+", " + Language.txtMultOk +": " + EquationResults.GetOkAnswers() + " "+Language.txtMultNo+": " + EquationResults.GetBadAnswers() + " "+Language.txtMultTotal +": " + EquationResults.GetTotalAnswers();
 
                 seconds = seconds + 1;
                 QuizAnswerText = seconds.ToString();
                 if (seconds > secondsMax)
                 {
-                    QuizAnswerText = "NO";
+                    QuizAnswerText = Language.txtMultNo;
                     QuizAnswerColor = Color.Red;
                     BoxVisible = false;
                     ImageVisible = true;
                     ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
                     EquationResults.AddBadAnswer();
-                    TextToSpeech.SpeakAsync("NO");
+                    TextToSpeech.SpeakAsync(Language.txtMultNo);
                     timer.Stop();
                     seconds = 0;
                 }

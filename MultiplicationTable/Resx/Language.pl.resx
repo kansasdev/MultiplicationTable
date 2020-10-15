@@ -120,6 +120,9 @@
   <data name="btnCancel" xml:space="preserve">
     <value>Anuluj</value>
   </data>
+  <data name="btnCheck" xml:space="preserve">
+    <value>Sprawdź</value>
+  </data>
   <data name="btnOk" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -128,5 +131,56 @@
   </data>
   <data name="btnShuffle" xml:space="preserve">
     <value>Losuj</value>
+  </data>
+  <data name="btnTest" xml:space="preserve">
+    <value>TESTUJ</value>
+  </data>
+  <data name="txtDictBad" xml:space="preserve">
+    <value>ŹLE</value>
+  </data>
+  <data name="txtDictErrorNotAllAnsweres" xml:space="preserve">
+    <value>Nie zaznaczono wszystkich odpowiedzi</value>
+  </data>
+  <data name="txtDictErrorNotAllAnswersTitle" xml:space="preserve">
+    <value>Zaznacz wszystkie odpowiedzi</value>
+  </data>
+  <data name="txtDictOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="txtDictSuccessMesssage" xml:space="preserve">
+    <value>Hurrra, wspaniale!</value>
+  </data>
+  <data name="txtDictSuccessTitle" xml:space="preserve">
+    <value>BRAWO</value>
+  </data>
+  <data name="txtDictSum" xml:space="preserve">
+    <value>SUMA</value>
+  </data>
+  <data name="txtErrorBtn" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="txtErrorMessage" xml:space="preserve">
+    <value>Błąd:</value>
+  </data>
+  <data name="txtErrorTitle" xml:space="preserve">
+    <value>BŁĄD</value>
+  </data>
+  <data name="txtMultNo" xml:space="preserve">
+    <value>NIE</value>
+  </data>
+  <data name="txtMultOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="txtMultResult" xml:space="preserve">
+    <value>Wynik</value>
+  </data>
+  <data name="txtMultTooManyHints" xml:space="preserve">
+    <value>Za dużo podpowiedzi: </value>
+  </data>
+  <data name="txtMultTooManyHintsTitle" xml:space="preserve">
+    <value>Podpowiedzi porada</value>
+  </data>
+  <data name="txtMultTotal" xml:space="preserve">
+    <value>Wszystkie</value>
   </data>
 </root>
