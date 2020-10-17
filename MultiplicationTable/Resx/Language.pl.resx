@@ -151,7 +151,7 @@
     <value>Maksymalna wartość czynnika mnożenie</value>
   </data>
   <data name="txtAboutQuizMode" xml:space="preserve">
-    <value>Quiz mode?</value>
+    <value>Tryb quizu?</value>
   </data>
   <data name="txtAboutSpan" xml:space="preserve">
     <value>Prosta aplikacja do nauki podstawowich operacji matematycznych, prostych dyktand oraz słówek angielskich. Aplikacja jest napisana w technologii Xamarin</value>
@@ -192,6 +192,9 @@
   <data name="txtErrorTitle" xml:space="preserve">
     <value>BŁĄD</value>
   </data>
+  <data name="txtLearningSetCategory" xml:space="preserve">
+    <value>Wybierz kategorię</value>
+  </data>
   <data name="txtMultNo" xml:space="preserve">
     <value>NIE</value>
   </data>
@@ -209,6 +212,9 @@
   </data>
   <data name="txtMultTotal" xml:space="preserve">
     <value>Wszystkie</value>
+  </data>
+  <data name="txtRandomLearningWord" xml:space="preserve">
+    <value>Wylosowane słówko</value>
   </data>
   <data name="txtTitleConfiguation" xml:space="preserve">
     <value>Konfiguracja</value>

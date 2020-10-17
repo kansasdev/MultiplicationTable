@@ -20,11 +20,13 @@
     <Warning Text="$(MSBuildProjectFile) is Multilingual build enabled, but the Multilingual App Toolkit is unavailable during the build. If building with Visual Studio, please check to ensure that toolkit is properly installed." />
   </Target>
   <ItemGroup>
+    <None Remove="LanguageWords.xml" />
     <None Remove="thumbs_up_1.png" />
     <None Remove="waaa_1.png" />
     <None Remove="XMLText.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="LanguageWords.xml" />
     <EmbeddedResource Include="thumbs_up_1.png" />
     <EmbeddedResource Include="waaa_1.png" />
     <EmbeddedResource Include="XMLText.xml" />
@@ -55,6 +57,9 @@
       <LastGenOutput>Language.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\DictPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\LearningPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\WordDetails.xaml">

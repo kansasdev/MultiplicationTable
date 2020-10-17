@@ -118,7 +118,7 @@ namespace MultiplicationTable.ViewModels
             Task t = new Task(async () =>
             {
                 IFolder folder = PCLStorage.FileSystem.Current.LocalStorage;
-                if (await PCLHelper.IsFolderExistAsync("Dictations", folder))
+                if (await PCLHelper.IsFolderExistAsync("UserXML", folder))
                 {
                     if (await PCLHelper.IsFileExistAsync("UserDictation.xml", folder))
                     {

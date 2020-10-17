@@ -192,6 +192,9 @@
   <data name="txtErrorTitle" xml:space="preserve">
     <value>ERROR</value>
   </data>
+  <data name="txtLearningSetCategory" xml:space="preserve">
+    <value>Choose category</value>
+  </data>
   <data name="txtMultNo" xml:space="preserve">
     <value>NO</value>
   </data>
@@ -209,6 +212,9 @@
   </data>
   <data name="txtMultTotal" xml:space="preserve">
     <value>Total</value>
+  </data>
+  <data name="txtRandomLearningWord" xml:space="preserve">
+    <value>Generated word</value>
   </data>
   <data name="txtTitleConfiguation" xml:space="preserve">
     <value>Configuration</value>

@@ -286,6 +286,15 @@ namespace MultiplicationTable.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose category.
+        /// </summary>
+        internal static string txtLearningSetCategory {
+            get {
+                return ResourceManager.GetString("txtLearningSetCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NO.
         /// </summary>
         internal static string txtMultNo {
@@ -336,6 +345,15 @@ namespace MultiplicationTable.Resx {
         internal static string txtMultTotal {
             get {
                 return ResourceManager.GetString("txtMultTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generated word.
+        /// </summary>
+        internal static string txtRandomLearningWord {
+            get {
+                return ResourceManager.GetString("txtRandomLearningWord", resourceCulture);
             }
         }
         

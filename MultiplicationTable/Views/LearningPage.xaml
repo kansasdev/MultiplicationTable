@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MultiplicationTable.Views.LearningPage"
+             xmlns:res="clr-namespace:MultiplicationTable.Resx"
+             xmlns:vm="clr-namespace:MultiplicationTable.ViewModels"
+             Title="{Binding Title}"
+             >
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Text="{x:Static res:Language.txtLearningSetCategory}" Grid.Column="0" Margin="2" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Picker Title="{x:Static res:Language.pckAboutText}" ItemsSource="{Binding CategoriesSource}" SelectedItem="{Binding SelectedCategory}" Grid.Row="0" Grid.Column="1" WidthRequest="5">
+            </Picker>
+
+            <Label Text="{x:Static res:Language.txtRandomLearningWord}" Grid.Column="0" Margin="2" Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Label Text="{Binding GeneratedWord}" Grid.Column="1" Grid.ColumnSpan="2" Margin="2" Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+            <Button Command="{Binding HintACommand}" Grid.Row="2" Grid.Column="0" Text="{Binding HintA}" Margin="2" IsEnabled="{Binding ButtonEnabled}" />
+            <Button Command="{Binding HintBCommand}" Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding HintB}" IsEnabled="{Binding ButtonEnabled}"/>
+            <Button Command="{Binding HintCCommand}" Grid.Row="2" Grid.Column="2" Margin="2" Text="{Binding HintC}" IsEnabled="{Binding ButtonSayEnabled}"/>
+
+
+            <ActivityIndicator x:Name="waitIndicator" Grid.Row="2" Grid.ColumnSpan="3" IsRunning="{Binding WaitIndicator}"
+                    Color="Blue"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="Fill" />
+
+          
+            <Button Command="{Binding ShuffleCommand}" Grid.Row="3" Grid.Column="0" Text="{x:Static res:Language.btnShuffle}" Margin="2" IsEnabled="{Binding ButtonEnabled}" />
+            <Button Command="{Binding CheckCommand}" Grid.Row="3" Grid.Column="1" Margin="2" Text="{x:Static res:Language.btnCheck}" IsEnabled="{Binding ButtonEnabled}"/>
+            <Button Command="{Binding SayCommand}" Grid.Row="3" Grid.Column="2" Margin="2" Text="{x:Static res:Language.btnSay}" IsEnabled="{Binding ButtonSayEnabled}"/>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -39,6 +39,9 @@ namespace MultiplicationTable.Views
                     case (int)MenuItemType.Dictation:
                         MenuPages.Add(id, new NavigationPage(new DictPage()));
                         break;
+                    case (int)MenuItemType.EnglishWords:
+                        MenuPages.Add(id, new NavigationPage(new LearningPage()));
+                        break;
                 }
             }
 
