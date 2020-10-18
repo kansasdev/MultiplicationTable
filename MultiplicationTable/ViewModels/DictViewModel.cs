@@ -89,7 +89,7 @@ namespace MultiplicationTable.ViewModels
            
                 WaitIndicator = state;
                 ButtonEnabled = !state;
-                ButtonEnabled = !state;
+                ButtonSayEnabled = !state;
            
         }
 

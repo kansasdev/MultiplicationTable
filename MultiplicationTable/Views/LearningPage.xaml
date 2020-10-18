@@ -20,16 +20,16 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Text="{x:Static res:Language.txtLearningSetCategory}" Grid.Column="0" Margin="2" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-            <Picker Title="{x:Static res:Language.pckAboutText}" ItemsSource="{Binding CategoriesSource}" SelectedItem="{Binding SelectedCategory}" Grid.Row="0" Grid.Column="1" WidthRequest="5">
+            <Label Text="{x:Static res:Language.txtLearningSetCategory}" FontSize="Large" Grid.Column="0" Margin="2" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Picker FontSize="Large" Title="{x:Static res:Language.pckAboutText}" ItemsSource="{Binding CategoriesSource}" SelectedItem="{Binding SelectedCategory}"  Grid.Row="0" Grid.Column="1" WidthRequest="5">
             </Picker>
 
-            <Label Text="{x:Static res:Language.txtRandomLearningWord}" Grid.Column="0" Margin="2" Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-            <Label Text="{Binding GeneratedWord}" Grid.Column="1" Grid.ColumnSpan="2" Margin="2" Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Label FontSize="Large" Text="{x:Static res:Language.txtRandomLearningWord}" Grid.Column="0" Margin="2" Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Label FontSize="Large" Text="{Binding GeneratedWord}" Grid.Column="1" Grid.ColumnSpan="2" Margin="2" Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
 
-            <Button Command="{Binding HintACommand}" Grid.Row="2" Grid.Column="0" Text="{Binding HintA}" Margin="2" IsEnabled="{Binding ButtonEnabled}" />
-            <Button Command="{Binding HintBCommand}" Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding HintB}" IsEnabled="{Binding ButtonEnabled}"/>
-            <Button Command="{Binding HintCCommand}" Grid.Row="2" Grid.Column="2" Margin="2" Text="{Binding HintC}" IsEnabled="{Binding ButtonSayEnabled}"/>
+            <Button Command="{Binding HintACommand}" FontSize="Large" Grid.Row="2" Grid.Column="0" Text="{Binding HintA}" Margin="2" IsEnabled="{Binding ButtonEnabled}" />
+            <Button Command="{Binding HintBCommand}" FontSize="Large" Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding HintB}" IsEnabled="{Binding ButtonEnabled}"/>
+            <Button Command="{Binding HintCCommand}" FontSize="Large" Grid.Row="2" Grid.Column="2" Margin="2" Text="{Binding HintC}" IsEnabled="{Binding ButtonEnabled}"/>
 
 
             <ActivityIndicator x:Name="waitIndicator" Grid.Row="2" Grid.ColumnSpan="3" IsRunning="{Binding WaitIndicator}"
@@ -37,10 +37,10 @@
                      VerticalOptions="CenterAndExpand"
                      HorizontalOptions="Fill" />
 
-          
-            <Button Command="{Binding ShuffleCommand}" Grid.Row="3" Grid.Column="0" Text="{x:Static res:Language.btnShuffle}" Margin="2" IsEnabled="{Binding ButtonEnabled}" />
-            <Button Command="{Binding CheckCommand}" Grid.Row="3" Grid.Column="1" Margin="2" Text="{x:Static res:Language.btnCheck}" IsEnabled="{Binding ButtonEnabled}"/>
-            <Button Command="{Binding SayCommand}" Grid.Row="3" Grid.Column="2" Margin="2" Text="{x:Static res:Language.btnSay}" IsEnabled="{Binding ButtonSayEnabled}"/>
+
+            <Button FontSize="Large" Command="{Binding ShuffleCommand}" Grid.Row="3" Grid.Column="0" Text="{x:Static res:Language.btnShuffle}" Margin="2" IsEnabled="{Binding ButtonEnabled}" />
+            <Button FontSize="Large" Command="{Binding CheckCommand}" Grid.Row="3" Grid.Column="1" Margin="2" Text="{x:Static res:Language.btnCheck}" IsEnabled="{Binding ButtonEnabled}"/>
+            <Button FontSize="Large" Command="{Binding SayCommand}" Grid.Row="3" Grid.Column="2" Margin="2" Text="{x:Static res:Language.btnSay}" IsEnabled="{Binding ButtonSayEnabled}"/>
 
         </Grid>
     </ContentPage.Content>

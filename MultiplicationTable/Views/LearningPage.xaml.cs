@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MultiplicationTable.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,11 @@ namespace MultiplicationTable.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LearningPage : ContentPage
     {
+        private LearningViewModel viewModel;
         public LearningPage()
         {
             InitializeComponent();
+            BindingContext = viewModel = new LearningViewModel();
         }
     }
 }
