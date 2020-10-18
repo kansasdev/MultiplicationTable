@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using System.Linq;
+using MultiplicationTable.Services;
 
 namespace MultiplicationTable.ViewModels
 {
@@ -58,6 +59,9 @@ namespace MultiplicationTable.ViewModels
             }
         }
 
+        private string properCorrespondingWord;
+        private string firstWrongCorrespondingWord;
+        private string secondWrongCorrespondingWord;
         private string generatedWord;
         public string GeneratedWord
         {
@@ -120,22 +124,163 @@ namespace MultiplicationTable.ViewModels
             }
         }
 
+        private ImageSource imageEmbeddedSource;
+        public ImageSource ImageEmbeddedSource
+        {
+            get
+            {
+                return imageEmbeddedSource;
+            }
+            set
+            {
+                SetProperty(ref imageEmbeddedSource, value);
+            }
+        }
 
+       
+        private bool imageVisible;
+        public bool ImageVisible
+        {
+            get
+            {
+                return imageVisible;
+
+            }
+            set
+            {
+                SetProperty(ref imageVisible, value);
+            }
+        }
 
         public LearningViewModel()
         {
             Title = "";
-            
+            EquationResults.Resest();
+
             ShuffleCommand = new Command(new Action<object>(ShuffleCommandAction));
             SayCommand = new Command(new Action<object>(SayCommandAction));
             CheckCommand = new Command(new Action<object>(CheckCommandAction));
+            HintACommand = new Command(new Action<object>(CheckHintAAction));
+            HintBCommand = new Command(new Action<object>(CheckHintBAction));
+            HintCCommand = new Command(new Action<object>(CheckHintCAction));
 
             ReadDataFromSource();
         }
 
         private void ShuffleCommandAction(object o)
         {
+            ImageVisible = false;
+             if(!string.IsNullOrEmpty(SelectedCategory)&&LearningWords!=null)
+             {
+                List<LearningWord> lstLw = LearningWords.Where(q => q.PolishCategory == SelectedCategory).ToList();
+                List<LearningWord> lstBadLw = new List<LearningWord>(lstLw);
+                Random r = new Random();
+                int idx = r.Next(0, lstLw.Count());
+                LearningWord lw = lstLw.ElementAt(idx);
 
+                GeneratedWord = lw.Polish;
+                properCorrespondingWord = lw.English;
+
+                lstBadLw.RemoveAt(idx);
+
+                int firstWrongIdx = r.Next(0, lstBadLw.Count());
+                firstWrongCorrespondingWord = lstBadLw[firstWrongIdx].English;
+
+                lstBadLw.RemoveAt(firstWrongIdx);
+
+                int secondWrongIdx = r.Next(0, lstBadLw.Count());
+                secondWrongCorrespondingWord = lstBadLw[secondWrongIdx].English;
+                
+
+                //ustawienie buttonow;
+                int okIdx = r.Next(0, 3);
+                if(okIdx==0)
+                {
+                    HintA = properCorrespondingWord;
+                    HintC = secondWrongCorrespondingWord;
+                    HintB = firstWrongCorrespondingWord;
+                }
+                if(okIdx==1)
+                {
+                    HintB = properCorrespondingWord;
+                    HintA = firstWrongCorrespondingWord;
+                    HintC = secondWrongCorrespondingWord;
+                }
+                if(okIdx==2)
+                {
+                    HintC = properCorrespondingWord;
+                    HintA = firstWrongCorrespondingWord;
+                    HintB = secondWrongCorrespondingWord;
+                }
+
+              
+             }
+             else
+             {
+                UserDialogs.Instance.Alert(Language.txtLearningSetCategory, Language.txtErrorTitle);
+             }
+        }
+
+        private void CheckHintAAction(object o)
+        {
+            if (!string.IsNullOrEmpty(GeneratedWord))
+            {
+                if (HintA == properCorrespondingWord)
+                {
+                    EquationResults.AddOkAnswer();
+                    ImageVisible = true;
+                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+
+                }
+                else
+                {
+                    EquationResults.AddBadAnswer();
+                    ImageVisible = true;
+                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+                }
+                Title = Language.txtMultResult + ", " + Language.txtMultOk + ": " + EquationResults.GetOkAnswers() + " " + Language.txtMultNo + ": " + EquationResults.GetBadAnswers() + " " + Language.txtMultTotal + ": " + EquationResults.GetTotalAnswers();
+            }
+        }
+
+        private void CheckHintBAction(object o)
+        {
+            if (!string.IsNullOrEmpty(GeneratedWord))
+            {
+                if (HintB == properCorrespondingWord)
+                {
+                    EquationResults.AddOkAnswer();
+                    ImageVisible = true;
+                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+                }
+                else
+                {
+                    EquationResults.AddBadAnswer();
+                    ImageVisible = true;
+                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+                }
+                Title = Language.txtMultResult + ", " + Language.txtMultOk + ": " + EquationResults.GetOkAnswers() + " " + Language.txtMultNo + ": " + EquationResults.GetBadAnswers() + " " + Language.txtMultTotal + ": " + EquationResults.GetTotalAnswers();
+            }
+        }
+
+        private void CheckHintCAction(object o)
+        {
+            if (!string.IsNullOrEmpty(GeneratedWord))
+            {
+                if (HintC == properCorrespondingWord)
+                {
+                    EquationResults.AddOkAnswer();
+                    ImageVisible = true;
+                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+
+                }
+                else
+                {
+                    EquationResults.AddBadAnswer();
+                    ImageVisible = true;
+                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+                }
+                Title = Language.txtMultResult + ", " + Language.txtMultOk + ": " + EquationResults.GetOkAnswers() + " " + Language.txtMultNo + ": " + EquationResults.GetBadAnswers() + " " + Language.txtMultTotal + ": " + EquationResults.GetTotalAnswers();
+            }
         }
 
         private void SayCommandAction(object o)

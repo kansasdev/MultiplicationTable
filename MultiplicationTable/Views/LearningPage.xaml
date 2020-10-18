@@ -20,23 +20,24 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Text="{x:Static res:Language.txtLearningSetCategory}" FontSize="Large" Grid.Column="0" Margin="2" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Label Text="{x:Static res:Language.txtLearningSetCategory}" FontSize="Large" Grid.Column="0" Margin="2" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="End"/>
             <Picker FontSize="Large" Title="{x:Static res:Language.pckAboutText}" ItemsSource="{Binding CategoriesSource}" SelectedItem="{Binding SelectedCategory}"  Grid.Row="0" Grid.Column="1" WidthRequest="5">
             </Picker>
 
-            <Label FontSize="Large" Text="{x:Static res:Language.txtRandomLearningWord}" Grid.Column="0" Margin="2" Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-            <Label FontSize="Large" Text="{Binding GeneratedWord}" Grid.Column="1" Grid.ColumnSpan="2" Margin="2" Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-
-            <Button Command="{Binding HintACommand}" FontSize="Large" Grid.Row="2" Grid.Column="0" Text="{Binding HintA}" Margin="2" IsEnabled="{Binding ButtonEnabled}" />
-            <Button Command="{Binding HintBCommand}" FontSize="Large" Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding HintB}" IsEnabled="{Binding ButtonEnabled}"/>
-            <Button Command="{Binding HintCCommand}" FontSize="Large" Grid.Row="2" Grid.Column="2" Margin="2" Text="{Binding HintC}" IsEnabled="{Binding ButtonEnabled}"/>
+            <Label FontSize="Large" Text="{x:Static res:Language.txtRandomLearningWord}" Grid.Column="0" Margin="2" Grid.Row="1" HorizontalTextAlignment="End"  VerticalTextAlignment="Center"/>
+            <Label FontSize="Large" Text="{Binding GeneratedWord}" Grid.Column="1" Grid.ColumnSpan="2" Margin="2" Grid.Row="1" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontAttributes="Bold"/>
+            <Image Aspect="AspectFit"  Grid.Row="1" Grid.Column="2"  Source="{Binding ImageEmbeddedSource}" Margin="1" IsVisible="{Binding ImageVisible}" HorizontalOptions="Center" VerticalOptions="Center" />
 
 
-            <ActivityIndicator x:Name="waitIndicator" Grid.Row="2" Grid.ColumnSpan="3" IsRunning="{Binding WaitIndicator}"
+            <ActivityIndicator x:Name="waitIndicator" Grid.Row="1" Grid.ColumnSpan="3" IsRunning="{Binding WaitIndicator}"
                     Color="Blue"
                      VerticalOptions="CenterAndExpand"
                      HorizontalOptions="Fill" />
-
+            
+            <Button Command="{Binding HintACommand}" FontSize="Large" Grid.Row="2" Grid.Column="0" Text="{Binding HintA}" Margin="2" IsEnabled="{Binding ButtonEnabled}" />
+            <Button Command="{Binding HintBCommand}" FontSize="Large" Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding HintB}" IsEnabled="{Binding ButtonEnabled}"/>
+            <Button Command="{Binding HintCCommand}" FontSize="Large" Grid.Row="2" Grid.Column="2" Margin="2" Text="{Binding HintC}" IsEnabled="{Binding ButtonEnabled}"/>
+          
 
             <Button FontSize="Large" Command="{Binding ShuffleCommand}" Grid.Row="3" Grid.Column="0" Text="{x:Static res:Language.btnShuffle}" Margin="2" IsEnabled="{Binding ButtonEnabled}" />
             <Button FontSize="Large" Command="{Binding CheckCommand}" Grid.Row="3" Grid.Column="1" Margin="2" Text="{x:Static res:Language.btnCheck}" IsEnabled="{Binding ButtonEnabled}"/>
