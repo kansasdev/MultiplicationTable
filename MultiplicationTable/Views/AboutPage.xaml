@@ -42,6 +42,10 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -66,7 +70,19 @@
             <Picker Title="{x:Static res:Language.pckAboutText}" ItemsSource="{Binding MultSource}" SelectedItem="{Binding SelectedMult}" Grid.Row="4" Grid.Column="1" WidthRequest="5">
             </Picker>
 
-            <Button Command="{Binding SaveSettings}" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,10,0,0"  BackgroundColor="{StaticResource Primary}"
+            <Button Command="{Binding LoadUserDefinedDict}" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,10,0,0"  BackgroundColor="{StaticResource Primary}"
+                        TextColor="White" Text="{x:Static res:Language.btnLoadUserDefinedDict}"/>
+
+            <Button Command="{Binding SaveUserDefinedDict}" Grid.Row="7" Grid.ColumnSpan="2" Margin="0,10,0,0"  BackgroundColor="{StaticResource Primary}"
+                        TextColor="White" Text="{x:Static res:Language.btnSaveUserDefinedDict}"/>
+
+            <Button Command="{Binding LoadUserDefinedWord}" Grid.Row="8" Grid.ColumnSpan="2" Margin="0,10,0,0"  BackgroundColor="{StaticResource Primary}"
+                        TextColor="White" Text="{x:Static res:Language.btnLoadUserDefinedWords}"/>
+
+            <Button Command="{Binding SaveUserDefinedWord}" Grid.Row="9" Grid.ColumnSpan="2" Margin="0,10,0,0"  BackgroundColor="{StaticResource Primary}"
+                        TextColor="White" Text="{x:Static res:Language.btnSaveUserDefinedWords}"/>
+
+            <Button Command="{Binding SaveSettings}" Grid.Row="10" Grid.ColumnSpan="2" Margin="0,10,0,0"  BackgroundColor="{StaticResource Primary}"
                         TextColor="White" Text="{x:Static res:Language.btnAboutUpdate}"/>
 
             

@@ -64,10 +64,13 @@ namespace MultiplicationTable.ViewModels
                 Settings.SumMax = SelectedSum;
                 Settings.DiffMax = SelectedDiff;
                 Settings.MultMax = SelectedMult;
-
-              
-                
+             
             });
+
+            LoadUserDefinedDict = new Command(new Action(LoadUserDefinedDictAction));
+            LoadUserDefinedWord = new Command(new Action(LoadUserDefinedWordAction));
+            SaveUserDefinedDict = new Command(new Action(SaveUserDefinedDictAction));
+            SaveUserDefinedWord = new Command(new Action(SaveUserDefinedWordAction));
         }
 
         private bool marked;
@@ -189,5 +192,30 @@ namespace MultiplicationTable.ViewModels
 
         public ICommand OpenWebCommand { get; }
         public ICommand SaveSettings { get; }
+
+        public ICommand SaveUserDefinedWord { get; }
+        public ICommand SaveUserDefinedDict { get; }
+        public ICommand LoadUserDefinedWord { get; }
+        public ICommand LoadUserDefinedDict { get; }
+
+        private void SaveUserDefinedWordAction()
+        {
+
+        }
+
+        private void SaveUserDefinedDictAction()
+        {
+
+        }
+
+        private void LoadUserDefinedWordAction()
+        {
+
+        }
+
+        private void LoadUserDefinedDictAction()
+        {
+
+        }
     }
 }

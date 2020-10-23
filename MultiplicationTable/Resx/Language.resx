@@ -126,8 +126,20 @@
   <data name="btnCheck" xml:space="preserve">
     <value>Check</value>
   </data>
+  <data name="btnLoadUserDefinedDict" xml:space="preserve">
+    <value>Load user defined dictations</value>
+  </data>
+  <data name="btnLoadUserDefinedWords" xml:space="preserve">
+    <value>Load user defined words</value>
+  </data>
   <data name="btnOk" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="btnSaveUserDefinedDict" xml:space="preserve">
+    <value>Upload and overwrite user defined dictations</value>
+  </data>
+  <data name="btnSaveUserDefinedWords" xml:space="preserve">
+    <value>Upload and overwrite user defined words</value>
   </data>
   <data name="btnSay" xml:space="preserve">
     <value>Say it</value>

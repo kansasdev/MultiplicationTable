@@ -88,11 +88,47 @@ namespace MultiplicationTable.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Load user defined dictations.
+        /// </summary>
+        internal static string btnLoadUserDefinedDict {
+            get {
+                return ResourceManager.GetString("btnLoadUserDefinedDict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load user defined words.
+        /// </summary>
+        internal static string btnLoadUserDefinedWords {
+            get {
+                return ResourceManager.GetString("btnLoadUserDefinedWords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         internal static string btnOk {
             get {
                 return ResourceManager.GetString("btnOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload and overwrite user defined dictations.
+        /// </summary>
+        internal static string btnSaveUserDefinedDict {
+            get {
+                return ResourceManager.GetString("btnSaveUserDefinedDict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload and overwrite user defined words.
+        /// </summary>
+        internal static string btnSaveUserDefinedWords {
+            get {
+                return ResourceManager.GetString("btnSaveUserDefinedWords", resourceCulture);
             }
         }
         

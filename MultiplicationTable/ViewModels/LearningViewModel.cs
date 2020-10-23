@@ -14,6 +14,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using System.Linq;
 using MultiplicationTable.Services;
+using PCLStorage;
 
 namespace MultiplicationTable.ViewModels
 {
@@ -285,7 +286,7 @@ namespace MultiplicationTable.ViewModels
 
         private void SayCommandAction(object o)
         {
-            if(String.IsNullOrEmpty(GeneratedWord))
+            if(!String.IsNullOrEmpty(GeneratedWord))
             {
                 Task.Run(new Action(SayAction));
             }
@@ -378,6 +379,15 @@ namespace MultiplicationTable.ViewModels
                             {
                                 LearningWords.Add(lw);
                             });
+                        }
+                    }
+                    //LOAD USER DATA XML
+                    IFolder folder = PCLStorage.FileSystem.Current.LocalStorage;
+                    if (PCLHelper.IsFolderExistAsync("UserXML", folder).GetAwaiter().GetResult())
+                    {
+                        if (PCLHelper.IsFileExistAsync("UserLearning.xml", folder).GetAwaiter().GetResult())
+                        {
+                            //TO DO ->load nodes to xDoc
                         }
                     }
 
