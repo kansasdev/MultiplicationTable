@@ -9,7 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiplicationTable.Android
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiplicationTable", "MultiplicationTable\MultiplicationTable.csproj", "{AD26B09B-8C81-4EC2-A882-9D84C0BCDF59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiplicationTableTests", "MultiplicationTableTests\MultiplicationTableTests.csproj", "{DEE96575-36E1-4748-8D0F-62E5EBA70ADF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiplicationTableTests", "MultiplicationTableTests\MultiplicationTableTests.csproj", "{DEE96575-36E1-4748-8D0F-62E5EBA70ADF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3ED7CFE5-4BBC-4C85-9259-22B2186A9FA7}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Desktop\UserDict.xml = ..\..\..\Desktop\UserDict.xml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

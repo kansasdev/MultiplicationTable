@@ -195,6 +195,9 @@
   <data name="txtDictSum" xml:space="preserve">
     <value>SUMA</value>
   </data>
+  <data name="txtErrLoadingUserData" xml:space="preserve">
+    <value>Błąd wczytywania danych użytkownika</value>
+  </data>
   <data name="txtErrorBtn" xml:space="preserve">
     <value>OK</value>
   </data>

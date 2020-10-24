@@ -295,6 +295,15 @@ namespace MultiplicationTable.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error while loading user data.
+        /// </summary>
+        internal static string txtErrLoadingUserData {
+            get {
+                return ResourceManager.GetString("txtErrLoadingUserData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         internal static string txtErrorBtn {

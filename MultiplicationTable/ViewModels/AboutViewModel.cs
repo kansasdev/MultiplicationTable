@@ -1,8 +1,14 @@
-﻿using MultiplicationTable.Services;
+﻿using Acr.UserDialogs;
+using MultiplicationTable.Resx;
+using MultiplicationTable.Services;
+using PCLStorage;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Xml.Linq;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -205,7 +211,32 @@ namespace MultiplicationTable.ViewModels
 
         private void SaveUserDefinedDictAction()
         {
+            try
+            {
+                var result = Plugin.FilePicker.CrossFilePicker.Current.PickFile().Result;
+                if (result != null)
+                {
+                    XDocument xDocument = XDocument.Parse(Encoding.UTF8.GetString(result.DataArray));
+                    Task t = new Task(async () =>
+                    {
+                        IFolder folder = PCLStorage.FileSystem.Current.LocalStorage;
+                        if (!(await PCLHelper.IsFolderExistAsync("UserXML", folder)))
+                        {
 
+                            await PCLHelper.CreateFolder("UserXML");
+                        }
+                       //await PCLHelper.CreateFile("User")
+
+                    });
+
+                    t.RunSynchronously();
+
+                }
+            }
+            catch(Exception ex)
+            {
+                UserDialogs.Instance.Alert(Language.txtErrLoadingUserData, Language.txtErrorTitle);
+            }
         }
 
         private void LoadUserDefinedWordAction()
