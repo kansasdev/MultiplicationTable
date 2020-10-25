@@ -33,7 +33,13 @@
                     <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="64" />
                 </ContentView>
             </StackLayout>
+            <ActivityIndicator x:Name="waitIndicator" IsRunning="{Binding WaitIndicator}"
+                    Color="Blue"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="Fill" />
         </StackLayout>
+        
+        
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -71,19 +77,19 @@
             </Picker>
 
             <Button Command="{Binding LoadUserDefinedDict}" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,10,0,0"  BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" Text="{x:Static res:Language.btnLoadUserDefinedDict}"/>
+                        TextColor="White" Text="{x:Static res:Language.btnLoadUserDefinedDict}" IsEnabled="{Binding ButtonEnabled}"/>
 
             <Button Command="{Binding SaveUserDefinedDict}" Grid.Row="7" Grid.ColumnSpan="2" Margin="0,10,0,0"  BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" Text="{x:Static res:Language.btnSaveUserDefinedDict}"/>
+                        TextColor="White" Text="{x:Static res:Language.btnSaveUserDefinedDict}" IsEnabled="{Binding ButtonEnabled}"/>
 
             <Button Command="{Binding LoadUserDefinedWord}" Grid.Row="8" Grid.ColumnSpan="2" Margin="0,10,0,0"  BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" Text="{x:Static res:Language.btnLoadUserDefinedWords}"/>
+                        TextColor="White" Text="{x:Static res:Language.btnLoadUserDefinedWords}" IsEnabled="{Binding ButtonEnabled}"/>
 
             <Button Command="{Binding SaveUserDefinedWord}" Grid.Row="9" Grid.ColumnSpan="2" Margin="0,10,0,0"  BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" Text="{x:Static res:Language.btnSaveUserDefinedWords}"/>
+                        TextColor="White" Text="{x:Static res:Language.btnSaveUserDefinedWords}" IsEnabled="{Binding ButtonEnabled}"/>
 
             <Button Command="{Binding SaveSettings}" Grid.Row="10" Grid.ColumnSpan="2" Margin="0,10,0,0"  BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" Text="{x:Static res:Language.btnAboutUpdate}"/>
+                        TextColor="White" Text="{x:Static res:Language.btnAboutUpdate}" IsEnabled="{Binding ButtonEnabled}"/>
 
             
         </Grid>
@@ -109,7 +115,7 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Button Margin="0,10,0,0" Text="{x:Static res:Language.txtAboutGithub}"
+                <Button Margin="0,10,0,0" Text="{x:Static res:Language.txtAboutGithub}" IsEnabled="{Binding ButtonEnabled}"
                         Command="{Binding OpenWebCommand}"
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />

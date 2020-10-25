@@ -70,7 +70,7 @@ namespace MultiplicationTable.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anuluj.
+        ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string btnCancel {
             get {
@@ -304,7 +304,7 @@ namespace MultiplicationTable.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OK.
+        ///   Looks up a localized string similar to ERROR.
         /// </summary>
         internal static string txtErrorBtn {
             get {
@@ -435,6 +435,42 @@ namespace MultiplicationTable.Resx {
         internal static string txtTitleWording {
             get {
                 return ResourceManager.GetString("txtTitleWording", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data has been saved to my documents.
+        /// </summary>
+        internal static string txtUserDataLoaded {
+            get {
+                return ResourceManager.GetString("txtUserDataLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No data has been uploaded.
+        /// </summary>
+        internal static string txtUserDataNoDataUploaded {
+            get {
+                return ResourceManager.GetString("txtUserDataNoDataUploaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to overwrite your data?.
+        /// </summary>
+        internal static string txtUserDataPrompt {
+            get {
+                return ResourceManager.GetString("txtUserDataPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have to restart application.
+        /// </summary>
+        internal static string txtUserDataUpdated {
+            get {
+                return ResourceManager.GetString("txtUserDataUpdated", resourceCulture);
             }
         }
     }

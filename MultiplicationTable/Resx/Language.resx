@@ -121,7 +121,7 @@
     <value>Update settings</value>
   </data>
   <data name="btnCancel" xml:space="preserve">
-    <value>Anuluj</value>
+    <value>Cancel</value>
   </data>
   <data name="btnCheck" xml:space="preserve">
     <value>Check</value>
@@ -199,7 +199,7 @@
     <value>Error while loading user data</value>
   </data>
   <data name="txtErrorBtn" xml:space="preserve">
-    <value>OK</value>
+    <value>ERROR</value>
   </data>
   <data name="txtErrorMessage" xml:space="preserve">
     <value>Error: </value>
@@ -242,5 +242,17 @@
   </data>
   <data name="txtTitleWording" xml:space="preserve">
     <value>English words</value>
+  </data>
+  <data name="txtUserDataLoaded" xml:space="preserve">
+    <value>Data has been saved to my documents</value>
+  </data>
+  <data name="txtUserDataNoDataUploaded" xml:space="preserve">
+    <value>No data has been uploaded</value>
+  </data>
+  <data name="txtUserDataPrompt" xml:space="preserve">
+    <value>Do you want to overwrite your data?</value>
+  </data>
+  <data name="txtUserDataUpdated" xml:space="preserve">
+    <value>You have to restart application</value>
   </data>
 </root>
