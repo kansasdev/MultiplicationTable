@@ -211,32 +211,38 @@ namespace MultiplicationTable.ViewModels
 
         private void SaveUserDefinedDictAction()
         {
-            try
-            {
-                var result = Plugin.FilePicker.CrossFilePicker.Current.PickFile().Result;
-                if (result != null)
-                {
-                    XDocument xDocument = XDocument.Parse(Encoding.UTF8.GetString(result.DataArray));
+                            
                     Task t = new Task(async () =>
                     {
-                        IFolder folder = PCLStorage.FileSystem.Current.LocalStorage;
-                        if (!(await PCLHelper.IsFolderExistAsync("UserXML", folder)))
-                        {
 
-                            await PCLHelper.CreateFolder("UserXML");
+                        try
+                        {
+                            var result = await Plugin.FilePicker.CrossFilePicker.Current.PickFile();
+                            XDocument xDocument = XDocument.Parse(Encoding.UTF8.GetString(result.DataArray));
+                            if (result != null)
+                            {
+                                IFolder folder = PCLStorage.FileSystem.Current.LocalStorage;
+                                if (!(await PCLHelper.IsFolderExistAsync("UserXML", folder)))
+                                {
+
+                                    await PCLHelper.CreateFolder("UserXML");
+                                }
+                                IFile tFile = await PCLHelper.CreateFile("UserDict.xml");
+                                await tFile.WriteAllTextAsync(xDocument.ToString());
+                            }
                         }
-                       //await PCLHelper.CreateFile("User")
+                        
+                        catch (Exception ex)
+                        {
+                            UserDialogs.Instance.Alert(Language.txtErrLoadingUserData, Language.txtErrorTitle);
+                        }
 
                     });
 
                     t.RunSynchronously();
 
-                }
-            }
-            catch(Exception ex)
-            {
-                UserDialogs.Instance.Alert(Language.txtErrLoadingUserData, Language.txtErrorTitle);
-            }
+                
+            
         }
 
         private void LoadUserDefinedWordAction()
