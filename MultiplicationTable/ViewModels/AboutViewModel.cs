@@ -289,7 +289,7 @@ namespace MultiplicationTable.ViewModels
                             await PCLHelper.DeleteFile(fileName);
                         }
                         IFile tFile = await PCLHelper.CreateFile(fileName,destFolder);
-                        //await tFile.WriteAllTextAsync(xDocument.ToString());
+                        await tFile.WriteAllTextAsync(xDocument.ToString());
                         SetWaiting(false);
                         UserDialogs.Instance.Alert(Language.txtUserDataUpdated, Language.txtMultOk);
                     }

@@ -385,9 +385,57 @@ namespace MultiplicationTable.ViewModels
                     IFolder folder = PCLStorage.FileSystem.Current.LocalStorage;
                     if (PCLHelper.IsFolderExistAsync("UserXML", folder).GetAwaiter().GetResult())
                     {
-                        if (PCLHelper.IsFileExistAsync("UserLearning.xml", folder).GetAwaiter().GetResult())
+                        IFolder destFolder = folder.GetFolderAsync("UserXML").GetAwaiter().GetResult();
+                        if (PCLHelper.IsFileExistAsync("UserWord.xml", destFolder).GetAwaiter().GetResult())
                         {
-                            //TO DO ->load nodes to xDoc
+                            IFile file = destFolder.GetFileAsync("UserDict.xml").GetAwaiter().GetResult();
+                            string content = file.ReadAllTextAsync().GetAwaiter().GetResult();
+                            XDocument xDocUser = XDocument.Parse(content);
+
+                            IEnumerable<XElement> deUser =
+                            from el in xDocUser.Descendants()
+                            select el;
+                            foreach (XElement el in deUser)
+                            {
+                                if (el.Name == "Word")
+                                {
+                                    IEnumerable<XElement> desc =
+                                    from elDesc in el.Descendants()
+                                    select elDesc;
+
+                                    LearningWord lw = new LearningWord();
+                                    foreach (XElement elDescendant in desc)
+                                    {
+                                        if (elDescendant.Name == "en")
+                                        {
+                                            lw.English = elDescendant.Value;
+                                        }
+                                        if (elDescendant.Name == "pl")
+                                        {
+                                            lw.Polish = elDescendant.Value;
+                                        }
+                                        if (elDescendant.Name == "category_pl")
+                                        {
+                                            if (!CategoriesSource.Contains(elDescendant.Value))
+                                            {
+                                                MainThread.BeginInvokeOnMainThread(() =>
+                                                {
+                                                    CategoriesSource.Add(elDescendant.Value);
+                                                });
+                                            }
+                                            lw.PolishCategory = elDescendant.Value;
+                                        }
+                                        if (elDescendant.Name == "category_en")
+                                        {
+                                            lw.EnglishCategory = elDescendant.Value;
+                                        }
+                                    }
+                                    MainThread.BeginInvokeOnMainThread(() =>
+                                    {
+                                        LearningWords.Add(lw);
+                                    });
+                                }
+                            }
                         }
                     }
 

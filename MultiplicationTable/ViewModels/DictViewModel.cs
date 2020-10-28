@@ -31,6 +31,7 @@ namespace MultiplicationTable.ViewModels
 
         private string txtXml;
         private XDocument xDoc;
+        private XDocument xDocUser;
         private string selectedText;
 
         private List<SpecialWords> lstSpecialWords;
@@ -120,9 +121,13 @@ namespace MultiplicationTable.ViewModels
                 IFolder folder = PCLStorage.FileSystem.Current.LocalStorage;
                 if (await PCLHelper.IsFolderExistAsync("UserXML", folder))
                 {
-                    if (await PCLHelper.IsFileExistAsync("UserDictation.xml", folder))
+                    IFolder destFolder = await folder.GetFolderAsync("UserXML");
+                    if (await PCLHelper.IsFileExistAsync("UserDict.xml", destFolder))
                     {
-                        //TO DO ->load nodes to xDoc
+                        IFile file = await destFolder.GetFileAsync("UserDict.xml");
+                        string content = await file.ReadAllTextAsync();
+                        xDocUser = XDocument.Parse(content);
+                        
                     }
                 }
             });
@@ -152,6 +157,14 @@ namespace MultiplicationTable.ViewModels
                         foreach (XElement el in de)
                         {
                             lst.Add(el);
+                        }
+                        if(xDocUser!=null && xDocUser.Descendants().Count()>=1)
+                        {
+                            IEnumerable<XElement> deUser = from elUser in xDocUser.Descendants("Text") select elUser;
+                            foreach(XElement elCurrent in deUser)
+                            {
+                                lst.Add(elCurrent);
+                            }
                         }
 
                         Random r = new Random();

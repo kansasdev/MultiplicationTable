@@ -18,9 +18,9 @@
 
             <StackLayout Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" x:Name="sLayout" />
             
-            <Button x:Name="btnSay" Text="{x:Static res:Language.btnSay}" Grid.Row="1" Grid.Column="0" Clicked="Say_Clicked" Padding="5"  Margin="5"/>
-            <Button x:Name="btnCancel" Text="{x:Static res:Language.btnCancel}"  Grid.Row="1" Grid.Column="1" Clicked="Cancel_Clicked" Padding="5" Margin="5" />
-            <Button x:Name="btnOk" Text="{x:Static res:Language.btnOk}" Grid.Row="1" Grid.Column="2" Clicked="OK_Clicked" Padding="5" Margin="5" />
+            <Button x:Name="btnSay" FontSize="Large" Text="{x:Static res:Language.btnSay}" Grid.Row="1" Grid.Column="0" Clicked="Say_Clicked" Padding="5"  Margin="5"/>
+            <Button x:Name="btnCancel" FontSize="Large" Text="{x:Static res:Language.btnCancel}"  Grid.Row="1" Grid.Column="1" Clicked="Cancel_Clicked" Padding="5" Margin="5" />
+            <Button x:Name="btnOk" FontSize="Large" Text="{x:Static res:Language.btnOk}" Grid.Row="1" Grid.Column="2" Clicked="OK_Clicked" Padding="5" Margin="5" />
 
         </Grid>
     </ContentPage.Content>
