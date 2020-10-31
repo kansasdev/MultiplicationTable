@@ -118,17 +118,27 @@ namespace MultiplicationTable.ViewModels
             //CHECK IF USER ADDED USER DEFINED DICTATIONS
             Task t = new Task(async () =>
             {
-                IFolder folder = PCLStorage.FileSystem.Current.LocalStorage;
-                if (await PCLHelper.IsFolderExistAsync("UserXML", folder))
+                try
                 {
-                    IFolder destFolder = await folder.GetFolderAsync("UserXML");
-                    if (await PCLHelper.IsFileExistAsync("UserDict.xml", destFolder))
+                    IFolder folder = PCLStorage.FileSystem.Current.LocalStorage;
+                    if (await PCLHelper.IsFolderExistAsync("UserXML", folder))
                     {
-                        IFile file = await destFolder.GetFileAsync("UserDict.xml");
-                        string content = await file.ReadAllTextAsync();
-                        xDocUser = XDocument.Parse(content);
-                        
+                        IFolder destFolder = await folder.GetFolderAsync("UserXML");
+                        if (await PCLHelper.IsFileExistAsync("UserDict.xml", destFolder))
+                        {
+                            IFile file = await destFolder.GetFileAsync("UserDict.xml");
+                            string content = await file.ReadAllTextAsync();
+                            if (!string.IsNullOrEmpty(content))
+                            {
+                                xDocUser = XDocument.Parse(content);
+                            }
+
+                        }
                     }
+                }
+                catch(Exception ex)
+                {
+                    UserDialogs.Instance.Alert(Language.txtErrLoadingUserData + " " + ex.Message, Language.btnOk);
                 }
             });
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MultiplicationTable.Services;
@@ -11,7 +11,7 @@ namespace MultiplicationTable
 {
     public partial class App : Application
     {
-
+       
         public App()
         {
             InitializeComponent();
