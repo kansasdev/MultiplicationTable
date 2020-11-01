@@ -9,7 +9,13 @@
               xmlns:local="clr-namespace:MultiplicationTable"
              Title="{Binding Title}"
              x:Name="BrowseItemsPage">
-
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -67,18 +73,18 @@
         <Label Text="{Binding HintCol_10}" Grid.Column="10" Grid.Row="0" Margin="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
 
 
-        <Button x:Name="btnTest" Grid.Row="11" Grid.ColumnSpan="2" Text="{x:Static res:Language.btnTest}" Margin="1" Command="{Binding GenerateEquation}" />
-        
-        <Label Text="{Binding Equation}" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="3" Margin="1" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="Large" />
+        <Button x:Name="btnTest" Grid.Row="11" Grid.ColumnSpan="2" Text="{x:Static res:Language.btnTest}" Margin="1" Command="{Binding GenerateEquation}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
 
-        <Button IsVisible="{Binding WorkModeNormal}" Grid.Row="11" Grid.Column="5" Grid.ColumnSpan="2" Text="{x:Static res:Language.btnCheck}" Margin="1" Command="{Binding GenerateHint}"/>
-        <Button IsVisible="{Binding WorkModeQuiz}" Grid.Row="11" Grid.Column="5" Grid.ColumnSpan="2" Margin="1" Text="{Binding HintA}" Command="{Binding CheckQuizAnswerA}" />
+        <Label Text="{Binding Equation}" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="3" Margin="1" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="Large"/>
+
+        <Button IsVisible="{Binding WorkModeNormal}" Grid.Row="11" Grid.Column="5" Grid.ColumnSpan="2" Text="{x:Static res:Language.btnCheck}" Margin="1" Command="{Binding GenerateHint}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+        <Button IsVisible="{Binding WorkModeQuiz}" Grid.Row="11" Grid.Column="5" Grid.ColumnSpan="2" Margin="1" Text="{Binding HintA}" Command="{Binding CheckQuizAnswerA}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
 
         <Entry IsVisible="{Binding WorkModeNormal}" Placeholder="" Grid.Row="11" Grid.Column="7" Margin="1" Text="{Binding Result}" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
-        <Button IsVisible="{Binding WorkModeQuiz}" Grid.Row="11" Grid.Column="7" Grid.ColumnSpan="2" Margin="1" Text="{Binding HintB}" Command="{Binding CheckQuizAnswerB}" />
+        <Button IsVisible="{Binding WorkModeQuiz}" Grid.Row="11" Grid.Column="7" Grid.ColumnSpan="2" Margin="1" Text="{Binding HintB}" Command="{Binding CheckQuizAnswerB}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
 
-        <Button IsVisible="{Binding WorkModeNormal}" Grid.Row="11" Grid.Column="9" Grid.ColumnSpan="2" Command="{Binding CheckEquation}" Text="{x:Static res:Language.btnCheck}" Margin="1"/>
-        <Button IsVisible="{Binding WorkModeQuiz}" Grid.Row="11" Grid.Column="9" Grid.ColumnSpan="2" Margin="1" Text="{Binding HintC}" Command="{Binding CheckQuizAnswerC}" />
+        <Button IsVisible="{Binding WorkModeNormal}" Grid.Row="11" Grid.Column="9" Grid.ColumnSpan="2" Command="{Binding CheckEquation}" Text="{x:Static res:Language.btnCheck}" Margin="1" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+        <Button IsVisible="{Binding WorkModeQuiz}" Grid.Row="11" Grid.Column="9" Grid.ColumnSpan="2" Margin="1" Text="{Binding HintC}" Command="{Binding CheckQuizAnswerC}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
 
 
         <BoxView BackgroundColor="{Binding bvColor_1_1}" Grid.Row="1" Grid.Column="1" Margin="1" IsVisible="{Binding BoxVisible}" />

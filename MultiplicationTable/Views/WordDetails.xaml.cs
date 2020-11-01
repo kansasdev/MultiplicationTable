@@ -95,6 +95,7 @@ namespace MultiplicationTable.Views
                                 Label l = new Label();
                                 l.Text = c.ToString();
                                 l.FontSize = 20;
+                                
                                 sLayout.Children.Add(l);
                             }
                         }

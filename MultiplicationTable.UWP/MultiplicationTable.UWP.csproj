@@ -9,7 +9,7 @@
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MultiplicationTable.UWP</RootNamespace>
-    <AssemblyName>MultiplicationTable.UWP</AssemblyName>
+    <AssemblyName>LearningApp</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>

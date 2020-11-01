@@ -4,6 +4,13 @@
              x:Class="MultiplicationTable.Views.WordDetails"
              xmlns:res="clr-namespace:MultiplicationTable.Resx"
              >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -16,11 +23,11 @@
                 <ColumnDefinition Width="0.33*" />
             </Grid.ColumnDefinitions>
 
-            <StackLayout Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" x:Name="sLayout" />
-            
-            <Button x:Name="btnSay" FontSize="Large" Text="{x:Static res:Language.btnSay}" Grid.Row="1" Grid.Column="0" Clicked="Say_Clicked" Padding="5"  Margin="5"/>
-            <Button x:Name="btnCancel" FontSize="Large" Text="{x:Static res:Language.btnCancel}"  Grid.Row="1" Grid.Column="1" Clicked="Cancel_Clicked" Padding="5" Margin="5" />
-            <Button x:Name="btnOk" FontSize="Large" Text="{x:Static res:Language.btnOk}" Grid.Row="1" Grid.Column="2" Clicked="OK_Clicked" Padding="5" Margin="5" />
+            <StackLayout BackgroundColor="{StaticResource Accent}" Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" x:Name="sLayout" />
+
+            <Button x:Name="btnSay" FontSize="Large" Text="{x:Static res:Language.btnSay}" Grid.Row="1" Grid.Column="0" Clicked="Say_Clicked" Padding="5"  Margin="5" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+            <Button x:Name="btnCancel" FontSize="Large" Text="{x:Static res:Language.btnCancel}"  Grid.Row="1" Grid.Column="1" Clicked="Cancel_Clicked" Padding="5" Margin="5" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+            <Button x:Name="btnOk" FontSize="Large" Text="{x:Static res:Language.btnOk}" Grid.Row="1" Grid.Column="2" Clicked="OK_Clicked" Padding="5" Margin="5" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
 
         </Grid>
     </ContentPage.Content>

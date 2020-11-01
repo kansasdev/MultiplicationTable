@@ -8,7 +8,7 @@
     <TemplateGuid>{9AA2D3C6-3393-45F1-8E7C-5A9901728795}</TemplateGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>MultiplicationTable.Droid</RootNamespace>
-    <AssemblyName>MultiplicationTable.Android</AssemblyName>
+    <AssemblyName>LearningApp</AssemblyName>
     <Deterministic>True</Deterministic>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>

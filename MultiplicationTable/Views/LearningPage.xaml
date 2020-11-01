@@ -6,6 +6,13 @@
              xmlns:vm="clr-namespace:MultiplicationTable.ViewModels"
              Title="{Binding Title}"
              >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -33,15 +40,15 @@
                     Color="Blue"
                      VerticalOptions="CenterAndExpand"
                      HorizontalOptions="Fill" />
-            
-            <Button Command="{Binding HintACommand}" FontSize="Large" Grid.Row="2" Grid.Column="0" Text="{Binding HintA}" Margin="2" IsEnabled="{Binding ButtonEnabled}" />
-            <Button Command="{Binding HintBCommand}" FontSize="Large" Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding HintB}" IsEnabled="{Binding ButtonEnabled}"/>
-            <Button Command="{Binding HintCCommand}" FontSize="Large" Grid.Row="2" Grid.Column="2" Margin="2" Text="{Binding HintC}" IsEnabled="{Binding ButtonEnabled}"/>
-          
 
-            <Button FontSize="Large" Command="{Binding ShuffleCommand}" Grid.Row="3" Grid.Column="0" Text="{x:Static res:Language.btnShuffle}" Margin="2" IsEnabled="{Binding ButtonEnabled}" />
-            <Button FontSize="Large" Command="{Binding CheckCommand}" Grid.Row="3" Grid.Column="1" Margin="2" Text="{x:Static res:Language.btnCheck}" IsEnabled="{Binding ButtonEnabled}"/>
-            <Button FontSize="Large" Command="{Binding SayCommand}" Grid.Row="3" Grid.Column="2" Margin="2" Text="{x:Static res:Language.btnSay}" IsEnabled="{Binding ButtonSayEnabled}"/>
+            <Button Command="{Binding HintACommand}" FontSize="Large" Grid.Row="2" Grid.Column="0" Text="{Binding HintA}" Margin="2" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+            <Button Command="{Binding HintBCommand}" FontSize="Large" Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding HintB}" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+            <Button Command="{Binding HintCCommand}" FontSize="Large" Grid.Row="2" Grid.Column="2" Margin="2" Text="{Binding HintC}" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+
+
+            <Button FontSize="Large" Command="{Binding ShuffleCommand}" Grid.Row="3" Grid.Column="0" Text="{x:Static res:Language.btnShuffle}" Margin="2" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+            <Button FontSize="Large" Command="{Binding CheckCommand}" Grid.Row="3" Grid.Column="1" Margin="2" Text="{x:Static res:Language.btnCheck}" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+            <Button FontSize="Large" Command="{Binding SayCommand}" Grid.Row="3" Grid.Column="2" Margin="2" Text="{x:Static res:Language.btnSay}" IsEnabled="{Binding ButtonSayEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
 
         </Grid>
     </ContentPage.Content>

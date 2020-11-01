@@ -200,7 +200,7 @@ namespace MultiplicationTable.ViewModels
                                     SayCommand.ChangeCanExecute();
                                                                       
 
-                                    Span s = new Span() { Text = sw.GetDashedWord() + " ", TextColor = Color.Red };
+                                    Span s = new Span() { Text = sw.GetDashedWord() + " ", TextColor = Color.Red,ForegroundColor = Color.FromHex("999999")};
                                     s.GestureRecognizers.Add(new TapGestureRecognizer()
                                     {
                                         NumberOfTapsRequired = 1,
@@ -222,7 +222,7 @@ namespace MultiplicationTable.ViewModels
                             {
                                 MainThread.BeginInvokeOnMainThread(() =>
                                 {
-                                    FText.Spans.Add(new Span() { Text = word + " " });
+                                    FText.Spans.Add(new Span() { Text = word + " ", ForegroundColor = Color.FromHex("999999") });
                                     indexAllWords++;
                                 });
                             }
