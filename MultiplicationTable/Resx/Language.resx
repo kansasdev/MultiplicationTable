@@ -126,6 +126,9 @@
   <data name="btnCheck" xml:space="preserve">
     <value>Check</value>
   </data>
+  <data name="btnHint" xml:space="preserve">
+    <value>Hint</value>
+  </data>
   <data name="btnLoadUserDefinedDict" xml:space="preserve">
     <value>Load user defined dictations</value>
   </data>

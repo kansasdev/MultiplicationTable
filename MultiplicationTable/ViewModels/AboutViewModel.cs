@@ -73,6 +73,8 @@ namespace MultiplicationTable.ViewModels
                 Settings.SumMax = SelectedSum;
                 Settings.DiffMax = SelectedDiff;
                 Settings.MultMax = SelectedMult;
+
+                UserDialogs.Instance.Alert(Language.txtUserDataUpdated, Language.btnAboutUpdate);
              
             });
 

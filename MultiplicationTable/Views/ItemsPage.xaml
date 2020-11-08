@@ -45,7 +45,13 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Text="{Binding QuizAnswerText}" Grid.Row="0" Grid.Column="0" TextColor="{Binding QuizAnswerColor}" FontSize="Header" Grid.ColumnSpan="11" Grid.RowSpan="11" Margin="1" />
+        <local:ExtLabel Text="{Binding QuizAnswerText}" Grid.Row="0" Grid.Column="0" TextColor="{Binding QuizAnswerColor}" Grid.ColumnSpan="11" Grid.RowSpan="11" Margin="1">
+            <local:ExtLabel.FontNamedSize>
+                <OnPlatform x:TypeArguments="NamedSize"
+            Default="Header"
+            Android="Large" />
+            </local:ExtLabel.FontNamedSize>
+        </local:ExtLabel>
         <!--<Image Aspect="Fill" Grid.Row="5" Grid.Column="5" Source="{local:ImageResource MultiplicationTable.thumbs_up_1.png}" Grid.ColumnSpan="5" Grid.RowSpan="5" HorizontalOptions="Center"  VerticalOptions="Center" Margin="1" />-->
         <Image Aspect="Fill" Grid.Row="5" Grid.Column="5" Source="{Binding ImageEmbeddedSource}" Grid.ColumnSpan="5" Grid.RowSpan="5" HorizontalOptions="Center"  VerticalOptions="Center" Margin="1" IsVisible="{Binding ImageVisible}" />
 
@@ -73,19 +79,61 @@
         <Label Text="{Binding HintCol_10}" Grid.Column="10" Grid.Row="0" Margin="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
 
 
-        <Button x:Name="btnTest" Grid.Row="11" Grid.ColumnSpan="2" Text="{x:Static res:Language.btnTest}" Margin="1" Command="{Binding GenerateEquation}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+        <local:ExtButton x:Name="btnTest" Grid.Row="11" Grid.ColumnSpan="2" Text="{x:Static res:Language.btnShuffle}" Margin="1" Command="{Binding GenerateEquation}" BorderRadius="15" BackgroundColor="{StaticResource Primary}">
+            <local:ExtButton.FontNamedSize>
+                <OnPlatform x:TypeArguments="NamedSize"
+            Default="Large"
+            Android="Micro" />
+            </local:ExtButton.FontNamedSize>
+        </local:ExtButton>
 
-        <Label Text="{Binding Equation}" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="3" Margin="1" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="Large"/>
+        <local:ExtLabel Text="{Binding Equation}" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="3" Margin="1" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
+            <local:ExtLabel.FontNamedSize>
+                <OnPlatform x:TypeArguments="NamedSize"
+            Default="Large"
+            Android="Medium" />
+            </local:ExtLabel.FontNamedSize>
+        </local:ExtLabel>
 
-        <Button IsVisible="{Binding WorkModeNormal}" Grid.Row="11" Grid.Column="5" Grid.ColumnSpan="2" Text="{x:Static res:Language.btnCheck}" Margin="1" Command="{Binding GenerateHint}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
-        <Button IsVisible="{Binding WorkModeQuiz}" Grid.Row="11" Grid.Column="5" Grid.ColumnSpan="2" Margin="1" Text="{Binding HintA}" Command="{Binding CheckQuizAnswerA}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+        <local:ExtButton IsVisible="{Binding WorkModeNormal}" Grid.Row="11" Grid.Column="5" Grid.ColumnSpan="2" Text="{x:Static res:Language.btnHint}" Margin="1" Command="{Binding GenerateHint}" BorderRadius="15" BackgroundColor="{StaticResource Primary}">
+            <local:ExtButton.FontNamedSize>
+                <OnPlatform x:TypeArguments="NamedSize"
+            Default="Large"
+            Android="Micro" />
+            </local:ExtButton.FontNamedSize>
+        </local:ExtButton>
+        <local:ExtButton IsVisible="{Binding WorkModeQuiz}" Grid.Row="11" Grid.Column="5" Grid.ColumnSpan="2" Margin="1" Text="{Binding HintA}" Command="{Binding CheckQuizAnswerA}" BorderRadius="15" BackgroundColor="{StaticResource Primary}">
+            <local:ExtButton.FontNamedSize>
+                <OnPlatform x:TypeArguments="NamedSize"
+            Default="Large"
+            Android="Micro" />
+            </local:ExtButton.FontNamedSize>
+        </local:ExtButton>
 
         <Entry IsVisible="{Binding WorkModeNormal}" Placeholder="" Grid.Row="11" Grid.Column="7" Margin="1" Text="{Binding Result}" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
-        <Button IsVisible="{Binding WorkModeQuiz}" Grid.Row="11" Grid.Column="7" Grid.ColumnSpan="2" Margin="1" Text="{Binding HintB}" Command="{Binding CheckQuizAnswerB}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+        
+        <local:ExtButton IsVisible="{Binding WorkModeQuiz}" Grid.Row="11" Grid.Column="7" Grid.ColumnSpan="2" Margin="1" Text="{Binding HintB}" Command="{Binding CheckQuizAnswerB}" BorderRadius="15" BackgroundColor="{StaticResource Primary}">
+            <local:ExtButton.FontNamedSize>
+                <OnPlatform x:TypeArguments="NamedSize"
+            Default="Large"
+            Android="Micro" />
+            </local:ExtButton.FontNamedSize>
+        </local:ExtButton>
 
-        <Button IsVisible="{Binding WorkModeNormal}" Grid.Row="11" Grid.Column="9" Grid.ColumnSpan="2" Command="{Binding CheckEquation}" Text="{x:Static res:Language.btnCheck}" Margin="1" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
-        <Button IsVisible="{Binding WorkModeQuiz}" Grid.Row="11" Grid.Column="9" Grid.ColumnSpan="2" Margin="1" Text="{Binding HintC}" Command="{Binding CheckQuizAnswerC}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
-
+        <local:ExtButton IsVisible="{Binding WorkModeNormal}" Grid.Row="11" Grid.Column="9" Grid.ColumnSpan="2" Command="{Binding CheckEquation}" Text="{x:Static res:Language.btnCheck}" Margin="1" BorderRadius="15" BackgroundColor="{StaticResource Primary}">
+            <local:ExtButton.FontNamedSize>
+                <OnPlatform x:TypeArguments="NamedSize"
+            Default="Large"
+            Android="Micro" />
+            </local:ExtButton.FontNamedSize>
+        </local:ExtButton>
+        <local:ExtButton IsVisible="{Binding WorkModeQuiz}" Grid.Row="11" Grid.Column="9" Grid.ColumnSpan="2" Margin="1" Text="{Binding HintC}" Command="{Binding CheckQuizAnswerC}" BorderRadius="15" BackgroundColor="{StaticResource Primary}">
+            <local:ExtButton.FontNamedSize>
+                <OnPlatform x:TypeArguments="NamedSize"
+            Default="Large"
+            Android="Micro" />
+            </local:ExtButton.FontNamedSize>
+        </local:ExtButton>
 
         <BoxView BackgroundColor="{Binding bvColor_1_1}" Grid.Row="1" Grid.Column="1" Margin="1" IsVisible="{Binding BoxVisible}" />
         <BoxView BackgroundColor="{Binding bvColor_1_2}" Grid.Row="1" Grid.Column="2" Margin="1" IsVisible="{Binding BoxVisible}"/>

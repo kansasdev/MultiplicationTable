@@ -34,4 +34,52 @@ namespace MultiplicationTable
         {
         }
     }
+
+    public class ExtLabel : Label
+    {
+        public static readonly BindableProperty FontNamedSizeProperty =
+            BindableProperty.Create(
+                "FontNamedSize", typeof(NamedSize), typeof(ExtLabel),
+                defaultValue: default(NamedSize), propertyChanged: OnFontNamedSizeChanged);
+
+        public NamedSize FontNamedSize
+        {
+            get { return (NamedSize)GetValue(FontNamedSizeProperty); }
+            set { SetValue(FontNamedSizeProperty, value); }
+        }
+
+        private static void OnFontNamedSizeChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((ExtLabel)bindable).OnFontNamedSizeChangedImpl((NamedSize)oldValue, (NamedSize)newValue);
+        }
+
+        protected virtual void OnFontNamedSizeChangedImpl(NamedSize oldValue, NamedSize newValue)
+        {
+            FontSize = Device.GetNamedSize(FontNamedSize, typeof(Label));
+        }
+    }
+
+    public class ExtButton : Button
+    {
+        public static readonly BindableProperty FontNamedSizeProperty =
+            BindableProperty.Create(
+                "FontNamedSize", typeof(NamedSize), typeof(ExtButton),
+                defaultValue: default(NamedSize), propertyChanged: OnFontNamedSizeChanged);
+
+        public NamedSize FontNamedSize
+        {
+            get { return (NamedSize)GetValue(FontNamedSizeProperty); }
+            set { SetValue(FontNamedSizeProperty, value); }
+        }
+
+        private static void OnFontNamedSizeChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((ExtButton)bindable).OnFontNamedSizeChangedImpl((NamedSize)oldValue, (NamedSize)newValue);
+        }
+
+        protected virtual void OnFontNamedSizeChangedImpl(NamedSize oldValue, NamedSize newValue)
+        {
+            FontSize = Device.GetNamedSize(FontNamedSize, typeof(Label));
+        }
+    }
 }

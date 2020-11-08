@@ -88,6 +88,15 @@ namespace MultiplicationTable.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hint.
+        /// </summary>
+        internal static string btnHint {
+            get {
+                return ResourceManager.GetString("btnHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Load user defined dictations.
         /// </summary>
         internal static string btnLoadUserDefinedDict {
