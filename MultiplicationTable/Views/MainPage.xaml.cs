@@ -20,7 +20,7 @@ namespace MultiplicationTable.Views
             InitializeComponent();
 
             MasterBehavior = MasterBehavior.Popover;
-
+            
             MenuPages.Add((int)MenuItemType.Multiplication, (NavigationPage)Detail);
         }
 
