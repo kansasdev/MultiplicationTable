@@ -188,46 +188,46 @@ namespace MultiplicationTable.ViewModels
                         int indexAllWords = 0;
                         List<SpecialWords> lstWords = new List<SpecialWords>();
                         lstSpecialWords.Clear();
-                        foreach (string word in wordsAndPunctation)
-                        {
-                            if (word.Contains("Ó") || word.Contains("ó") || word.Contains("U") || word.Contains("u") || word.Contains("rz") || word.Contains("Rz") ||
-                                word.Contains("Ż") || word.Contains("ż") || word.Contains("h") || word.Contains("H") || word.Contains("Ch") || word.Contains("ch")
-                                )
-                            {
-                                SpecialWords sw = new SpecialWords(word);
+                       
+                               
                                 MainThread.BeginInvokeOnMainThread(() =>
                                 {
-                                    SayCommand.ChangeCanExecute();
-                                                                      
-
-                                    Span s = new Span() { Text = sw.GetDashedWord() + " ", TextColor = Color.Red,ForegroundColor = Color.FromHex("999999")};
-                                    s.GestureRecognizers.Add(new TapGestureRecognizer()
+                                    foreach (string word in wordsAndPunctation)
                                     {
-                                        NumberOfTapsRequired = 1,
-                                        Command = new Command(WordTapped),
-                                        CommandParameter = indexSpecialWords
-                                    });
-                                    FText.Spans.Add(s);
-                                    sw.NumberWrongWordElement = indexSpecialWords;
-                                    sw.DashedWord = s.Text;
-                                    lstSpecialWords.Add(sw);
-                                    indexSpecialWords++;
+                                        if (word.Contains("Ó") || word.Contains("ó") || word.Contains("U") || word.Contains("u") || word.Contains("rz") || word.Contains("Rz") ||
+                                            word.Contains("Ż") || word.Contains("ż") || word.Contains("h") || word.Contains("H") || word.Contains("Ch") || word.Contains("ch")
+                                            )
+                                        {
+                                            SayCommand.ChangeCanExecute();
+                                            SpecialWords sw = new SpecialWords(word);
+
+                                            Span s = new Span() { Text = sw.GetDashedWord() + " ", TextColor = Color.Red, ForegroundColor = Color.FromHex("999999") };
+                                            s.GestureRecognizers.Add(new TapGestureRecognizer()
+                                            {
+                                                NumberOfTapsRequired = 1,
+                                                Command = new Command(WordTapped),
+                                                CommandParameter = indexSpecialWords
+                                            }) ;
+                                            FText.Spans.Add(s);
+                                            sw.NumberWrongWordElement = indexSpecialWords;
+                                            sw.DashedWord = s.Text;
+                                            lstSpecialWords.Add(sw);
+                                            indexSpecialWords++;
+
+                                            sw.NumberAllWordsElement = indexAllWords;
+                                            lstWords.Add(sw);
+                                            indexAllWords++;
+                                        }
+                                        else
+                                        {
+                                            FText.Spans.Add(new Span() { Text = word + " ", ForegroundColor = Color.FromHex("999999") });
+                                            indexAllWords++;
+                                        }
+
+                                    }
                                 });
-                                sw.NumberAllWordsElement = indexAllWords;
-                                lstWords.Add(sw);
-                                indexAllWords++;
-                                
-                            }
-                            else
-                            {
-                                MainThread.BeginInvokeOnMainThread(() =>
-                                {
-                                    FText.Spans.Add(new Span() { Text = word + " ", ForegroundColor = Color.FromHex("999999") });
-                                    indexAllWords++;
-                                });
-                            }
-                            
-                        }
+                                               
+                        
                     }
                     catch (Exception ex)
                     {

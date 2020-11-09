@@ -361,11 +361,15 @@ namespace MultiplicationTable.ViewModels
                                 }   
                                 if(elDescendant.Name=="category_pl")
                                 {
-                                    if(!CategoriesSource.Contains(elDescendant.Value))
+                                    if(CategoriesSource.Where(q=>q==elDescendant.Value).FirstOrDefault()==null)
                                     {
                                         MainThread.BeginInvokeOnMainThread(() =>
                                         {
-                                            CategoriesSource.Add(elDescendant.Value);
+                                            //UWAGA -> na androidzie działa to inaczej !!, to jest wykonywane PO FAKCIE
+                                            if (!CategoriesSource.Contains(elDescendant.Value))
+                                            {
+                                                CategoriesSource.Add(elDescendant.Value);
+                                            }
                                         });
                                     }
                                     lw.PolishCategory = elDescendant.Value;
@@ -420,7 +424,11 @@ namespace MultiplicationTable.ViewModels
                                             {
                                                 MainThread.BeginInvokeOnMainThread(() =>
                                                 {
-                                                    CategoriesSource.Add(elDescendant.Value);
+                                                    if (!CategoriesSource.Contains(elDescendant.Value))
+                                                    {
+
+                                                        CategoriesSource.Add(elDescendant.Value);
+                                                    }
                                                 });
                                             }
                                             lw.PolishCategory = elDescendant.Value;
