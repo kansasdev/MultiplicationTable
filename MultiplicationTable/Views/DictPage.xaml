@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:res="clr-namespace:MultiplicationTable.Resx"
              x:Class="MultiplicationTable.Views.DictPage"
-            
+             xmlns:local="clr-namespace:MultiplicationTable"
              Title="{Binding Title}"
              >
     <ContentPage.Resources>
@@ -29,9 +29,26 @@
                      VerticalOptions="CenterAndExpand"
                      HorizontalOptions="Fill" />
 
-        <Label Grid.Row="0" Grid.ColumnSpan="3" FormattedText="{Binding FText}" LineBreakMode="WordWrap" HorizontalTextAlignment="Center" FontSize="Large" Margin="5" VerticalTextAlignment="Center">
-
-        </Label>
+        <!--<Label Grid.Row="0" Grid.ColumnSpan="3" FormattedText="{Binding FText}" HorizontalTextAlignment="Center" FontSize="Large" Margin="5" VerticalTextAlignment="Center">
+        </Label>-->
+        <!--<Entry Grid.Row="0" Grid.ColumnSpan="3"/>-->
+        <StackLayout Grid.Row="0" Grid.ColumnSpan="3" BindableLayout.ItemsSource="{Binding Labels}" Orientation="Vertical">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Label FontSize="Medium">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding DashedWord}">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding WordTapped}"  CommandParameter="{Binding NumberWrongWordElement}" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
 
         <Button Command="{Binding ShuffleCommand}" Grid.Row="1" Grid.Column="0" Text="{x:Static res:Language.btnShuffle}" Margin="2" FontSize="Large" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
         <Button Command="{Binding CheckCommand}" Grid.Row="1" Grid.Column="1" Margin="2" Text="{x:Static res:Language.btnCheck}" FontSize="Large" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>

@@ -20,6 +20,7 @@ using MultiplicationTable.Views;
 using PCLStorage;
 using MultiplicationTable.Services;
 using MultiplicationTable.Resx;
+using System.Collections.ObjectModel;
 
 namespace MultiplicationTable.ViewModels
 {
@@ -48,6 +49,13 @@ namespace MultiplicationTable.ViewModels
             {
                 SetProperty(ref fText, value);
             }
+        }
+
+        private ObservableCollection<SpecialWords> labels;
+        public ObservableCollection<SpecialWords> Labels
+        {
+            get { return labels; }
+            set { SetProperty(ref labels, value); }
         }
 
         private bool buttonEnabled;
@@ -150,8 +158,8 @@ namespace MultiplicationTable.ViewModels
         {
             if(xDoc!=null)
             {
-                Task.Run(() =>
-                {
+                //Task.Run(() =>
+                //{
                     SetWaiting(true);
                     try
                     {
@@ -183,6 +191,7 @@ namespace MultiplicationTable.ViewModels
                         selectedText = lst[gettedDict].Value;
                         List<string> wordsAndPunctation = selectedText.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
+                        Labels = new ObservableCollection<SpecialWords>();
                         FText = new FormattedString();
                         int indexSpecialWords = 0;
                         int indexAllWords = 0;
@@ -190,8 +199,8 @@ namespace MultiplicationTable.ViewModels
                         lstSpecialWords.Clear();
                        
                                
-                                MainThread.BeginInvokeOnMainThread(() =>
-                                {
+                                //MainThread.BeginInvokeOnMainThread(() =>
+                                //{
                                     foreach (string word in wordsAndPunctation)
                                     {
                                         if (word.Contains("Ó") || word.Contains("ó") || word.Contains("U") || word.Contains("u") || word.Contains("rz") || word.Contains("Rz") ||
@@ -202,30 +211,45 @@ namespace MultiplicationTable.ViewModels
                                             SpecialWords sw = new SpecialWords(word);
 
                                             Span s = new Span() { Text = sw.GetDashedWord() + " ", TextColor = Color.Red, ForegroundColor = Color.FromHex("999999") };
-                                            s.GestureRecognizers.Add(new TapGestureRecognizer()
-                                            {
-                                                NumberOfTapsRequired = 1,
-                                                Command = new Command(WordTapped),
-                                                CommandParameter = indexSpecialWords
-                                            }) ;
-                                            FText.Spans.Add(s);
-                                            sw.NumberWrongWordElement = indexSpecialWords;
+                            TapGestureRecognizer tgr = new TapGestureRecognizer();
+
+                            tgr.NumberOfTapsRequired = 1;
+                            int temp = indexSpecialWords;
+                            tgr.CommandParameter = temp;
+                            tgr.Command = new Command(WordTapped);
+                                                        
+                                            s.GestureRecognizers.Add(tgr) ;
+                            
+                                            
+                            FText.Spans.Add(s);
+
+                           
+                            
+                            sw.NumberWrongWordElement = indexSpecialWords;
                                             sw.DashedWord = s.Text;
                                             lstSpecialWords.Add(sw);
                                             indexSpecialWords++;
 
                                             sw.NumberAllWordsElement = indexAllWords;
                                             lstWords.Add(sw);
-                                            indexAllWords++;
+                            sw.SendNotify += Sw_SendNotify;
+
+                            Labels.Add(sw);
+                            indexAllWords++;
                                         }
                                         else
                                         {
-                                            FText.Spans.Add(new Span() { Text = word + " ", ForegroundColor = Color.FromHex("999999") });
+                            SpecialWords sw = new SpecialWords(word);
+                            sw.NumberWrongWordElement = -1;
+                            sw.DashedWord = word + " ";
+                            sw.NumberAllWordsElement = indexAllWords;
+                            Labels.Add(sw);
+                            FText.Spans.Add(new Span() { Text = word + " ", ForegroundColor = Color.FromHex("999999") });
                                             indexAllWords++;
                                         }
 
                                     }
-                                });
+                                //});
                                                
                         
                     }
@@ -237,13 +261,28 @@ namespace MultiplicationTable.ViewModels
                     {
                         SetWaiting(false);
                     }
-                });
+                //});
                 
+            }
+        }
+
+        private void Sw_SendNotify(int arg1, int arg2)
+        {
+            if (lstSpecialWords != null)
+            {
+                SpecialWords sw = lstSpecialWords[arg1];
+                sw.SetLetterPlaces();
+
+                WordDetails wp = new WordDetails(sw);
+                wp.TypingWordFinished += Wp_TypingWordFinished;
+                Application.Current.MainPage.Navigation.PushModalAsync(wp);
             }
         }
 
         private void WordTapped(object o)
         {
+            //List<Span> lst = FText.Spans.ToList();
+            
             if (lstSpecialWords != null)
             {
                 SpecialWords sw = lstSpecialWords[(int)o];
@@ -258,6 +297,7 @@ namespace MultiplicationTable.ViewModels
         private void Wp_TypingWordFinished(SpecialWords obj)
         {
             string SpanText = FText.Spans[obj.NumberAllWordsElement].Text;
+            string SpanLabelText = Labels[obj.NumberAllWordsElement].DashedWord;
             
                 if(lstAnsweredWords==null)
                 {
@@ -273,6 +313,8 @@ namespace MultiplicationTable.ViewModels
                     lstAnsweredWords.ElementAt(obj.NumberWrongWordElement).UserTappedWord = obj.UserTappedWord;
                 }
                 FText.Spans[obj.NumberAllWordsElement].Text = obj.UserTappedWord;
+
+            Labels[obj.NumberAllWordsElement].DashedWord = obj.UserTappedWord;
            
         }
 

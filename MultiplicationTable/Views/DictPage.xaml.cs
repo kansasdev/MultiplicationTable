@@ -24,5 +24,7 @@ namespace MultiplicationTable.Views
 
             BindingContext = viewModel = new DictViewModel();
         }
+
+       
     }
 }
