@@ -32,10 +32,10 @@
         <!--<Label Grid.Row="0" Grid.ColumnSpan="3" FormattedText="{Binding FText}" HorizontalTextAlignment="Center" FontSize="Large" Margin="5" VerticalTextAlignment="Center">
         </Label>-->
         <!--<Entry Grid.Row="0" Grid.ColumnSpan="3"/>-->
-        <StackLayout Grid.Row="0" Grid.ColumnSpan="3" BindableLayout.ItemsSource="{Binding Labels}" Orientation="Vertical">
+        <StackLayout Grid.Row="0" Grid.ColumnSpan="3" BindableLayout.ItemsSource="{Binding Labels}" Orientation="Vertical" HorizontalOptions="EndAndExpand">
             <BindableLayout.ItemTemplate>
                 <DataTemplate>
-                    <Label FontSize="Medium">
+                    <Label FontSize="Medium" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="{Binding DashedWord}">

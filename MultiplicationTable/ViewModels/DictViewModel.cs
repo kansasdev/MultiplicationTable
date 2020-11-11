@@ -291,7 +291,7 @@ namespace MultiplicationTable.ViewModels
                 WordDetails wp = new WordDetails(sw);
                 wp.TypingWordFinished += Wp_TypingWordFinished;                
                 Application.Current.MainPage.Navigation.PushModalAsync(wp);
-            }*/
+            }
         }
 
         private void Wp_TypingWordFinished(SpecialWords obj)
