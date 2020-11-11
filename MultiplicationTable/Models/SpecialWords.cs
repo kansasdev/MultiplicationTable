@@ -1,17 +1,64 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace MultiplicationTable.Models
 {
-    public class SpecialWords
+    public class SpecialWords : INotifyPropertyChanged
     {
-        public string ProperWord;
-        public string DashedWord;
-        public string UserTappedWord;
-        public int NumberWrongWordElement;
-        public int NumberAllWordsElement;
+        public event Action<int, int> SendNotify;
+
+        private string properWord;
+        public string ProperWord
+        {
+            get { return properWord; }
+            set { SetProperty(ref properWord, value); }
+        }
+
+        private string dashedWord;
+        public string DashedWord
+        {
+            get { return dashedWord; }
+            set { SetProperty(ref dashedWord, value); }
+        }
+
+        private string userTappedWord;
+        public string UserTappedWord
+        {
+            get { return userTappedWord; }
+            set { SetProperty(ref userTappedWord, value); }
+        }
+
+        private int numberWrongWordElement;
+
+        public int NumberWrongWordElement
+        {
+            get { return numberWrongWordElement; }
+            set
+            {
+                SetProperty(ref numberWrongWordElement, value);
+            }
+        }
+
+        public ICommand WordTapped
+        {
+            get;
+        }
+
+        private int numberAllWordsElement;
+        public int NumberAllWordsElement
+        {
+            get { return numberAllWordsElement; }
+            set
+            {
+                SetProperty(ref numberAllWordsElement, value);
+            }
+        }
 
         public List<int> lstÓ; 
         public List<int> lstż;
@@ -37,8 +84,23 @@ namespace MultiplicationTable.Models
             Exceptions = new List<string>();
             ExceptionPos = new List<int>();
             ProperWord = word;
-            
+
+            WordTapped = new Command(WordTappedAction);
         }
+
+        private void WordTappedAction()
+        {
+            //List<Span> lst = FText.Spans.ToList();
+
+            if(SendNotify!=null)
+            {
+                if(NumberWrongWordElement!=-1)
+                {
+                    SendNotify(numberWrongWordElement, numberAllWordsElement);
+                }
+            }
+        }
+
 
         public void SetLetterPlaces()
         {
@@ -239,6 +301,30 @@ namespace MultiplicationTable.Models
                     return indexes;
                 indexes.Add(index);
             }
+        }
+
+        protected bool SetProperty<T>(ref T backingStore, T value,
+           [CallerMemberName] string propertyName = "",
+           Action onChanged = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(backingStore, value))
+                return false;
+
+            backingStore = value;
+            onChanged?.Invoke();
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+
+        
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            var changed = PropertyChanged;
+            if (changed == null)
+                return;
+
+            changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

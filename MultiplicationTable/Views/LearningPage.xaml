@@ -4,6 +4,7 @@
              x:Class="MultiplicationTable.Views.LearningPage"
              xmlns:res="clr-namespace:MultiplicationTable.Resx"
              xmlns:vm="clr-namespace:MultiplicationTable.ViewModels"
+             xmlns:local="clr-namespace:MultiplicationTable"
              Title="{Binding Title}"
              >
     <ContentPage.Resources>
@@ -41,9 +42,27 @@
                      VerticalOptions="CenterAndExpand"
                      HorizontalOptions="Fill" />
 
-            <Button Command="{Binding HintACommand}" FontSize="Large" Grid.Row="2" Grid.Column="0" Text="{Binding HintA}" Margin="2" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
-            <Button Command="{Binding HintBCommand}" FontSize="Large" Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding HintB}" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
-            <Button Command="{Binding HintCCommand}" FontSize="Large" Grid.Row="2" Grid.Column="2" Margin="2" Text="{Binding HintC}" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+            <local:ExtButton Command="{Binding HintACommand}" Grid.Row="2" Grid.Column="0" Text="{Binding HintA}" Margin="2" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}">
+                <local:ExtButton.FontNamedSize>
+                    <OnPlatform x:TypeArguments="NamedSize"
+            Default="Large"
+            Android="Medium" />
+                </local:ExtButton.FontNamedSize>
+            </local:ExtButton>
+            <local:ExtButton Command="{Binding HintBCommand}" Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding HintB}" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}">
+                <local:ExtButton.FontNamedSize>
+                    <OnPlatform x:TypeArguments="NamedSize"
+            Default="Large"
+            Android="Medium" />
+                </local:ExtButton.FontNamedSize>
+            </local:ExtButton>
+            <local:ExtButton Command="{Binding HintCCommand}" Grid.Row="2" Grid.Column="2" Margin="2" Text="{Binding HintC}" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}">
+                <local:ExtButton.FontNamedSize>
+                    <OnPlatform x:TypeArguments="NamedSize"
+            Default="Large"
+            Android="Medium" />
+                </local:ExtButton.FontNamedSize>
+            </local:ExtButton>
 
 
             <Button FontSize="Large" Command="{Binding ShuffleCommand}" Grid.Row="3" Grid.Column="0" Text="{x:Static res:Language.btnShuffle}" Margin="2" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
