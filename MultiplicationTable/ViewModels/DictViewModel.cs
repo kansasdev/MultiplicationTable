@@ -150,8 +150,8 @@ namespace MultiplicationTable.ViewModels
         {
             if(xDoc!=null)
             {
-                Task.Run(() =>
-                {
+                //Task.Run(() =>
+                //{
                     SetWaiting(true);
                     try
                     {
@@ -195,8 +195,8 @@ namespace MultiplicationTable.ViewModels
                                 )
                             {
                                 SpecialWords sw = new SpecialWords(word);
-                                MainThread.BeginInvokeOnMainThread(() =>
-                                {
+                                //MainThread.BeginInvokeOnMainThread(() =>
+                                //{
                                     SayCommand.ChangeCanExecute();
                                                                       
 
@@ -205,14 +205,16 @@ namespace MultiplicationTable.ViewModels
                                     {
                                         NumberOfTapsRequired = 1,
                                         Command = new Command(WordTapped),
-                                        CommandParameter = indexSpecialWords
-                                    });
+                                        //CommandParameter = indexSpecialWords
+                                        CommandParameter = word
+                                    });;
+                                    
                                     FText.Spans.Add(s);
                                     sw.NumberWrongWordElement = indexSpecialWords;
                                     sw.DashedWord = s.Text;
                                     lstSpecialWords.Add(sw);
                                     indexSpecialWords++;
-                                });
+                                //});
                                 sw.NumberAllWordsElement = indexAllWords;
                                 lstWords.Add(sw);
                                 indexAllWords++;
@@ -220,11 +222,11 @@ namespace MultiplicationTable.ViewModels
                             }
                             else
                             {
-                                MainThread.BeginInvokeOnMainThread(() =>
-                                {
+                                //MainThread.BeginInvokeOnMainThread(() =>
+                                //{
                                     FText.Spans.Add(new Span() { Text = word + " ", ForegroundColor = Color.FromHex("999999") });
                                     indexAllWords++;
-                                });
+                                //});
                             }
                             
                         }
@@ -237,14 +239,16 @@ namespace MultiplicationTable.ViewModels
                     {
                         SetWaiting(false);
                     }
-                });
+                //});
                 
             }
         }
 
         private void WordTapped(object o)
         {
-            if (lstSpecialWords != null)
+            List<Span> lst = FText.Spans.ToList();
+           string w = (string)o;
+            /*if (lstSpecialWords != null)
             {
                 SpecialWords sw = lstSpecialWords[(int)o];
                 sw.SetLetterPlaces();
@@ -252,7 +256,7 @@ namespace MultiplicationTable.ViewModels
                 WordDetails wp = new WordDetails(sw);
                 wp.TypingWordFinished += Wp_TypingWordFinished;                
                 Application.Current.MainPage.Navigation.PushModalAsync(wp);
-            }
+            }*/
         }
 
         private void Wp_TypingWordFinished(SpecialWords obj)
