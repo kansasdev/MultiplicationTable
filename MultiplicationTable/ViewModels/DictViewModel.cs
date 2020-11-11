@@ -51,11 +51,51 @@ namespace MultiplicationTable.ViewModels
             }
         }
 
-        private ObservableCollection<SpecialWords> labels;
-        public ObservableCollection<SpecialWords> Labels
+        private ObservableCollection<SpecialWords> dashedWord;
+        public ObservableCollection<SpecialWords> DashedWord
         {
-            get { return labels; }
-            set { SetProperty(ref labels, value); }
+            get { return dashedWord; }
+            set { SetProperty(ref dashedWord, value); }
+        }
+
+        private ObservableCollection<SpecialWords> dashedWord1;
+        public ObservableCollection<SpecialWords> DashedWord1
+        {
+            get { return dashedWord1; }
+            set { SetProperty(ref dashedWord1, value); }
+        }
+
+        private ObservableCollection<SpecialWords> dashedWord2;
+        public ObservableCollection<SpecialWords> DashedWord2
+        {
+            get { return dashedWord2; }
+            set { SetProperty(ref dashedWord2, value); }
+        }
+        private ObservableCollection<SpecialWords> dashedWord3;
+        public ObservableCollection<SpecialWords> DashedWord3
+        {
+            get { return dashedWord3; }
+            set { SetProperty(ref dashedWord3, value); }
+        }
+
+        private ObservableCollection<SpecialWords> dashedWord4;
+        public ObservableCollection<SpecialWords> DashedWord4
+        {
+            get { return dashedWord4; }
+            set { SetProperty(ref dashedWord4, value); }
+        }
+        private ObservableCollection<SpecialWords> dashedWord5;
+        public ObservableCollection<SpecialWords> DashedWord5
+        {
+            get { return dashedWord5; }
+            set { SetProperty(ref dashedWord5, value); }
+        }
+
+        private ObservableCollection<SpecialWords> dashedWord6;
+        public ObservableCollection<SpecialWords> DashedWord6
+        {
+            get { return dashedWord6; }
+            set { SetProperty(ref dashedWord6, value); }
         }
 
         private bool buttonEnabled;
@@ -191,7 +231,8 @@ namespace MultiplicationTable.ViewModels
                         selectedText = lst[gettedDict].Value;
                         List<string> wordsAndPunctation = selectedText.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
-                        Labels = new ObservableCollection<SpecialWords>();
+                        DashedWord = new ObservableCollection<SpecialWords>();
+                                                
                         FText = new FormattedString();
                         int indexSpecialWords = 0;
                         int indexAllWords = 0;
@@ -211,44 +252,42 @@ namespace MultiplicationTable.ViewModels
                                             SpecialWords sw = new SpecialWords(word);
 
                                             Span s = new Span() { Text = sw.GetDashedWord() + " ", TextColor = Color.Red, ForegroundColor = Color.FromHex("999999") };
-                            TapGestureRecognizer tgr = new TapGestureRecognizer();
+                                            TapGestureRecognizer tgr = new TapGestureRecognizer();
 
-                            tgr.NumberOfTapsRequired = 1;
-                            int temp = indexSpecialWords;
-                            tgr.CommandParameter = temp;
-                            tgr.Command = new Command(WordTapped);
+                                            tgr.NumberOfTapsRequired = 1;
+                                            int temp = indexSpecialWords;
+                                            tgr.CommandParameter = temp;
+                                            tgr.Command = new Command(WordTapped);
                                                         
                                             s.GestureRecognizers.Add(tgr) ;
-                            
-                                            
-                            FText.Spans.Add(s);
-
-                           
-                            
-                            sw.NumberWrongWordElement = indexSpecialWords;
+                                                                       
+                                            FText.Spans.Add(s);
+                                                                                   
+                                            sw.NumberWrongWordElement = indexSpecialWords;
                                             sw.DashedWord = s.Text;
                                             lstSpecialWords.Add(sw);
                                             indexSpecialWords++;
 
                                             sw.NumberAllWordsElement = indexAllWords;
                                             lstWords.Add(sw);
-                            sw.SendNotify += Sw_SendNotify;
+                                            sw.SendNotify += Sw_SendNotify;
 
-                            Labels.Add(sw);
-                            indexAllWords++;
+                                            DashedWord.Add(sw);
+                                            indexAllWords++;
                                         }
                                         else
                                         {
-                            SpecialWords sw = new SpecialWords(word);
-                            sw.NumberWrongWordElement = -1;
-                            sw.DashedWord = word + " ";
-                            sw.NumberAllWordsElement = indexAllWords;
-                            Labels.Add(sw);
-                            FText.Spans.Add(new Span() { Text = word + " ", ForegroundColor = Color.FromHex("999999") });
+                                            SpecialWords sw = new SpecialWords(word);
+                                            sw.NumberWrongWordElement = -1;
+                                            sw.DashedWord = word + " ";
+                                            sw.NumberAllWordsElement = indexAllWords;
+                                            DashedWord.Add(sw);
+                                            FText.Spans.Add(new Span() { Text = word + " ", ForegroundColor = Color.FromHex("999999") });
                                             indexAllWords++;
                                         }
-
                                     }
+                                    AddToDashedWords(DashedWord);
+
                                 //});
                                                
                         
@@ -263,6 +302,40 @@ namespace MultiplicationTable.ViewModels
                     }
                 //});
                 
+            }
+        }
+
+        private void AddToDashedWords(ObservableCollection<SpecialWords> ocSW)
+        {
+            DashedWord1 = new ObservableCollection<SpecialWords>();
+            DashedWord2 = new ObservableCollection<SpecialWords>();
+            DashedWord3 = new ObservableCollection<SpecialWords>();
+            DashedWord4 = new ObservableCollection<SpecialWords>();
+            DashedWord5 = new ObservableCollection<SpecialWords>();
+            DashedWord6 = new ObservableCollection<SpecialWords>();
+            for(int i = 0;i<ocSW.Count;i=i+5)
+            {
+                DashedWord1.Add(ocSW[i]);
+            }
+            for (int i = 1; i < ocSW.Count; i = i + 5)
+            {
+                DashedWord2.Add(ocSW[i]);
+            }
+            for (int i = 2; i < ocSW.Count; i = i + 5)
+            {
+                DashedWord3.Add(ocSW[i]);
+            }
+            for (int i = 3; i < ocSW.Count; i = i + 5)
+            {
+                DashedWord4.Add(ocSW[i]);
+            }
+            for (int i = 4; i < ocSW.Count; i = i + 5)
+            {
+                DashedWord5.Add(ocSW[i]);
+            }
+            for (int i = 5; i < ocSW.Count; i = i + 5)
+            {
+                DashedWord6.Add(ocSW[i]);
             }
         }
 
@@ -297,7 +370,7 @@ namespace MultiplicationTable.ViewModels
         private void Wp_TypingWordFinished(SpecialWords obj)
         {
             string SpanText = FText.Spans[obj.NumberAllWordsElement].Text;
-            string SpanLabelText = Labels[obj.NumberAllWordsElement].DashedWord;
+            string SpanLabelText = DashedWord1[obj.NumberAllWordsElement].DashedWord;
             
                 if(lstAnsweredWords==null)
                 {
@@ -314,7 +387,7 @@ namespace MultiplicationTable.ViewModels
                 }
                 FText.Spans[obj.NumberAllWordsElement].Text = obj.UserTappedWord;
 
-            Labels[obj.NumberAllWordsElement].DashedWord = obj.UserTappedWord;
+            DashedWord1[obj.NumberAllWordsElement].DashedWord = obj.UserTappedWord;
            
         }
 

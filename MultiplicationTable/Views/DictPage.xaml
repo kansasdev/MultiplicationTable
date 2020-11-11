@@ -22,6 +22,9 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <ActivityIndicator x:Name="waitIndicator" Grid.Row="0" Grid.ColumnSpan="3" IsRunning="{Binding WaitIndicator}"
@@ -32,7 +35,92 @@
         <!--<Label Grid.Row="0" Grid.ColumnSpan="3" FormattedText="{Binding FText}" HorizontalTextAlignment="Center" FontSize="Large" Margin="5" VerticalTextAlignment="Center">
         </Label>-->
         <!--<Entry Grid.Row="0" Grid.ColumnSpan="3"/>-->
-        <StackLayout Grid.Row="0" Grid.ColumnSpan="3" BindableLayout.ItemsSource="{Binding Labels}" Orientation="Vertical" HorizontalOptions="EndAndExpand">
+        <StackLayout Grid.Row="0" Grid.Column="0"  BindableLayout.ItemsSource="{Binding DashedWord1}"  Orientation="Vertical" HorizontalOptions="EndAndExpand">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Label FontSize="Medium" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding DashedWord}">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding WordTapped}"  CommandParameter="{Binding NumberWrongWordElement}" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+        <StackLayout Grid.Row="0" Grid.Column="1"  BindableLayout.ItemsSource="{Binding DashedWord2}"  Orientation="Vertical" HorizontalOptions="EndAndExpand">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Label FontSize="Medium" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding DashedWord}">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding WordTapped}"  CommandParameter="{Binding NumberWrongWordElement}" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+        <StackLayout Grid.Row="0" Grid.Column="2"  BindableLayout.ItemsSource="{Binding DashedWord3}"  Orientation="Vertical" HorizontalOptions="EndAndExpand">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Label FontSize="Medium" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding DashedWord}">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding WordTapped}"  CommandParameter="{Binding NumberWrongWordElement}" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+        <StackLayout Grid.Row="0" Grid.Column="3"  BindableLayout.ItemsSource="{Binding DashedWord4}"  Orientation="Vertical" HorizontalOptions="EndAndExpand">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Label FontSize="Medium" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding DashedWord}">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding WordTapped}"  CommandParameter="{Binding NumberWrongWordElement}" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+        <StackLayout Grid.Row="0" Grid.Column="4"  BindableLayout.ItemsSource="{Binding DashedWord5}"  Orientation="Vertical" HorizontalOptions="EndAndExpand">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Label FontSize="Medium" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding DashedWord}">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding WordTapped}"  CommandParameter="{Binding NumberWrongWordElement}" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+        <StackLayout Grid.Row="0" Grid.Column="5"  BindableLayout.ItemsSource="{Binding DashedWord6}"  Orientation="Vertical" HorizontalOptions="EndAndExpand">
             <BindableLayout.ItemTemplate>
                 <DataTemplate>
                     <Label FontSize="Medium" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End">
@@ -50,9 +138,9 @@
             </BindableLayout.ItemTemplate>
         </StackLayout>
 
-        <Button Command="{Binding ShuffleCommand}" Grid.Row="1" Grid.Column="0" Text="{x:Static res:Language.btnShuffle}" Margin="2" FontSize="Large" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
-        <Button Command="{Binding CheckCommand}" Grid.Row="1" Grid.Column="1" Margin="2" Text="{x:Static res:Language.btnCheck}" FontSize="Large" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
-        <Button Command="{Binding SayCommand}" Grid.Row="1" Grid.Column="2" Margin="2" Text="{x:Static res:Language.btnSay}" FontSize="Large" IsEnabled="{Binding ButtonSayEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+        <Button Command="{Binding ShuffleCommand}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{x:Static res:Language.btnShuffle}" Margin="2" FontSize="Large" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+        <Button Command="{Binding CheckCommand}" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Margin="2" Text="{x:Static res:Language.btnCheck}" FontSize="Large" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+        <Button Command="{Binding SayCommand}" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Margin="2" Text="{x:Static res:Language.btnSay}" FontSize="Large" IsEnabled="{Binding ButtonSayEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
 
     </Grid>
 </ContentPage>
