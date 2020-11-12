@@ -370,7 +370,7 @@ namespace MultiplicationTable.ViewModels
         private void Wp_TypingWordFinished(SpecialWords obj)
         {
             string SpanText = FText.Spans[obj.NumberAllWordsElement].Text;
-            string SpanLabelText = DashedWord1[obj.NumberAllWordsElement].DashedWord;
+            string SpanLabelText = DashedWord[obj.NumberAllWordsElement].DashedWord;
             
                 if(lstAnsweredWords==null)
                 {
@@ -387,8 +387,31 @@ namespace MultiplicationTable.ViewModels
                 }
                 FText.Spans[obj.NumberAllWordsElement].Text = obj.UserTappedWord;
 
-            DashedWord1[obj.NumberAllWordsElement].DashedWord = obj.UserTappedWord;
-           
+            DashedWord[obj.NumberAllWordsElement].DashedWord = obj.UserTappedWord;
+            if(DashedWord1.Where(q=>q.NumberAllWordsElement==obj.NumberAllWordsElement).FirstOrDefault()!=null)
+            {
+                DashedWord1.Where(q=>q.NumberAllWordsElement==obj.NumberAllWordsElement).First().DashedWord = obj.UserTappedWord;
+            }
+            if (DashedWord2.Where(q => q.NumberAllWordsElement == obj.NumberAllWordsElement).FirstOrDefault() != null)
+            {
+                DashedWord2.Where(q => q.NumberAllWordsElement == obj.NumberAllWordsElement).First().DashedWord = obj.UserTappedWord;
+            }
+            if (DashedWord3.Where(q => q.NumberAllWordsElement == obj.NumberAllWordsElement).FirstOrDefault() != null)
+            {
+                DashedWord3.Where(q => q.NumberAllWordsElement == obj.NumberAllWordsElement).First().DashedWord = obj.UserTappedWord;
+            }
+            if (DashedWord4.Where(q => q.NumberAllWordsElement == obj.NumberAllWordsElement).FirstOrDefault() != null)
+            {
+                DashedWord4.Where(q => q.NumberAllWordsElement == obj.NumberAllWordsElement).First().DashedWord = obj.UserTappedWord;
+            }
+            if (DashedWord5.Where(q => q.NumberAllWordsElement == obj.NumberAllWordsElement).FirstOrDefault() != null)
+            {
+                DashedWord5.Where(q => q.NumberAllWordsElement == obj.NumberAllWordsElement).First().DashedWord = obj.UserTappedWord;
+            }
+            if (DashedWord6.Where(q => q.NumberAllWordsElement == obj.NumberAllWordsElement).FirstOrDefault() != null)
+            {
+                DashedWord6.Where(q => q.NumberAllWordsElement == obj.NumberAllWordsElement).First().DashedWord = obj.UserTappedWord;
+            }
         }
 
         private void SayItCommandAction(object o)
