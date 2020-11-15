@@ -65,9 +65,9 @@
             </local:ExtButton>
 
 
-            <Button FontSize="Large" Command="{Binding ShuffleCommand}" Grid.Row="3" Grid.Column="0" Text="{x:Static res:Language.btnShuffle}" Margin="2" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
-            <Button FontSize="Large" Command="{Binding CheckCommand}" Grid.Row="3" Grid.Column="1" Margin="2" Text="{x:Static res:Language.btnCheck}" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
-            <Button FontSize="Large" Command="{Binding SayCommand}" Grid.Row="3" Grid.Column="2" Margin="2" Text="{x:Static res:Language.btnSay}" IsEnabled="{Binding ButtonSayEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+            <Button FontSize="Medium" Command="{Binding ShuffleCommand}" Grid.Row="3" Grid.Column="0" Text="{x:Static res:Language.btnShuffle}" Margin="2" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+            <Button FontSize="Medium" Command="{Binding CheckCommand}" Grid.Row="3" Grid.Column="1" Margin="2" Text="{x:Static res:Language.btnCheck}" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+            <Button FontSize="Medium" Command="{Binding SayCommand}" Grid.Row="3" Grid.Column="2" Margin="2" Text="{x:Static res:Language.btnSay}" IsEnabled="{Binding ButtonSayEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
 
         </Grid>
     </ContentPage.Content>

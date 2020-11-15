@@ -48,9 +48,9 @@
     
             </Grid>
         </ScrollView>
-        <Button Command="{Binding ShuffleCommand}" Grid.Row="1" Grid.Column="0" Text="{x:Static res:Language.btnShuffle}" Margin="2" FontSize="Large" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
-        <Button Command="{Binding CheckCommand}" Grid.Row="1" Grid.Column="1" Margin="2" Text="{x:Static res:Language.btnCheck}" FontSize="Large" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
-        <Button Command="{Binding SayCommand}" Grid.Row="1" Grid.Column="2" Margin="2" Text="{x:Static res:Language.btnSay}" FontSize="Large" IsEnabled="{Binding ButtonSayEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+        <Button Command="{Binding ShuffleCommand}" Grid.Row="1" Grid.Column="0" Text="{x:Static res:Language.btnShuffle}" Margin="2" FontSize="Medium" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+        <Button Command="{Binding CheckCommand}" Grid.Row="1" Grid.Column="1" Margin="2" Text="{x:Static res:Language.btnCheck}" FontSize="Medium" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+        <Button Command="{Binding SayCommand}" Grid.Row="1" Grid.Column="2" Margin="2" Text="{x:Static res:Language.btnSay}" FontSize="Medium" IsEnabled="{Binding ButtonSayEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
 
     </Grid>
 </ContentPage>

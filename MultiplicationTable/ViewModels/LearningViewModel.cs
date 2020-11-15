@@ -300,7 +300,15 @@ namespace MultiplicationTable.ViewModels
         private void SayAction()
         {
             SetFormState(false);
-            TextToSpeech.SpeakAsync(GeneratedWord).GetAwaiter().GetResult();
+            IEnumerable<Locale> locals = TextToSpeech.GetLocalesAsync().GetAwaiter().GetResult();
+            Locale local = locals.FirstOrDefault(y => string.Equals(y.Country, "POL"));
+            var mySpeechOptions = new SpeechOptions
+            {
+                Volume = 1,
+                Pitch = 0.2f,
+                Locale = local
+            };
+            TextToSpeech.SpeakAsync(GeneratedWord,mySpeechOptions).GetAwaiter().GetResult();
             SetFormState(true);
         }
 

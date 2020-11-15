@@ -8,7 +8,7 @@
 
   <Identity
     Name="51783941-bb17-48ae-a227-98fcbbec96b3"
-    Publisher="CN=fe7d9eb7-eb5e-436f-a41b-8c8f2c9a6885"
+    Publisher="CN=kansasdev"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="ec0cc741-fd3e-485c-81be-68815c480690" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>

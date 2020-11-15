@@ -338,7 +338,15 @@ namespace MultiplicationTable.ViewModels
             Task.Run(() =>
             {
                 ButtonEnabled = false;
-                Task.WaitAll(TextToSpeech.SpeakAsync(selectedText));
+                IEnumerable<Locale> locals = TextToSpeech.GetLocalesAsync().GetAwaiter().GetResult();
+                Locale local = locals.FirstOrDefault(y => string.Equals(y.Country, "POL"));
+                var mySpeechOptions = new SpeechOptions
+                {
+                    Volume = 1,
+                    Pitch = 0.2f,
+                    Locale = local
+                };
+                Task.WaitAll(TextToSpeech.SpeakAsync(selectedText,mySpeechOptions));
                 ButtonEnabled = true;
             });
         }
@@ -377,7 +385,7 @@ namespace MultiplicationTable.ViewModels
                         else
                         {
                             FText.Spans[sw.NumberAllWordsElement].TextColor = Color.Red;
-                            FText.Spans[sw.NumberAllWordsElement].FontAttributes = FontAttributes.Bold;
+                            FText.Spans[sw.NumberAllWordsElement].FontAttributes = FontAttributes.None;
                         }
                     }
 
