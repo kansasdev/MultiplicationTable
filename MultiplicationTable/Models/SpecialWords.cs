@@ -60,6 +60,9 @@ namespace MultiplicationTable.Models
             }
         }
 
+        public bool FirstTapped;
+        public bool SecondTapped;
+
         public List<int> lstÓ; 
         public List<int> lstż;
         public List<int> lstź;

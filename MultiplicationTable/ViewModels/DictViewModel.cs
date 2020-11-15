@@ -51,52 +51,7 @@ namespace MultiplicationTable.ViewModels
             }
         }
 
-        private ObservableCollection<SpecialWords> dashedWord;
-        public ObservableCollection<SpecialWords> DashedWord
-        {
-            get { return dashedWord; }
-            set { SetProperty(ref dashedWord, value); }
-        }
-
-        private ObservableCollection<SpecialWords> dashedWord1;
-        public ObservableCollection<SpecialWords> DashedWord1
-        {
-            get { return dashedWord1; }
-            set { SetProperty(ref dashedWord1, value); }
-        }
-
-        private ObservableCollection<SpecialWords> dashedWord2;
-        public ObservableCollection<SpecialWords> DashedWord2
-        {
-            get { return dashedWord2; }
-            set { SetProperty(ref dashedWord2, value); }
-        }
-        private ObservableCollection<SpecialWords> dashedWord3;
-        public ObservableCollection<SpecialWords> DashedWord3
-        {
-            get { return dashedWord3; }
-            set { SetProperty(ref dashedWord3, value); }
-        }
-
-        private ObservableCollection<SpecialWords> dashedWord4;
-        public ObservableCollection<SpecialWords> DashedWord4
-        {
-            get { return dashedWord4; }
-            set { SetProperty(ref dashedWord4, value); }
-        }
-        private ObservableCollection<SpecialWords> dashedWord5;
-        public ObservableCollection<SpecialWords> DashedWord5
-        {
-            get { return dashedWord5; }
-            set { SetProperty(ref dashedWord5, value); }
-        }
-
-        private ObservableCollection<SpecialWords> dashedWord6;
-        public ObservableCollection<SpecialWords> DashedWord6
-        {
-            get { return dashedWord6; }
-            set { SetProperty(ref dashedWord6, value); }
-        }
+        private WordDetails wordDetails;       
 
         private bool buttonEnabled;
         public bool ButtonEnabled
@@ -152,6 +107,10 @@ namespace MultiplicationTable.ViewModels
             SayCommand = new Command(new Action<object>(SayItCommandAction), CanSayItCommandAction);
             CheckCommand = new Command(new Action<object>(CheckCommandAction), new Func<object, bool>(CanCheckCommandAction));
 
+            wordDetails = new WordDetails();
+            wordDetails.TypingWordFinished += Wp_TypingWordFinished;
+            wordDetails.TypingCancelled += Wp_TypingCancelled;
+
             SayCommand.ChangeCanExecute();
 
             var assembly = IntrospectionExtensions.GetTypeInfo(typeof(DictViewModel)).Assembly;
@@ -198,8 +157,8 @@ namespace MultiplicationTable.ViewModels
         {
             if(xDoc!=null)
             {
-                //Task.Run(() =>
-                //{
+                Task.Run(() =>
+                {
                     SetWaiting(true);
                     try
                     {
@@ -216,10 +175,10 @@ namespace MultiplicationTable.ViewModels
                         {
                             lst.Add(el);
                         }
-                        if(xDocUser!=null && xDocUser.Descendants().Count()>=1)
+                        if (xDocUser != null && xDocUser.Descendants().Count() >= 1)
                         {
                             IEnumerable<XElement> deUser = from elUser in xDocUser.Descendants("Text") select elUser;
-                            foreach(XElement elCurrent in deUser)
+                            foreach (XElement elCurrent in deUser)
                             {
                                 lst.Add(elCurrent);
                             }
@@ -228,69 +187,78 @@ namespace MultiplicationTable.ViewModels
                         Random r = new Random();
                         int gettedDict = r.Next(1, lst.Count);
 
-                        selectedText = lst[gettedDict].Value;
+                        selectedText = lst[gettedDict].Value;//"wwwwwwwwwwwwwwwwwwwwwwwwwwww Szczebrzeszynie. Wielkie ucho patrzy różnie.";
                         List<string> wordsAndPunctation = selectedText.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
-                        DashedWord = new ObservableCollection<SpecialWords>();
-                                                
+                      
                         FText = new FormattedString();
                         int indexSpecialWords = 0;
                         int indexAllWords = 0;
                         List<SpecialWords> lstWords = new List<SpecialWords>();
                         lstSpecialWords.Clear();
-                       
-                               
-                                //MainThread.BeginInvokeOnMainThread(() =>
-                                //{
-                                    foreach (string word in wordsAndPunctation)
+
+                        MainThread.BeginInvokeOnMainThread(() =>
+                        {
+                            foreach (string word in wordsAndPunctation)
+                            {
+                                if (word.Contains("Ó") || word.Contains("ó") || word.Contains("U") || word.Contains("u") || word.Contains("rz") || word.Contains("Rz") ||
+                                    word.Contains("Ż") || word.Contains("ż") || word.Contains("h") || word.Contains("H") || word.Contains("Ch") || word.Contains("ch")
+                                    )
+                                {
+                                    SayCommand.ChangeCanExecute();
+                                    SpecialWords sw = new SpecialWords(word);
+
+                            string text = string.Empty;
+                            if(Device.RuntimePlatform == Device.Android)
+                            {
+                                //text = Environment.NewLine+sw.GetDashedWord()+Environment.NewLine;
+                                text = Environment.NewLine+ sw.GetDashedWord() + " ";
+                            }
+                            else
+                            {
+                                text = sw.GetDashedWord() + " ";
+                            }
+
+                                    Span s = new Span() { Text = text, TextColor = Color.Red, ForegroundColor = Color.FromHex("999999") };
+                                    TapGestureRecognizer tgr = new TapGestureRecognizer();
+
+                                    tgr.NumberOfTapsRequired = 1;
+                                    int temp = indexSpecialWords;
+                                    tgr.CommandParameter = temp;
+                                    
+                                    //tgr.Command = new Command(WordTapped);
+                                    tgr.Tapped += Tgr_Tapped;
+                                    s.GestureRecognizers.Add(tgr);
+                                    FText.Spans.Add(s);
+                                    
+                                    sw.NumberWrongWordElement = indexSpecialWords;
+                                    sw.DashedWord = s.Text;
+                                    lstSpecialWords.Add(sw);
+                                    indexSpecialWords++;
+
+                                    sw.NumberAllWordsElement = indexAllWords;
+                                    lstWords.Add(sw);
+                                
+                                    indexAllWords++;
+                                }
+                                else
+                                {
+                                    if(Device.RuntimePlatform == Device.Android)
                                     {
-                                        if (word.Contains("Ó") || word.Contains("ó") || word.Contains("U") || word.Contains("u") || word.Contains("rz") || word.Contains("Rz") ||
-                                            word.Contains("Ż") || word.Contains("ż") || word.Contains("h") || word.Contains("H") || word.Contains("Ch") || word.Contains("ch")
-                                            )
-                                        {
-                                            SayCommand.ChangeCanExecute();
-                                            SpecialWords sw = new SpecialWords(word);
+                                        FText.Spans.Add(new Span() { Text = " "+word + " ", ForegroundColor = Color.FromHex("999999") });
 
-                                            Span s = new Span() { Text = sw.GetDashedWord() + " ", TextColor = Color.Red, ForegroundColor = Color.FromHex("999999") };
-                                            TapGestureRecognizer tgr = new TapGestureRecognizer();
-
-                                            tgr.NumberOfTapsRequired = 1;
-                                            int temp = indexSpecialWords;
-                                            tgr.CommandParameter = temp;
-                                            tgr.Command = new Command(WordTapped);
-                                                        
-                                            s.GestureRecognizers.Add(tgr) ;
-                                                                       
-                                            FText.Spans.Add(s);
-                                                                                   
-                                            sw.NumberWrongWordElement = indexSpecialWords;
-                                            sw.DashedWord = s.Text;
-                                            lstSpecialWords.Add(sw);
-                                            indexSpecialWords++;
-
-                                            sw.NumberAllWordsElement = indexAllWords;
-                                            lstWords.Add(sw);
-                                            sw.SendNotify += Sw_SendNotify;
-
-                                            DashedWord.Add(sw);
-                                            indexAllWords++;
-                                        }
-                                        else
-                                        {
-                                            SpecialWords sw = new SpecialWords(word);
-                                            sw.NumberWrongWordElement = -1;
-                                            sw.DashedWord = word + " ";
-                                            sw.NumberAllWordsElement = indexAllWords;
-                                            DashedWord.Add(sw);
-                                            FText.Spans.Add(new Span() { Text = word + " ", ForegroundColor = Color.FromHex("999999") });
-                                            indexAllWords++;
-                                        }
                                     }
-                                    AddToDashedWords(DashedWord);
+                                    else
+                                    {
+                                         FText.Spans.Add(new Span() { Text = word + " ", ForegroundColor = Color.FromHex("999999") });
 
-                                //});
-                                               
-                        
+                                     }
+
+                            indexAllWords++;
+                                }
+                            }
+                       
+                        });
                     }
                     catch (Exception ex)
                     {
@@ -300,118 +268,69 @@ namespace MultiplicationTable.ViewModels
                     {
                         SetWaiting(false);
                     }
-                //});
+                });
                 
             }
         }
-
-        private void AddToDashedWords(ObservableCollection<SpecialWords> ocSW)
-        {
-            DashedWord1 = new ObservableCollection<SpecialWords>();
-            DashedWord2 = new ObservableCollection<SpecialWords>();
-            DashedWord3 = new ObservableCollection<SpecialWords>();
-            DashedWord4 = new ObservableCollection<SpecialWords>();
-            DashedWord5 = new ObservableCollection<SpecialWords>();
-            DashedWord6 = new ObservableCollection<SpecialWords>();
-            for(int i = 0;i<ocSW.Count;i=i+5)
-            {
-                DashedWord1.Add(ocSW[i]);
-            }
-            for (int i = 1; i < ocSW.Count; i = i + 5)
-            {
-                DashedWord2.Add(ocSW[i]);
-            }
-            for (int i = 2; i < ocSW.Count; i = i + 5)
-            {
-                DashedWord3.Add(ocSW[i]);
-            }
-            for (int i = 3; i < ocSW.Count; i = i + 5)
-            {
-                DashedWord4.Add(ocSW[i]);
-            }
-            for (int i = 4; i < ocSW.Count; i = i + 5)
-            {
-                DashedWord5.Add(ocSW[i]);
-            }
-            for (int i = 5; i < ocSW.Count; i = i + 5)
-            {
-                DashedWord6.Add(ocSW[i]);
-            }
-        }
-
-        private void Sw_SendNotify(int arg1, int arg2)
+                
+        private void Tgr_Tapped(object sender, EventArgs e)
         {
             if (lstSpecialWords != null)
             {
-                SpecialWords sw = lstSpecialWords[arg1];
-                sw.SetLetterPlaces();
+                int specialWordTapped = (int)((Xamarin.Forms.TappedEventArgs)e).Parameter;
+                if (Device.RuntimePlatform == Device.Android)
+                {
+                    SpecialWords sw = lstSpecialWords[specialWordTapped];
+                                         
 
-                WordDetails wp = new WordDetails(sw);
-                wp.TypingWordFinished += Wp_TypingWordFinished;
-                Application.Current.MainPage.Navigation.PushModalAsync(wp);
+                        sw.SetLetterPlaces();
+                    
+                     if (Application.Current.MainPage.Navigation.ModalStack.Count() == 0)
+                    {
+                        wordDetails.InitializeLayout(sw);
+                        Application.Current.MainPage.Navigation.PushModalAsync(wordDetails);
+                    }                   
+                    
+                }
+                else
+                {
+
+
+                    SpecialWords sw = lstSpecialWords[specialWordTapped];
+                   
+                    sw.SetLetterPlaces();
+                    wordDetails.InitializeLayout(sw);
+                    Application.Current.MainPage.Navigation.PushModalAsync(wordDetails);
+                                        
+                }
             }
         }
 
-        private void WordTapped(object o)
-        {
-            //List<Span> lst = FText.Spans.ToList();
-            
-            if (lstSpecialWords != null)
-            {
-                SpecialWords sw = lstSpecialWords[(int)o];
-                sw.SetLetterPlaces();
+       
 
-                WordDetails wp = new WordDetails(sw);
-                wp.TypingWordFinished += Wp_TypingWordFinished;                
-                Application.Current.MainPage.Navigation.PushModalAsync(wp);
-            }
+        private void Wp_TypingCancelled(SpecialWords obj)
+        {
         }
 
         private void Wp_TypingWordFinished(SpecialWords obj)
         {
-            string SpanText = FText.Spans[obj.NumberAllWordsElement].Text;
-            string SpanLabelText = DashedWord[obj.NumberAllWordsElement].DashedWord;
             
+
+            string SpanText = FText.Spans[obj.NumberAllWordsElement].Text;
+                      
                 if(lstAnsweredWords==null)
                 {
                     lstAnsweredWords = new List<SpecialWords>();
                 }
-               
-                if(lstAnsweredWords.Count<=obj.NumberWrongWordElement)
-                {
-                    lstAnsweredWords.Add(obj);
-                }
-                else
-                {
-                    lstAnsweredWords.ElementAt(obj.NumberWrongWordElement).UserTappedWord = obj.UserTappedWord;
-                }
-                FText.Spans[obj.NumberAllWordsElement].Text = obj.UserTappedWord;
 
-            DashedWord[obj.NumberAllWordsElement].DashedWord = obj.UserTappedWord;
-            if(DashedWord1.Where(q=>q.NumberAllWordsElement==obj.NumberAllWordsElement).FirstOrDefault()!=null)
+           
+            if (lstAnsweredWords.Where(q => q.NumberWrongWordElement == obj.NumberWrongWordElement).FirstOrDefault() == null)
             {
-                DashedWord1.Where(q=>q.NumberAllWordsElement==obj.NumberAllWordsElement).First().DashedWord = obj.UserTappedWord;
+                lstAnsweredWords.Add(obj);
             }
-            if (DashedWord2.Where(q => q.NumberAllWordsElement == obj.NumberAllWordsElement).FirstOrDefault() != null)
-            {
-                DashedWord2.Where(q => q.NumberAllWordsElement == obj.NumberAllWordsElement).First().DashedWord = obj.UserTappedWord;
-            }
-            if (DashedWord3.Where(q => q.NumberAllWordsElement == obj.NumberAllWordsElement).FirstOrDefault() != null)
-            {
-                DashedWord3.Where(q => q.NumberAllWordsElement == obj.NumberAllWordsElement).First().DashedWord = obj.UserTappedWord;
-            }
-            if (DashedWord4.Where(q => q.NumberAllWordsElement == obj.NumberAllWordsElement).FirstOrDefault() != null)
-            {
-                DashedWord4.Where(q => q.NumberAllWordsElement == obj.NumberAllWordsElement).First().DashedWord = obj.UserTappedWord;
-            }
-            if (DashedWord5.Where(q => q.NumberAllWordsElement == obj.NumberAllWordsElement).FirstOrDefault() != null)
-            {
-                DashedWord5.Where(q => q.NumberAllWordsElement == obj.NumberAllWordsElement).First().DashedWord = obj.UserTappedWord;
-            }
-            if (DashedWord6.Where(q => q.NumberAllWordsElement == obj.NumberAllWordsElement).FirstOrDefault() != null)
-            {
-                DashedWord6.Where(q => q.NumberAllWordsElement == obj.NumberAllWordsElement).First().DashedWord = obj.UserTappedWord;
-            }
+            lstAnsweredWords.Where(q=>q.NumberWrongWordElement==obj.NumberWrongWordElement).FirstOrDefault().UserTappedWord = obj.UserTappedWord;
+            FText.Spans[obj.NumberAllWordsElement].Text = obj.UserTappedWord;
+                           
         }
 
         private void SayItCommandAction(object o)

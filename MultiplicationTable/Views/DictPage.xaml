@@ -35,125 +35,17 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                   
                 </Grid.ColumnDefinitions>
 
-                <ActivityIndicator x:Name="waitIndicator" Grid.Row="0" Grid.ColumnSpan="3" IsRunning="{Binding WaitIndicator}"
+                <ActivityIndicator x:Name="waitIndicator" Grid.Row="0" Grid.Column="0" IsRunning="{Binding WaitIndicator}"
                     Color="Blue"
                      VerticalOptions="CenterAndExpand"
                      HorizontalOptions="Fill" />
 
-                <!--<Label Grid.Row="0" Grid.ColumnSpan="3" FormattedText="{Binding FText}" HorizontalTextAlignment="Center" FontSize="Large" Margin="5" VerticalTextAlignment="Center">
-        </Label>-->
-                <!--<Entry Grid.Row="0" Grid.ColumnSpan="3"/>-->
-
-                <StackLayout Grid.Row="0" Grid.Column="0"  BindableLayout.ItemsSource="{Binding DashedWord1}"  Orientation="Vertical">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <Label FontSize="Medium">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding DashedWord}">
-                                            <Span.GestureRecognizers>
-                                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding WordTapped}"  CommandParameter="{Binding NumberWrongWordElement}" />
-                                            </Span.GestureRecognizers>
-                                        </Span>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </StackLayout>
-                <StackLayout Grid.Row="0" Grid.Column="1"  BindableLayout.ItemsSource="{Binding DashedWord2}"  Orientation="Vertical">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <Label FontSize="Medium">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding DashedWord}">
-                                            <Span.GestureRecognizers>
-                                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding WordTapped}"  CommandParameter="{Binding NumberWrongWordElement}" />
-                                            </Span.GestureRecognizers>
-                                        </Span>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </StackLayout>
-                <StackLayout Grid.Row="0" Grid.Column="2"  BindableLayout.ItemsSource="{Binding DashedWord3}"  Orientation="Vertical">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <Label FontSize="Medium">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding DashedWord}">
-                                            <Span.GestureRecognizers>
-                                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding WordTapped}"  CommandParameter="{Binding NumberWrongWordElement}" />
-                                            </Span.GestureRecognizers>
-                                        </Span>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </StackLayout>
-                <StackLayout Grid.Row="0" Grid.Column="3"  BindableLayout.ItemsSource="{Binding DashedWord4}"  Orientation="Vertical">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <Label FontSize="Medium">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding DashedWord}">
-                                            <Span.GestureRecognizers>
-                                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding WordTapped}"  CommandParameter="{Binding NumberWrongWordElement}" />
-                                            </Span.GestureRecognizers>
-                                        </Span>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </StackLayout>
-                <StackLayout Grid.Row="0" Grid.Column="4"  BindableLayout.ItemsSource="{Binding DashedWord5}"  Orientation="Vertical">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <Label FontSize="Medium">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding DashedWord}">
-                                            <Span.GestureRecognizers>
-                                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding WordTapped}"  CommandParameter="{Binding NumberWrongWordElement}" />
-                                            </Span.GestureRecognizers>
-                                        </Span>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </StackLayout>
-                <StackLayout Grid.Row="0" Grid.Column="5"  BindableLayout.ItemsSource="{Binding DashedWord6}"  Orientation="Vertical">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <Label FontSize="Medium">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding DashedWord}">
-                                            <Span.GestureRecognizers>
-                                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding WordTapped}"  CommandParameter="{Binding NumberWrongWordElement}" />
-                                            </Span.GestureRecognizers>
-                                        </Span>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </StackLayout>
-                
+                <Label Grid.Row="0" Grid.Column="0" FormattedText="{Binding FText}"   FontSize="Large" Margin="5" VerticalTextAlignment="Start">
+                </Label>
+    
             </Grid>
         </ScrollView>
         <Button Command="{Binding ShuffleCommand}" Grid.Row="1" Grid.Column="0" Text="{x:Static res:Language.btnShuffle}" Margin="2" FontSize="Large" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>

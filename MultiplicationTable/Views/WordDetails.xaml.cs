@@ -17,13 +17,36 @@ namespace MultiplicationTable.Views
         private SpecialWords _sw;
 
         public event Action<SpecialWords> TypingWordFinished;
-        
-        public WordDetails(SpecialWords sw)
+        public event Action<SpecialWords> TypingCancelled;
+
+        public WordDetails()
         {
             InitializeComponent();
+           
+        }
+
+        public void InitializeLayout(SpecialWords sw)
+        {
             _sw = sw;
-            
+
             GenerateLayout(sw);
+        }
+
+        private void RemoveLayout()
+        {
+            List<View> lstItemsToRemove = new List<View>();
+            foreach (var item in sLayout.Children)
+            {
+                if(item is Picker || item is Label)
+                {
+                    lstItemsToRemove.Add(item);
+                }
+            }
+            foreach(var Item in lstItemsToRemove)
+            {
+                sLayout.Children.Remove(Item);
+            }
+               
         }
 
         private void GenerateLayout(SpecialWords sw)
@@ -120,6 +143,7 @@ namespace MultiplicationTable.Views
         {
             Picker p = new Picker();
             p.FontSize = 18;
+            p.WidthRequest = 30;
             foreach(string o in options)
             {
                 p.Items.Add(o);
@@ -173,9 +197,9 @@ namespace MultiplicationTable.Views
 
                 if (TypingWordFinished != null)
                 {
-                    
+                    RemoveLayout();
                     TypingWordFinished(_sw);
-                    Application.Current.MainPage.Navigation.PopModalAsync();
+                    Application.Current.MainPage.Navigation.PopModalAsync(true);
                 }
             }
 
@@ -183,7 +207,12 @@ namespace MultiplicationTable.Views
 
         private void Cancel_Clicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage.Navigation.PopModalAsync();
+            if (TypingCancelled != null)
+            {
+                RemoveLayout();
+                Application.Current.MainPage.Navigation.PopModalAsync(true);
+                TypingCancelled(_sw);
+            }
         }
 
         private void Say_Clicked(object sender, EventArgs e)
