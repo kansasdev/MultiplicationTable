@@ -187,7 +187,7 @@ namespace MultiplicationTable.ViewModels
                         Random r = new Random();
                         int gettedDict = r.Next(1, lst.Count);
 
-                        selectedText = lst[gettedDict].Value;//"wwwwwwwwwwwwwwwwwwwwwwwwwwww Szczebrzeszynie. Wielkie ucho patrzy różnie.";
+                        selectedText = lst[gettedDict].Value;
                         List<string> wordsAndPunctation = selectedText.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
                       
@@ -211,7 +211,7 @@ namespace MultiplicationTable.ViewModels
                             string text = string.Empty;
                             if(Device.RuntimePlatform == Device.Android)
                             {
-                                //text = Environment.NewLine+sw.GetDashedWord()+Environment.NewLine;
+                                
                                 text = Environment.NewLine+ sw.GetDashedWord() + " ";
                             }
                             else

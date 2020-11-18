@@ -65,6 +65,7 @@ namespace MultiplicationTable.Models
 
         public List<int> lstÓ; 
         public List<int> lstż;
+        public List<int> lstżLarge;
         public List<int> lstź;
         public List<int> lsth;
         public List<int> lsthLarge;
@@ -80,7 +81,7 @@ namespace MultiplicationTable.Models
 
 
 
-        private string[] exceptions = new string[] { "ó", "ż", "h", "H", "ch", "Ch", "rz", "Rz", "u", "U" };
+        private string[] exceptions = new string[] { "ó", "ż","Ż", "h", "H", "ch", "Ch", "rz", "Rz", "u", "U" };
         
         public SpecialWords(string word)
         {
@@ -110,6 +111,7 @@ namespace MultiplicationTable.Models
             lstÓ = AllIndexesOf(ProperWord, "ó");
             lstż = AllIndexesOf(ProperWord, "ż");
             lstź = AllIndexesOf(ProperWord, "ź");
+            lstżLarge = AllIndexesOf(ProperWord, "Ż");
             lsth = AllIndexesOf(ProperWord, "h");
             lsthLarge = AllIndexesOf(ProperWord, "H");
             lstch = AllIndexesOf(ProperWord, "ch");

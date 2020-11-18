@@ -100,6 +100,10 @@ namespace MultiplicationTable.Views
                 {
                     sLayout.Children.Add(GeneratePicker(new string[] { "ż", "rz" }));
                 }
+                else if (sw.lstżLarge.Count > 0 && sw.lstżLarge.Contains(index))
+                {
+                    sLayout.Children.Add(GeneratePicker(new string[] { "Ż", "Rz" }));
+                }
                 else
                 {
                     if (c != 'z')
@@ -191,8 +195,15 @@ namespace MultiplicationTable.Views
                     }
                                        
                 }
-                
+
+                if (Device.RuntimePlatform == Device.Android)
+                {
+                    _sw.UserTappedWord = Environment.NewLine + _sw.UserTappedWord + " ";
+                }
+                else
+                {
                     _sw.UserTappedWord = _sw.UserTappedWord + " ";
+                }
                 
 
                 if (TypingWordFinished != null)
