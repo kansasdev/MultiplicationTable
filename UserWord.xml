@@ -1,0 +1,26 @@
+<Words>
+	<Word>
+		<en>football</en>
+		<pl>piłka nożna</pl>
+		<category_pl>sport</category_pl>
+		<category_en>sport</category_en>
+	</Word>
+	<Word>
+		<en>basketball</en>
+		<pl>koszykówka</pl>
+		<category_pl>sport</category_pl>
+		<category_en>sport</category_en>
+	</Word>
+	<Word>
+		<en>swimming</en>
+		<pl>pływanie</pl>
+		<category_pl>sport</category_pl>
+		<category_en>sport</category_en>
+	</Word>
+	<Word>
+		<en>jogging</en>
+		<pl>bieganie</pl>
+		<category_pl>sport</category_pl>
+		<category_en>sport</category_en>
+	</Word>
+</Words>
