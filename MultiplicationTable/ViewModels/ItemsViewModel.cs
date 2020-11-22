@@ -65,13 +65,13 @@ namespace MultiplicationTable.ViewModels
                 timer.Elapsed += Timer_Elapsed;
             }
 
-            if (Settings.WorkMode == "" || Settings.WorkMode == "Normal")
+            if (Settings.WorkMode == "" || Settings.WorkMode=="Quiz")
             {
-                isQuizMode = false;
+                isQuizMode = true;
             }
             else
             {
-                isQuizMode = true;
+                isQuizMode = false;
             }
             //isQuizMode = true;
 

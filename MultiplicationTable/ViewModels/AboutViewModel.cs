@@ -45,13 +45,13 @@ namespace MultiplicationTable.ViewModels
                 MultSource.Add(i);
             }
 
-            if (Settings.WorkMode=="" || Settings.WorkMode=="Normal")
+            if (Settings.WorkMode=="" || Settings.WorkMode=="Quiz")
             {
-                Marked = false;
+                Marked = true;
             }
             else
             {
-                Marked = true;
+                Marked = false;
             }
 
             SelectedDiff = Settings.DiffMax;

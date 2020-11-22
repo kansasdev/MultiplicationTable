@@ -400,7 +400,7 @@ namespace MultiplicationTable.ViewModels
                         IFolder destFolder = folder.GetFolderAsync("UserXML").GetAwaiter().GetResult();
                         if (PCLHelper.IsFileExistAsync("UserWord.xml", destFolder).GetAwaiter().GetResult())
                         {
-                            IFile file = destFolder.GetFileAsync("UserDict.xml").GetAwaiter().GetResult();
+                            IFile file = destFolder.GetFileAsync("UserWord.xml").GetAwaiter().GetResult();
                             string content = file.ReadAllTextAsync().GetAwaiter().GetResult();
                             XDocument xDocUser = XDocument.Parse(content);
 
