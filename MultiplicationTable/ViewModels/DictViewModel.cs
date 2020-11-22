@@ -340,7 +340,12 @@ namespace MultiplicationTable.ViewModels
                 ButtonEnabled = false;
                 IEnumerable<Locale> locals = TextToSpeech.GetLocalesAsync().GetAwaiter().GetResult();
                 Locale local = locals.FirstOrDefault(y => string.Equals(y.Country, "POL"));
-                var mySpeechOptions = new SpeechOptions
+                if(local==null)
+                {
+                    local = locals.FirstOrDefault(y => string.Equals(y.Country, "USA"));
+                }
+
+                    var mySpeechOptions = new SpeechOptions
                 {
                     Volume = 1,
                     Pitch = 0.2f,
