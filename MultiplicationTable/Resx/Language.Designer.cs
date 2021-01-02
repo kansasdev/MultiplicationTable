@@ -187,6 +187,15 @@ namespace MultiplicationTable.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Simple app for learning basics in maths, learning words (PL-EN), dictations (sample texts taken from szkolnictwo.pl website).
+        /// </summary>
+        internal static string txtAboutApp {
+            get {
+                return ResourceManager.GetString("txtAboutApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About author (github).
         /// </summary>
         internal static string txtAboutGithub {

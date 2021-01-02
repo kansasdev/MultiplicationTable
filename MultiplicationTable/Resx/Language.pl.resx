@@ -159,6 +159,9 @@
   <data name="txtAboutAddMax" xml:space="preserve">
     <value>Maksymalna wartość czynnika dodawanie</value>
   </data>
+  <data name="txtAboutApp" xml:space="preserve">
+    <value>Prosta aplikacja do nauki podstaw operacji matematycznych, słówek polsko-angielskich oraz dyktand (przykłady zaczerpnięto ze strony szkolnictwo.pl)</value>
+  </data>
   <data name="txtAboutGithub" xml:space="preserve">
     <value>O autorze (github)</value>
   </data>

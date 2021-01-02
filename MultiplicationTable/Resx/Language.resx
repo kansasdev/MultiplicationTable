@@ -159,6 +159,9 @@
   <data name="txtAboutAddMax" xml:space="preserve">
     <value>Addition part max value</value>
   </data>
+  <data name="txtAboutApp" xml:space="preserve">
+    <value>Simple app for learning basics in maths, learning words (PL-EN), dictations (sample texts taken from szkolnictwo.pl website)</value>
+  </data>
   <data name="txtAboutGithub" xml:space="preserve">
     <value>About author (github)</value>
   </data>

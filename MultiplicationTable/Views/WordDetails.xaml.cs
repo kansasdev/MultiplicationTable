@@ -147,7 +147,8 @@ namespace MultiplicationTable.Views
         {
             Picker p = new Picker();
             p.FontSize = 18;
-            p.WidthRequest = 30;
+            p.WidthRequest = 60;
+            
             foreach(string o in options)
             {
                 p.Items.Add(o);

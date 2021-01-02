@@ -56,7 +56,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="" />
+                                <Span Text="{x:Static res:Language.txtAboutApp}" />
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
