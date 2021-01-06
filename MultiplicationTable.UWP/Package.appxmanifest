@@ -9,7 +9,7 @@
   <Identity
     Name="43528kansasdev.Szkolnypomocnik"
     Publisher="CN=32D36924-F038-41EE-BE39-ADE8087A69B9"
-    Version="1.0.4.0" />
+    Version="1.0.5.0" />
 
   <mp:PhoneIdentity PhoneProductId="6f20474e-9d06-47a2-a3ef-7e0ddf6009de" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
