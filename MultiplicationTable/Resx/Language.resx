@@ -120,6 +120,9 @@
   <data name="btnAboutUpdate" xml:space="preserve">
     <value>Update settings</value>
   </data>
+  <data name="btnAnswer" xml:space="preserve">
+    <value>Answer</value>
+  </data>
   <data name="btnCancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -214,7 +217,7 @@
     <value>ERROR</value>
   </data>
   <data name="txtLearningSetCategory" xml:space="preserve">
-    <value>Choose category</value>
+    <value>Category</value>
   </data>
   <data name="txtMultNo" xml:space="preserve">
     <value>NO</value>

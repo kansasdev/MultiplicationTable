@@ -165,6 +165,10 @@ namespace MultiplicationTable.ViewModels
             HintBCommand = new Command(new Action<object>(CheckHintBAction));
             HintCCommand = new Command(new Action<object>(CheckHintCAction));
 
+            HintA = Language.btnAnswer;
+            HintB = Language.btnAnswer;
+            HintC = Language.btnAnswer;
+
             ReadDataFromSource();
         }
 

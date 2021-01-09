@@ -70,6 +70,15 @@ namespace MultiplicationTable.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Answer.
+        /// </summary>
+        public static string btnAnswer {
+            get {
+                return ResourceManager.GetString("btnAnswer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string btnCancel {
@@ -349,7 +358,7 @@ namespace MultiplicationTable.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose category.
+        ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string txtLearningSetCategory {
             get {
