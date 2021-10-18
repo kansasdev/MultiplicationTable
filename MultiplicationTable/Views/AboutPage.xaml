@@ -81,6 +81,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -89,20 +90,23 @@
                 <Label Text="{x:Static res:Language.txtAboutQuizMode}" Grid.Column="0" Margin="10" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 <Switch IsToggled="{Binding Marked}" Grid.Column="1" Margin="10" Grid.Row="0" />
 
-                <Label Text="{x:Static res:Language.txtAboutTimeout}" Grid.Column="0" Margin="10" Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                <Picker Title="{x:Static res:Language.pckAboutText}" ItemsSource="{Binding TimeoutSource}" SelectedItem="{Binding SelectedTimeout}" Grid.Row="1" Grid.Column="1" WidthRequest="5" Margin="10">
+                <Label Text="{x:Static res:Language.txtEnglishTypeMode}" Grid.Column="0" Margin="10" Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Switch IsToggled="{Binding TypeMode}" Grid.Column="1" Margin="10" Grid.Row="1" />
+
+                <Label Text="{x:Static res:Language.txtAboutTimeout}" Grid.Column="0" Margin="10" Grid.Row="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Picker Title="{x:Static res:Language.pckAboutText}" ItemsSource="{Binding TimeoutSource}" SelectedItem="{Binding SelectedTimeout}" Grid.Row="2" Grid.Column="1" WidthRequest="5" Margin="10">
                 </Picker>
 
-                <Label Text="{x:Static res:Language.txtAboutAddMax}" Grid.Column="0" Margin="10" Grid.Row="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                <Picker Title="{x:Static res:Language.pckAboutText}" ItemsSource="{Binding SumSource}" SelectedItem="{Binding SelectedSum}" Grid.Row="2" Grid.Column="1" WidthRequest="5" Margin="10">
+                <Label Text="{x:Static res:Language.txtAboutAddMax}" Grid.Column="0" Margin="10" Grid.Row="3" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Picker Title="{x:Static res:Language.pckAboutText}" ItemsSource="{Binding SumSource}" SelectedItem="{Binding SelectedSum}" Grid.Row="3" Grid.Column="1" WidthRequest="5" Margin="10">
                 </Picker>
 
-                <Label Text="{x:Static res:Language.txtAboutSubMax}" Grid.Column="0" Margin="10" Grid.Row="3" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                <Picker Title="{x:Static res:Language.pckAboutText}" ItemsSource="{Binding DiffSource}" SelectedItem="{Binding SelectedDiff}" Grid.Row="3" Grid.Column="1" WidthRequest="5" Margin="10">
+                <Label Text="{x:Static res:Language.txtAboutSubMax}" Grid.Column="0" Margin="10" Grid.Row="4" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Picker Title="{x:Static res:Language.pckAboutText}" ItemsSource="{Binding DiffSource}" SelectedItem="{Binding SelectedDiff}" Grid.Row="4" Grid.Column="1" WidthRequest="5" Margin="10">
                 </Picker>
 
-                <Label Text="{x:Static res:Language.txtAboutMultMax}" Grid.Column="0" Margin="10" Grid.Row="4" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                <Picker Title="{x:Static res:Language.pckAboutText}" ItemsSource="{Binding MultSource}" SelectedItem="{Binding SelectedMult}" Grid.Row="4" Grid.Column="1" WidthRequest="5" Margin="10">
+                <Label Text="{x:Static res:Language.txtAboutMultMax}" Grid.Column="0" Margin="10" Grid.Row="5" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Picker Title="{x:Static res:Language.pckAboutText}" ItemsSource="{Binding MultSource}" SelectedItem="{Binding SelectedMult}" Grid.Row="5" Grid.Column="1" WidthRequest="5" Margin="10">
                 </Picker>
 
                 <Button Command="{Binding LoadUserDefinedDict}" Grid.Row="6" Grid.ColumnSpan="2" Margin="10"  BackgroundColor="{StaticResource Primary}" WidthRequest="200"

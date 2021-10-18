@@ -21,6 +21,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -42,21 +43,24 @@
                      VerticalOptions="CenterAndExpand"
                      HorizontalOptions="Fill" />
 
-            <local:ExtButton Command="{Binding HintACommand}" Grid.Row="2" Grid.Column="0" Text="{Binding HintA}" Margin="2" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}">
+            <Label Text="{x:Static res:Language.txtLearningInputAnswer}" FontSize="Large" Grid.Column="0" Grid.Row="2" HorizontalTextAlignment="Center" VerticalTextAlignment="End" Margin="5"/>
+            <Entry Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" FontSize="Large" IsEnabled="{Binding Enabled}" Margin="5" Text="{Binding InputAnswer}" />
+
+            <local:ExtButton Command="{Binding HintACommand}" Grid.Row="3" Grid.Column="0" Text="{Binding HintA}" Margin="2" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}">
                 <local:ExtButton.FontNamedSize>
                     <OnPlatform x:TypeArguments="NamedSize"
             Default="Large"
             Android="Medium" />
                 </local:ExtButton.FontNamedSize>
             </local:ExtButton>
-            <local:ExtButton Command="{Binding HintBCommand}" Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding HintB}" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}">
+            <local:ExtButton Command="{Binding HintBCommand}" Grid.Row="3" Grid.Column="1" Margin="2" Text="{Binding HintB}" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}">
                 <local:ExtButton.FontNamedSize>
                     <OnPlatform x:TypeArguments="NamedSize"
             Default="Large"
             Android="Medium" />
                 </local:ExtButton.FontNamedSize>
             </local:ExtButton>
-            <local:ExtButton Command="{Binding HintCCommand}" Grid.Row="2" Grid.Column="2" Margin="2" Text="{Binding HintC}" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}">
+            <local:ExtButton Command="{Binding HintCCommand}" Grid.Row="3" Grid.Column="2" Margin="2" Text="{Binding HintC}" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}">
                 <local:ExtButton.FontNamedSize>
                     <OnPlatform x:TypeArguments="NamedSize"
             Default="Large"
@@ -65,9 +69,9 @@
             </local:ExtButton>
 
 
-            <Button FontSize="Medium" Command="{Binding ShuffleCommand}" Grid.Row="3" Grid.Column="0" Text="{x:Static res:Language.btnShuffle}" Margin="2" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
-            <Button FontSize="Medium" Command="{Binding CheckCommand}" Grid.Row="3" Grid.Column="1" Margin="2" Text="{x:Static res:Language.btnCheck}" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
-            <Button FontSize="Medium" Command="{Binding SayCommand}" Grid.Row="3" Grid.Column="2" Margin="2" Text="{x:Static res:Language.btnSay}" IsEnabled="{Binding ButtonSayEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+            <Button FontSize="Medium" Command="{Binding ShuffleCommand}" Grid.Row="4" Grid.Column="0" Text="{x:Static res:Language.btnShuffle}" Margin="2" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+            <Button FontSize="Medium" Command="{Binding CheckCommand}" Grid.Row="4" Grid.Column="1" Margin="2" Text="{x:Static res:Language.btnCheck}" IsEnabled="{Binding ButtonEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
+            <Button FontSize="Medium" Command="{Binding SayCommand}" Grid.Row="4" Grid.Column="2" Margin="2" Text="{x:Static res:Language.btnSay}" IsEnabled="{Binding ButtonSayEnabled}" BorderRadius="15" BackgroundColor="{StaticResource Primary}"/>
 
         </Grid>
     </ContentPage.Content>

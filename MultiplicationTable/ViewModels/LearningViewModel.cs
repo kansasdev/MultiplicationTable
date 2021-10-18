@@ -94,6 +94,15 @@ namespace MultiplicationTable.ViewModels
             set { SetProperty(ref hintC, value); }
         }
 
+        private string inputAnswer;
+        public string InputAnswer
+        {
+            get { return inputAnswer; }
+            set
+            {
+                SetProperty(ref inputAnswer, value);
+            }
+        }
 
         private bool waitIndicator;
         public bool WaitIndicator
@@ -112,6 +121,16 @@ namespace MultiplicationTable.ViewModels
             set
             {
                 SetProperty(ref buttonEnabled, value);
+            }
+        }
+
+        private bool enabled;
+        public bool Enabled
+        {
+            get { return enabled; }
+            set
+            {
+                SetProperty(ref enabled, value);
             }
         }
 
@@ -169,6 +188,8 @@ namespace MultiplicationTable.ViewModels
             HintB = Language.btnAnswer;
             HintC = Language.btnAnswer;
 
+            InputAnswer = "";
+
             ReadDataFromSource();
         }
 
@@ -199,25 +220,34 @@ namespace MultiplicationTable.ViewModels
 
                 //ustawienie buttonow;
                 int okIdx = r.Next(0, 3);
-                if(okIdx==0)
+                if (Settings.TestModeEnglishWords)
                 {
-                    HintA = properCorrespondingWord;
-                    HintC = secondWrongCorrespondingWord;
-                    HintB = firstWrongCorrespondingWord;
+                    if (okIdx == 0)
+                    {
+                        HintA = properCorrespondingWord;
+                        HintC = secondWrongCorrespondingWord;
+                        HintB = firstWrongCorrespondingWord;
+                    }
+                    if (okIdx == 1)
+                    {
+                        HintB = properCorrespondingWord;
+                        HintA = firstWrongCorrespondingWord;
+                        HintC = secondWrongCorrespondingWord;
+                    }
+                    if (okIdx == 2)
+                    {
+                        HintC = properCorrespondingWord;
+                        HintA = firstWrongCorrespondingWord;
+                        HintB = secondWrongCorrespondingWord;
+                    }
                 }
-                if(okIdx==1)
+                else
                 {
-                    HintB = properCorrespondingWord;
-                    HintA = firstWrongCorrespondingWord;
-                    HintC = secondWrongCorrespondingWord;
+                    InputAnswer = "";
+                    HintA = Language.btnAnswer;
+                    HintB = Language.btnAnswer;
+                    HintC = Language.btnAnswer;
                 }
-                if(okIdx==2)
-                {
-                    HintC = properCorrespondingWord;
-                    HintA = firstWrongCorrespondingWord;
-                    HintB = secondWrongCorrespondingWord;
-                }
-
               
              }
              else
@@ -230,20 +260,41 @@ namespace MultiplicationTable.ViewModels
         {
             if (!string.IsNullOrEmpty(GeneratedWord))
             {
-                if (HintA == properCorrespondingWord)
+                if (Settings.TestModeEnglishWords)
                 {
-                    EquationResults.AddOkAnswer();
-                    ImageVisible = true;
-                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+                    if (HintA == properCorrespondingWord)
+                    {
+                        EquationResults.AddOkAnswer();
+                        ImageVisible = true;
+                        ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
 
+                    }
+                    else
+                    {
+                        EquationResults.AddBadAnswer();
+                        ImageVisible = true;
+                        ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+                    }
+                    Title = Language.txtMultResult + ", " + Language.txtMultOk + ": " + EquationResults.GetOkAnswers() + " " + Language.txtMultNo + ": " + EquationResults.GetBadAnswers() + " " + Language.txtMultTotal + ": " + EquationResults.GetTotalAnswers();
                 }
                 else
                 {
-                    EquationResults.AddBadAnswer();
-                    ImageVisible = true;
-                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+                    if (string.Equals(InputAnswer, properCorrespondingWord,StringComparison.OrdinalIgnoreCase)) 
+                    {
+                        EquationResults.AddOkAnswer();
+                        ImageVisible = true;
+                        ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+
+                    }
+                    else
+                    {
+                        EquationResults.AddBadAnswer();
+                        ImageVisible = true;
+                        ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+                    }
+                    Title = Language.txtMultResult + ", " + Language.txtMultOk + ": " + EquationResults.GetOkAnswers() + " " + Language.txtMultNo + ": " + EquationResults.GetBadAnswers() + " " + Language.txtMultTotal + ": " + EquationResults.GetTotalAnswers();
+
                 }
-                Title = Language.txtMultResult + ", " + Language.txtMultOk + ": " + EquationResults.GetOkAnswers() + " " + Language.txtMultNo + ": " + EquationResults.GetBadAnswers() + " " + Language.txtMultTotal + ": " + EquationResults.GetTotalAnswers();
             }
         }
 
@@ -251,19 +302,40 @@ namespace MultiplicationTable.ViewModels
         {
             if (!string.IsNullOrEmpty(GeneratedWord))
             {
-                if (HintB == properCorrespondingWord)
+                if (Settings.TestModeEnglishWords)
                 {
-                    EquationResults.AddOkAnswer();
-                    ImageVisible = true;
-                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+                    if (HintB == properCorrespondingWord)
+                    {
+                        EquationResults.AddOkAnswer();
+                        ImageVisible = true;
+                        ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+                    }
+                    else
+                    {
+                        EquationResults.AddBadAnswer();
+                        ImageVisible = true;
+                        ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+                    }
+                    Title = Language.txtMultResult + ", " + Language.txtMultOk + ": " + EquationResults.GetOkAnswers() + " " + Language.txtMultNo + ": " + EquationResults.GetBadAnswers() + " " + Language.txtMultTotal + ": " + EquationResults.GetTotalAnswers();
                 }
                 else
                 {
-                    EquationResults.AddBadAnswer();
-                    ImageVisible = true;
-                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+                    if (string.Equals(InputAnswer, properCorrespondingWord, StringComparison.OrdinalIgnoreCase))
+                    {
+                        EquationResults.AddOkAnswer();
+                        ImageVisible = true;
+                        ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+
+                    }
+                    else
+                    {
+                        EquationResults.AddBadAnswer();
+                        ImageVisible = true;
+                        ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+                    }
+                    Title = Language.txtMultResult + ", " + Language.txtMultOk + ": " + EquationResults.GetOkAnswers() + " " + Language.txtMultNo + ": " + EquationResults.GetBadAnswers() + " " + Language.txtMultTotal + ": " + EquationResults.GetTotalAnswers();
+
                 }
-                Title = Language.txtMultResult + ", " + Language.txtMultOk + ": " + EquationResults.GetOkAnswers() + " " + Language.txtMultNo + ": " + EquationResults.GetBadAnswers() + " " + Language.txtMultTotal + ": " + EquationResults.GetTotalAnswers();
             }
         }
 
@@ -271,20 +343,41 @@ namespace MultiplicationTable.ViewModels
         {
             if (!string.IsNullOrEmpty(GeneratedWord))
             {
-                if (HintC == properCorrespondingWord)
+                if (Settings.TestModeEnglishWords)
                 {
-                    EquationResults.AddOkAnswer();
-                    ImageVisible = true;
-                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+                    if (HintC == properCorrespondingWord)
+                    {
+                        EquationResults.AddOkAnswer();
+                        ImageVisible = true;
+                        ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
 
+                    }
+                    else
+                    {
+                        EquationResults.AddBadAnswer();
+                        ImageVisible = true;
+                        ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+                    }
+                    Title = Language.txtMultResult + ", " + Language.txtMultOk + ": " + EquationResults.GetOkAnswers() + " " + Language.txtMultNo + ": " + EquationResults.GetBadAnswers() + " " + Language.txtMultTotal + ": " + EquationResults.GetTotalAnswers();
                 }
                 else
                 {
-                    EquationResults.AddBadAnswer();
-                    ImageVisible = true;
-                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+                    if (string.Equals(InputAnswer, properCorrespondingWord, StringComparison.OrdinalIgnoreCase))
+                    {
+                        EquationResults.AddOkAnswer();
+                        ImageVisible = true;
+                        ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+
+                    }
+                    else
+                    {
+                        EquationResults.AddBadAnswer();
+                        ImageVisible = true;
+                        ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+                    }
+                    Title = Language.txtMultResult + ", " + Language.txtMultOk + ": " + EquationResults.GetOkAnswers() + " " + Language.txtMultNo + ": " + EquationResults.GetBadAnswers() + " " + Language.txtMultTotal + ": " + EquationResults.GetTotalAnswers();
+
                 }
-                Title = Language.txtMultResult + ", " + Language.txtMultOk + ": " + EquationResults.GetOkAnswers() + " " + Language.txtMultNo + ": " + EquationResults.GetBadAnswers() + " " + Language.txtMultTotal + ": " + EquationResults.GetTotalAnswers();
             }
         }
 
@@ -298,7 +391,24 @@ namespace MultiplicationTable.ViewModels
 
         private void CheckCommandAction(object o)
         {
+            if(!Settings.TestModeEnglishWords)
+            {
+                if (string.Equals(InputAnswer, properCorrespondingWord, StringComparison.OrdinalIgnoreCase))
+                {
+                    EquationResults.AddOkAnswer();
+                    ImageVisible = true;
+                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.thumbs_up_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
 
+                }
+                else
+                {
+                    EquationResults.AddBadAnswer();
+                    ImageVisible = true;
+                    ImageEmbeddedSource = ImageSource.FromResource("MultiplicationTable.waaa_1.png", typeof(MultiplicationTable.ImageResourceExtension).GetTypeInfo().Assembly);
+                }
+                Title = Language.txtMultResult + ", " + Language.txtMultOk + ": " + EquationResults.GetOkAnswers() + " " + Language.txtMultNo + ": " + EquationResults.GetBadAnswers() + " " + Language.txtMultTotal + ": " + EquationResults.GetTotalAnswers();
+
+            }
         }
 
         private void SayAction()
@@ -330,8 +440,28 @@ namespace MultiplicationTable.ViewModels
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 WaitIndicator = !state;
-                ButtonEnabled = state;
-                ButtonSayEnabled = state;
+                if (state == true)
+                {
+                    if (Settings.TestModeEnglishWords)
+                    {
+                        Enabled = state;
+                        ButtonEnabled = state;
+                        ButtonSayEnabled = state;
+                    }
+                    else
+                    {
+                        Enabled = state;
+                        ButtonEnabled = state;
+                        ButtonSayEnabled = state;
+                    }
+                }
+                else
+                {
+                    
+                    Enabled = state;
+                    ButtonEnabled = state;
+                    ButtonSayEnabled = state;
+                }
             });
         }
 

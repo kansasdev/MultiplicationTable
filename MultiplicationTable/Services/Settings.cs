@@ -39,5 +39,11 @@ namespace MultiplicationTable.Services
 			get => AppSettings.GetValueOrDefault(nameof(MultMax), 10);
 			set => AppSettings.AddOrUpdateValue(nameof(MultMax), value);
 		}
+
+		public static bool TestModeEnglishWords
+		{
+			get => AppSettings.GetValueOrDefault(nameof(TestModeEnglishWords), true);
+			set => AppSettings.AddOrUpdateValue(nameof(TestModeEnglishWords), value);
+		}
 	}
 }

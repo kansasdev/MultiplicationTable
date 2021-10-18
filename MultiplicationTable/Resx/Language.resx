@@ -204,6 +204,9 @@
   <data name="txtDictSum" xml:space="preserve">
     <value>SUM</value>
   </data>
+  <data name="txtEnglishTypeMode" xml:space="preserve">
+    <value>Test mode while English Words learning?</value>
+  </data>
   <data name="txtErrLoadingUserData" xml:space="preserve">
     <value>Error while loading user data</value>
   </data>
@@ -215,6 +218,9 @@
   </data>
   <data name="txtErrorTitle" xml:space="preserve">
     <value>ERROR</value>
+  </data>
+  <data name="txtLearningInputAnswer" xml:space="preserve">
+    <value>Enter answer</value>
   </data>
   <data name="txtLearningSetCategory" xml:space="preserve">
     <value>Category</value>

@@ -54,6 +54,8 @@ namespace MultiplicationTable.ViewModels
                 Marked = false;
             }
 
+            TypeMode = Settings.TestModeEnglishWords;
+
             SelectedDiff = Settings.DiffMax;
             SelectedMult = Settings.MultMax;
             SelectedSum = Settings.SumMax;
@@ -73,6 +75,7 @@ namespace MultiplicationTable.ViewModels
                 Settings.SumMax = SelectedSum;
                 Settings.DiffMax = SelectedDiff;
                 Settings.MultMax = SelectedMult;
+                Settings.TestModeEnglishWords = TypeMode;
 
                 UserDialogs.Instance.Alert(Language.txtUserDataUpdated, Language.btnAboutUpdate);
              
@@ -94,6 +97,19 @@ namespace MultiplicationTable.ViewModels
             set
             {
                 SetProperty(ref marked, value);
+            }
+        }
+
+        private bool typeMode;
+        public bool TypeMode
+        {
+            get
+            {
+                return typeMode;
+            }
+            set
+            {
+                SetProperty(ref typeMode, value);
             }
         }
 

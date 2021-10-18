@@ -322,6 +322,15 @@ namespace MultiplicationTable.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Test mode while English Words learning?.
+        /// </summary>
+        public static string txtEnglishTypeMode {
+            get {
+                return ResourceManager.GetString("txtEnglishTypeMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error while loading user data.
         /// </summary>
         public static string txtErrLoadingUserData {
@@ -354,6 +363,15 @@ namespace MultiplicationTable.Resx {
         public static string txtErrorTitle {
             get {
                 return ResourceManager.GetString("txtErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter answer.
+        /// </summary>
+        public static string txtLearningInputAnswer {
+            get {
+                return ResourceManager.GetString("txtLearningInputAnswer", resourceCulture);
             }
         }
         
